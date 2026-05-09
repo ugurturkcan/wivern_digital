@@ -41,12 +41,21 @@ export default function Home() {
       {/* Main Content */}
       <main className="pt-20">
         
-        {/* HERO SECTION (home_1) */}
-        <section className="relative pt-32 pb-20 overflow-hidden">
-          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20 pointer-events-none" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
+        {/* HERO SECTION (home_1 with new animated background) */}
+        <section className="relative min-h-[90vh] flex flex-col justify-center pt-32 pb-20 overflow-hidden border-b border-[#2e241c]">
           
-          <div className="container mx-auto px-6 relative z-10 flex flex-col items-center text-center">
+          {/* Animated Cinematic Background */}
+          <div className="absolute inset-0 z-0 bg-black overflow-hidden pointer-events-none">
+             <div className="absolute inset-0 bg-[url('/images/home_bg.png')] bg-cover bg-center bg-no-repeat opacity-50 animate-ken-burns" />
+             <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20" />
+             {/* Gradient overlays to blend into the dark theme */}
+             <div className="absolute inset-0 bg-gradient-to-b from-[#0a0806]/40 via-transparent to-[#0a0806] z-10" />
+             <div className="absolute inset-0 bg-gradient-to-r from-[#0a0806]/60 via-transparent to-[#0a0806]/60 z-10" />
+          </div>
+
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[120px] pointer-events-none z-10" />
+          
+          <div className="container mx-auto px-6 relative z-20 flex flex-col items-center text-center">
             
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/30 bg-[#1a1510]/80 text-primary text-xs font-bold tracking-widest uppercase mb-8 backdrop-blur-sm">
               <Sparkles className="w-3 h-3" /> EST. MDXVI • THE CREATIVE GUILD
