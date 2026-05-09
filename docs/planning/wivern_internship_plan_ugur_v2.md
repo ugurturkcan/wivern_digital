@@ -10,17 +10,19 @@ To ensure a highly responsive, cinematic user experience (matching the Figma des
 
 *   **Core Frontend:** Next.js (App Router) & React
 *   **Styling & UI:** Tailwind CSS (Focus on dark, mystical guild aesthetics)
-*   **Backend Orchestration:** Python & FastAPI (for routing requests to GPU instances)
+*   **Backend Orchestration:** Python & FastAPI (Hosted on Railway.app)
 *   **Authentication:** Clerk
-*   **Database (DB):** Supabase (PostgreSQL)
-*   **Storage:** Supabase Storage / AWS S3 (for raw uploads and final 4K videos)
+*   **Database (DB):** PostgreSQL (Hosted on Railway.app)
+*   **Storage:** Cloudflare R2 (for raw uploads and final 4K videos)
+*   **Task Queue:** BullMQ with Upstash Redis
 *   **Payment Gateway:** Stripe
 *   **AI/GPU Server Environment:** ComfyUI + Docker, utilizing Wan2.2, LivePortrait / DreamActor V2, Seedance 2.0, and Python-based 3D Variational Autoencoders (VAE) for motion capture.
+*   **Workflow Automation:** n8n (Self-hosted)
 
 ## 2. Services & Deployment
 
-*   **Frontend Hosting:** Vercel
-*   **API & Task Queue Hosting:** Contabo (VPS)
+*   **Frontend Hosting:** Vercel (with GitHub Actions CI/CD)
+*   **API Hosting & Database:** Railway.app
 *   **Heavy GPU Computing:** RunPod / Lambda Labs (Utilizing RTX 4090s for testing, H100s for heavy Wan2.2/LivePortrait rendering)
 *   **Voice Synthesis:** ElevenLabs API (or GPT-SoVITS deployed on RunPod)
 
