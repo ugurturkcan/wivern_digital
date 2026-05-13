@@ -1,3 +1,5 @@
+"use client";
+import { motion } from "framer-motion";
 import { Sparkles, Play, ChevronRight, Check, MapPin, Mail, Phone, PenTool, User, Mic, Zap, Eye, Share2, Quote, Users, Star, Globe } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -42,7 +44,11 @@ export default function Home() {
       <main className="pt-20">
         
         {/* HERO SECTION (home_1 with new animated background) */}
-        <section className="relative min-h-[90vh] flex flex-col justify-center pt-32 pb-20 overflow-hidden border-b border-[#2e241c]">
+        <motion.section 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+          className="relative min-h-[90vh] flex flex-col justify-center pt-32 pb-20 overflow-hidden border-b border-[#2e241c]">
           
           {/* Animated Cinematic Background */}
           <div className="absolute inset-0 z-0 bg-black overflow-hidden pointer-events-none">
@@ -106,10 +112,16 @@ export default function Home() {
             </div>
 
           </div>
-        </section>
+        </motion.section>
 
         {/* FEATURED WORKS (home_2) */}
-        <section id="works" className="py-24 border-t border-[#2e241c] bg-[#050403]">
+        <motion.section 
+          id="works" 
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+          className="py-24 border-t border-[#2e241c] bg-[#050403]">
           <div className="container mx-auto px-6 text-center mb-16">
             <h2 className="font-serif text-5xl text-[#f3ede4] mb-6 tracking-widest uppercase">FEATURED WORKS</h2>
             <p className="text-[#a19282] max-w-2xl mx-auto">
@@ -154,10 +166,16 @@ export default function Home() {
                 VIEW FULL PORTFOLIO <ChevronRight className="w-4 h-4" />
              </button>
           </div>
-        </section>
+        </motion.section>
 
         {/* HOW THE GUILD WORKS (home_3) */}
-        <section id="process" className="py-24 border-t border-[#2e241c]">
+        <motion.section 
+          id="process" 
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+          className="py-24 border-t border-[#2e241c]">
           <div className="container mx-auto px-6 text-center">
             <div className="inline-flex items-center gap-4 mb-6">
               <div className="w-12 h-[1px] bg-primary/50" />
@@ -197,10 +215,16 @@ export default function Home() {
               </Link>
             </div>
           </div>
-        </section>
+        </motion.section>
 
         {/* THE GUILD OF WIVERN (home_4) */}
-        <section id="guild" className="py-24 border-t border-[#2e241c] bg-[#050403]">
+        <motion.section 
+          id="guild" 
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+          className="py-24 border-t border-[#2e241c] bg-[#050403]">
           <div className="container mx-auto px-6">
             <div className="text-center mb-16">
               <div className="inline-flex items-center gap-4 mb-6">
@@ -271,10 +295,15 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </section>
+        </motion.section>
 
         {/* QUOTE BANNER (home_5) */}
-        <section className="py-32 border-t border-[#2e241c] relative flex items-center justify-center bg-[#0c0a08]">
+        <motion.section 
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+          className="py-32 border-t border-[#2e241c] relative flex items-center justify-center bg-[#0c0a08]">
           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-10 pointer-events-none" />
           <div className="container mx-auto px-6 text-center relative z-10">
             <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-[#f3ede4] tracking-wide mb-6">
@@ -284,10 +313,16 @@ export default function Home() {
               — The Wivern Guild Charter, 1516
             </p>
           </div>
-        </section>
+        </motion.section>
 
         {/* CHOOSE YOUR RANK (home_6) */}
-        <section id="pricing" className="py-24 border-t border-[#2e241c]">
+        <motion.section 
+          id="pricing" 
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+          className="py-24 border-t border-[#2e241c]">
           <div className="container mx-auto px-6 max-w-6xl">
             <div className="text-center mb-16">
               <div className="inline-flex items-center gap-4 mb-6">
@@ -351,10 +386,15 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </section>
+        </motion.section>
 
         {/* ADD-ONS (home_7) */}
-        <section className="pb-24 pt-12 border-t border-[#2e241c] bg-[#050403]">
+        <motion.section 
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+          className="pb-24 pt-12 border-t border-[#2e241c] bg-[#050403]">
           <div className="container mx-auto px-6 max-w-6xl">
             <div className="text-center mb-12">
                <div className="inline-flex items-center gap-4 mb-6">
@@ -392,10 +432,15 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </section>
+        </motion.section>
 
         {/* TESTIMONIALS (home_8) */}
-        <section className="py-24 border-t border-[#2e241c]">
+        <motion.section 
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+          className="py-24 border-t border-[#2e241c]">
           <div className="container mx-auto px-6 max-w-6xl">
             <div className="text-center mb-16">
               <div className="inline-flex items-center gap-4 mb-6">
@@ -443,10 +488,15 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </section>
+        </motion.section>
 
         {/* BLOG (home_9) */}
-        <section className="py-24 border-t border-[#2e241c] bg-[#050403]">
+        <motion.section 
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+          className="py-24 border-t border-[#2e241c] bg-[#050403]">
           <div className="container mx-auto px-6 max-w-6xl">
             <div className="text-center mb-16">
               <h2 className="font-serif text-5xl text-[#f3ede4] tracking-widest uppercase mb-4">FROM THE GUILD'S QUILL</h2>
@@ -500,10 +550,16 @@ export default function Home() {
               </button>
             </div>
           </div>
-        </section>
+        </motion.section>
 
         {/* CONTACT (home_10) */}
-        <section id="contact" className="py-24 border-t border-[#2e241c]">
+        <motion.section 
+          id="contact" 
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+          className="py-24 border-t border-[#2e241c]">
           <div className="container mx-auto px-6 max-w-6xl">
             <div className="text-center mb-16">
               <div className="inline-flex items-center gap-4 mb-6">
@@ -582,7 +638,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </section>
+        </motion.section>
 
       </main>
 

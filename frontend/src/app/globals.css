@@ -1,23 +1,27 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0a0806; /* Deep dark brown/black */
-  --foreground: #f3ede4; /* Off-white / cream */
-  --card: #14100c; /* Slightly lighter for cards */
-  --card-foreground: #f3ede4;
-  --popover: #14100c;
-  --popover-foreground: #f3ede4;
-  --primary: #c29b62; /* Guild Gold/Bronze */
-  --primary-foreground: #0a0806;
-  --secondary: #1a1510;
-  --secondary-foreground: #f3ede4;
-  --muted: #241d17;
-  --muted-foreground: #a19282;
-  --accent: #1e1711;
-  --accent-foreground: #c29b62;
-  --border: #2e241c;
-  --input: #2e241c;
-  --ring: #c29b62;
+  /* OKLCH Color Palette for Vibrant/Cinematic P3 Gamut */
+  --background: oklch(15% 0.01 65); /* Deep dark brown/black */
+  --foreground: oklch(95% 0.01 80); /* Off-white / cream */
+  --card: oklch(18% 0.015 65); /* Slightly lighter for cards */
+  --card-foreground: oklch(95% 0.01 80);
+  --popover: oklch(18% 0.015 65);
+  --popover-foreground: oklch(95% 0.01 80);
+  
+  /* Primary Guild Gold - highly vibrant in OKLCH */
+  --primary: oklch(72% 0.14 78); 
+  --primary-foreground: oklch(15% 0.01 65);
+  
+  --secondary: oklch(20% 0.02 65);
+  --secondary-foreground: oklch(95% 0.01 80);
+  --muted: oklch(24% 0.02 65);
+  --muted-foreground: oklch(68% 0.03 70);
+  --accent: oklch(22% 0.02 65);
+  --accent-foreground: oklch(72% 0.14 78);
+  --border: oklch(28% 0.025 65);
+  --input: oklch(28% 0.025 65);
+  --ring: oklch(72% 0.14 78);
   --radius: 0.5rem;
 }
 
