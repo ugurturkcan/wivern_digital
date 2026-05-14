@@ -1,27 +1,31 @@
 @import "tailwindcss";
 
 :root {
-  /* OKLCH Color Palette for Vibrant/Cinematic P3 Gamut */
-  --background: oklch(15% 0.01 65); /* Deep dark brown/black */
-  --foreground: oklch(95% 0.01 80); /* Off-white / cream */
-  --card: oklch(18% 0.015 65); /* Slightly lighter for cards */
+  /* Boss Vibe Color Palette */
+  --alchemical-gold: #c5a059;
+  --parchment: #f4f1ea;
+  --ink: #1a1a1a;
+  
+  /* OKLCH Color Palette for Vibrant/Cinematic P3 Gamut (Original) */
+  --background: var(--ink);
+  --foreground: var(--parchment);
+  --card: oklch(18% 0.015 65);
   --card-foreground: oklch(95% 0.01 80);
   --popover: oklch(18% 0.015 65);
   --popover-foreground: oklch(95% 0.01 80);
   
-  /* Primary Guild Gold - highly vibrant in OKLCH */
-  --primary: oklch(72% 0.14 78); 
-  --primary-foreground: oklch(15% 0.01 65);
+  --primary: var(--alchemical-gold); 
+  --primary-foreground: var(--ink);
   
   --secondary: oklch(20% 0.02 65);
   --secondary-foreground: oklch(95% 0.01 80);
   --muted: oklch(24% 0.02 65);
   --muted-foreground: oklch(68% 0.03 70);
   --accent: oklch(22% 0.02 65);
-  --accent-foreground: oklch(72% 0.14 78);
+  --accent-foreground: var(--alchemical-gold);
   --border: oklch(28% 0.025 65);
   --input: oklch(28% 0.025 65);
-  --ring: oklch(72% 0.14 78);
+  --ring: var(--alchemical-gold);
   --radius: 0.5rem;
 }
 
@@ -56,6 +60,14 @@ body {
   color: var(--foreground);
 }
 
+.serif-font {
+  font-family: var(--font-cinzel), serif;
+}
+
+.gold-accent {
+  color: var(--alchemical-gold);
+}
+
 @keyframes ken-burns {
   0% { transform: scale(1.0) translate(0, 0); }
   50% { transform: scale(1.05) translate(-1%, -1%); }
@@ -68,18 +80,19 @@ body {
 
 @layer utilities {
   .glass-panel {
-    background: rgba(26, 26, 26, 0.4);
+    background: rgba(26, 26, 26, 0.6);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border: 1px solid color-mix(in oklch, var(--primary) 20%, transparent);
+    border: 1px solid rgba(197, 160, 89, 0.2);
   }
   
   .mystic-glow {
-    box-shadow: 0 0 30px color-mix(in oklch, var(--primary) 15%, transparent);
+    box-shadow: 0 0 30px rgba(197, 160, 89, 0.15);
     transition: box-shadow 0.3s ease;
   }
   
   .mystic-glow:hover {
-    box-shadow: 0 0 50px color-mix(in oklch, var(--primary) 30%, transparent);
+    box-shadow: 0 0 50px rgba(197, 160, 89, 0.3);
   }
 }
+
