@@ -1,65 +1,44 @@
 @import "tailwindcss";
 
 :root {
-  /* Boss Vibe Color Palette */
   --alchemical-gold: #c5a059;
   --parchment: #f4f1ea;
-  --ink: #1a1a1a;
-  
-  /* OKLCH Color Palette for Vibrant/Cinematic P3 Gamut (Original) */
+  --ink: #111111;
+  --ink-mid: #1a1a1a;
+  --ink-light: #242424;
+
   --background: var(--ink);
   --foreground: var(--parchment);
-  --card: oklch(18% 0.015 65);
-  --card-foreground: oklch(95% 0.01 80);
-  --popover: oklch(18% 0.015 65);
-  --popover-foreground: oklch(95% 0.01 80);
-  
-  --primary: var(--alchemical-gold); 
+  --primary: var(--alchemical-gold);
   --primary-foreground: var(--ink);
-  
-  --secondary: oklch(20% 0.02 65);
-  --secondary-foreground: oklch(95% 0.01 80);
-  --muted: oklch(24% 0.02 65);
-  --muted-foreground: oklch(68% 0.03 70);
-  --accent: oklch(22% 0.02 65);
-  --accent-foreground: var(--alchemical-gold);
-  --border: oklch(28% 0.025 65);
-  --input: oklch(28% 0.025 65);
-  --ring: var(--alchemical-gold);
+  --border: rgba(197, 160, 89, 0.2);
   --radius: 0.5rem;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
   --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
   --font-sans: var(--font-inter);
   --font-serif: var(--font-cinzel);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
+  font-family: var(--font-inter), sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
+/* Typography */
 .serif-font {
   font-family: var(--font-cinzel), serif;
 }
@@ -68,31 +47,126 @@ body {
   color: var(--alchemical-gold);
 }
 
-@keyframes ken-burns {
-  0% { transform: scale(1.0) translate(0, 0); }
-  50% { transform: scale(1.05) translate(-1%, -1%); }
-  100% { transform: scale(1.0) translate(0, 0); }
+/* Glass Panel */
+.glass-panel {
+  background: rgba(17, 17, 17, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(197, 160, 89, 0.15);
 }
 
-.animate-ken-burns {
-  animation: ken-burns 20s ease-in-out infinite;
+/* Mystic Glow */
+.mystic-glow {
+  box-shadow: 0 0 30px rgba(197, 160, 89, 0.1);
+  transition: box-shadow 0.4s ease, transform 0.4s ease;
 }
 
-@layer utilities {
-  .glass-panel {
-    background: rgba(26, 26, 26, 0.6);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(197, 160, 89, 0.2);
+.mystic-glow:hover {
+  box-shadow: 0 0 60px rgba(197, 160, 89, 0.25);
+  transform: translateY(-2px);
+}
+
+/* Gold border top on hover */
+.card-hover {
+  border-top: 3px solid transparent;
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-hover:hover {
+  border-top-color: var(--alchemical-gold);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+/* Horizontal Scroll Carousel */
+.scroll-carousel {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-bottom: 1rem;
+}
+
+.scroll-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.scroll-carousel > * {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+}
+
+/* Gold divider line */
+.gold-line {
+  width: 48px;
+  height: 1px;
+  background: var(--alchemical-gold);
+}
+
+/* Fade-in animation */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
   }
-  
-  .mystic-glow {
-    box-shadow: 0 0 30px rgba(197, 160, 89, 0.15);
-    transition: box-shadow 0.3s ease;
-  }
-  
-  .mystic-glow:hover {
-    box-shadow: 0 0 50px rgba(197, 160, 89, 0.3);
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
+.fade-up {
+  animation: fadeUp 0.7s ease forwards;
+}
+
+/* Tab active state */
+.tab-active {
+  color: var(--alchemical-gold);
+  border-bottom: 1px solid var(--alchemical-gold);
+}
+
+/* Gradient text */
+.gradient-gold {
+  background: linear-gradient(135deg, #c5a059 0%, #e8d5a3 50%, #c5a059 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Video overlay */
+.video-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(197, 160, 89, 0.15);
+}
+
+.video-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(197, 160, 89, 0.3);
+  margin: 12px;
+  pointer-events: none;
+  transition: border-color 0.3s ease;
+}
+
+.video-card:hover::after {
+  border-color: rgba(197, 160, 89, 0.6);
+}
+
+/* Horizontal rule gold */
+.gold-rule {
+  border: none;
+  border-top: 1px solid rgba(197, 160, 89, 0.2);
+}
+
+/* Section label */
+.section-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--alchemical-gold);
+  font-family: var(--font-inter), sans-serif;
+}

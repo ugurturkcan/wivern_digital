@@ -1,204 +1,332 @@
-import React from 'react';
+'use client';
+
+import { useState } from 'react';
+import Nav from '@/components/Nav';
+import Footer from '@/components/Footer';
+import Link from 'next/link';
+
+const tabs = [
+  {
+    id: 'formulation',
+    label: 'Formulation',
+    heading: 'Structural Analysis & Parameter Setting',
+    body: 'Every avatar construct begins with a rigorous formulation phase. The client\'s conceptual requirements are deconstructed into atomic parameters—identity, aesthetic range, vocal signature, and somatic baseline. Each variable is catalogued before a single generative cycle is initiated.',
+    items: ['Identity deconstruction & archetype mapping', 'Aesthetic parameter calibration', 'Negative space definition — what the entity is not', 'Structural blueprint approval before synthesis'],
+    videoSrc: 'https://assets.mixkit.co/videos/preview/mixkit-animation-of-a-futuristic-device-in-a-dark-room-32360-large.mp4',
+  },
+  {
+    id: 'infusion',
+    label: 'Infusion',
+    heading: 'Application of Animation Logic',
+    body: 'Once the structural blueprint is ratified, infusion begins. Raw generative outputs are subjected to localized inpainting, control network alignment, and iterative refinement cycles. The latent space is navigated with surgical precision until the static form achieves fidelity.',
+    items: ['Latent space navigation & seed locking', 'ControlNet skeleton alignment', 'Localized inpainting for artifact suppression', 'High-fidelity static asset extraction'],
+    videoSrc: 'https://assets.mixkit.co/videos/preview/mixkit-mysterious-pale-looking-fashion-woman-39878-large.mp4',
+  },
+  {
+    id: 'rendering',
+    label: 'Rendering',
+    heading: 'Temporal Formalization & Final Output',
+    body: 'The final phase transforms static constructs into living, animated entities. Generative video sequencing, audio-to-labial synchronization, and temporal coherence algorithms are applied. The output is a 30-second sequence of absolute structural fidelity.',
+    items: ['Generative video sequencing (30s output)', 'Audio-to-labial synchronization', 'Temporal coherence & artifact suppression', 'Final quality certification by Master Avatarist'],
+    videoSrc: 'https://assets.mixkit.co/videos/preview/mixkit-wizard-with-a-glowing-magic-wand-in-the-forest-27415-large.mp4',
+  },
+];
+
+const specimens = [
+  { name: 'Entity: Sylph', class: 'Aethereal', src: 'https://assets.mixkit.co/videos/preview/mixkit-mysterious-pale-looking-fashion-woman-39878-large.mp4' },
+  { name: 'Entity: Undine', class: 'Aquatic Form', src: 'https://assets.mixkit.co/videos/preview/mixkit-portrait-of-a-woman-in-a-pool-1259-large.mp4' },
+  { name: 'Entity: Magus', class: 'Practitioner', src: 'https://assets.mixkit.co/videos/preview/mixkit-wizard-with-a-glowing-magic-wand-in-the-forest-27415-large.mp4' },
+  { name: 'Entity: Duskweaver', class: 'Shadow Form', src: 'https://assets.mixkit.co/videos/preview/mixkit-mysterious-pale-looking-fashion-woman-39878-large.mp4' },
+  { name: 'Entity: Ignis', class: 'Elemental', src: 'https://assets.mixkit.co/videos/preview/mixkit-portrait-of-a-woman-in-a-pool-1259-large.mp4' },
+];
+
+const hierarchy = [
+  {
+    rank: 'Rank I',
+    title: 'The Apprentice',
+    allocation: '0% Revenue',
+    img: 'https://images.unsplash.com/photo-1544507851-bc015112521c?q=80&w=600&auto=format&fit=crop',
+    desc: 'Dataset curation, prompt architecture, and latent space exploration.',
+  },
+  {
+    rank: 'Rank II',
+    title: 'The Journeyman',
+    allocation: '16.6% Revenue',
+    img: 'https://images.unsplash.com/photo-1614030612660-f1db1f88eb22?q=80&w=600&auto=format&fit=crop',
+    desc: 'Algorithmic refinement, inpainting, and control network alignment.',
+  },
+  {
+    rank: 'Rank III',
+    title: 'The Master',
+    allocation: '33.3% Revenue',
+    img: 'https://images.unsplash.com/photo-1544883441-118ffeb370ce?q=80&w=600&auto=format&fit=crop',
+    desc: 'Final temporal formalization, video sequencing, and synchronization.',
+  },
+];
 
 export default function HomePage() {
+  const [activeTab, setActiveTab] = useState('formulation');
+  const currentTab = tabs.find((t) => t.id === activeTab)!;
+
   return (
-    <main className="antialiased selection:bg-yellow-900 selection:text-white">
-      {/* Navigation */}
-      <nav className="fixed w-full z-50 glass-panel border-b-0 border-opacity-30 border-yellow-700 transition-all duration-300">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-24">
-            <div className="flex-shrink-0 flex items-center gap-4">
-              <div className="w-12 h-12 rounded-full border border-yellow-700 flex items-center justify-center bg-black">
-                <span className="serif-font text-yellow-600 text-xl">W</span>
-              </div>
-              <div className="flex flex-col">
-                <span className="serif-font text-2xl tracking-widest text-white uppercase">Wivern Digital</span>
-                <span className="text-xs tracking-[0.2em] gold-accent uppercase">Guild of Avatarists</span>
-              </div>
-            </div>
-            <div className="hidden md:flex space-x-12">
-              <a href="#entrance" className="text-gray-300 hover:text-yellow-600 text-xs font-medium tracking-[0.15em] uppercase transition-colors">The Shop</a>
-              <a href="#craft" className="text-gray-300 hover:text-yellow-600 text-xs font-medium tracking-[0.15em] uppercase transition-colors">The Craft</a>
-              <a href="#archives" className="text-gray-300 hover:text-yellow-600 text-xs font-medium tracking-[0.15em] uppercase transition-colors">Specimens</a>
-              <a href="#commission" className="text-gray-300 hover:text-yellow-600 text-xs font-medium tracking-[0.15em] uppercase transition-colors">Commission</a>
-            </div>
+    <>
+      <Nav />
+      <main className="selection:bg-yellow-900/40 selection:text-white">
+
+        {/* ─── HERO ─────────────────────────────────────────────── */}
+        <section className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-[#111111]">
+          {/* Background image */}
+          <div className="absolute inset-0">
+            <img
+              src="/wivern_digital.png"
+              alt="Wivern Digital"
+              className="w-full h-full object-cover opacity-15"
+              style={{ objectPosition: 'center top' }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#111111] via-[#111111]/80 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-transparent to-[#111111]/60" />
           </div>
-        </div>
-      </nav>
 
-      {/* Hero Section: Entering the Shop */}
-      <section id="entrance" className="relative h-screen min-h-[800px] flex items-center justify-center">
-        {/* Background Image: Medieval Shop Exterior Placeholder */}
-        <div className="absolute inset-0 w-full h-full">
-          <img 
-            src="https://images.unsplash.com/photo-1583417657207-6a17b9c968f9?q=80&w=2070&auto=format&fit=crop"
-            alt="Medieval Shop Exterior"
-            className="w-full h-full object-cover opacity-40 filter contrast-125 saturate-50"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-transparent to-[#1a1a1a] opacity-90"></div>
-          <div className="absolute inset-0 bg-black/50"></div>
-        </div>
+          <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full py-20">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
-        {/* Hero Content */}
-        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto mt-20">
-          <h2 className="text-sm md:text-base font-light tracking-[0.3em] gold-accent uppercase mb-6">Enter the Workshop</h2>
-          <h1 className="serif-font text-5xl md:text-7xl lg:text-8xl text-white mb-8 tracking-wide drop-shadow-lg">
-            Digital Alchemy
-          </h1>
-          <div className="w-px h-24 bg-gradient-to-b from-yellow-600 to-transparent mx-auto mb-8"></div>
-          <p className="text-gray-300 text-lg md:text-xl font-light tracking-wide max-w-2xl mx-auto leading-relaxed">
-            Precision engineering of bespoke AI avatars. Ancient aesthetic principles realized through modern computational methodology.
-          </p>
-          <div className="mt-12">
-            <a href="#archives" className="inline-block border border-yellow-700 text-yellow-500 px-10 py-4 text-xs font-medium tracking-[0.2em] uppercase hover:bg-yellow-900/20 transition-all duration-300">
-              View the Archives
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* The Craft (About the Guild) */}
-      <section id="craft" className="py-32 bg-[#f4f1ea] text-[#1a1a1a] relative border-y-8 border-gray-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <h2 className="serif-font text-4xl md:text-5xl mb-8 text-gray-900">The Guild of Avatarists</h2>
-              <p className="text-gray-700 mb-6 leading-relaxed font-light text-lg">
-                Wivern Digital operates as a specialized guild dedicated exclusively to the craft of avatar creation. The primary function is the generation of detailed, animated digital constructs.
-              </p>
-              <p className="text-gray-700 leading-relaxed font-light text-lg mb-8">
-                The process aligns with historical alchemical concepts—taking base data and conceptual requirements to synthesize a functional digital entity. Operations are structured to ensure accuracy and structural fidelity.
-              </p>
-              <div className="grid grid-cols-2 gap-8 border-t border-gray-300 pt-8 mt-8">
-                <div>
-                  <span className="block serif-font text-2xl text-gray-900 mb-2">Formulation</span>
-                  <span className="block text-sm text-gray-600 font-light">Structural analysis and parameter setting.</span>
+              {/* Left — Text */}
+              <div>
+                <div className="flex items-center gap-3 mb-8">
+                  <span className="section-label">Enter the Workshop</span>
+                  <div className="flex-1 h-px bg-yellow-800/40" />
+                  <span className="text-[10px] tracking-widest uppercase text-yellow-700 border border-yellow-800/40 px-2 py-0.5">Est. MMXXVI</span>
                 </div>
-                <div>
-                  <span className="block serif-font text-2xl text-gray-900 mb-2">Infusion</span>
-                  <span className="block text-sm text-gray-600 font-light">Application of animation logic.</span>
+                <h1 className="serif-font text-6xl lg:text-8xl text-white leading-none tracking-wide mb-4">
+                  Digital<br />
+                  <span className="gradient-gold">Alchemy</span>
+                </h1>
+                <p className="text-gray-400 text-lg font-light leading-relaxed max-w-md mt-6 mb-10">
+                  Precision engineering of bespoke AI avatars. Ancient aesthetic principles realized through modern computational methodology.
+                </p>
+                <div className="flex items-center gap-4">
+                  <Link
+                    href="/commissions"
+                    className="text-[11px] font-medium tracking-[0.2em] uppercase bg-yellow-700 text-black px-8 py-3.5 hover:bg-yellow-500 transition-all duration-300"
+                  >
+                    View Tariffs
+                  </Link>
+                  <Link
+                    href="#specimens"
+                    className="text-[11px] font-medium tracking-[0.2em] uppercase border border-yellow-800 text-yellow-600 px-8 py-3.5 hover:border-yellow-600 hover:text-white transition-all duration-300"
+                  >
+                    Active Specimens
+                  </Link>
                 </div>
               </div>
-            </div>
-            {/* Workshop Imagery */}
-            <div className="relative h-[600px] w-full rounded-sm overflow-hidden bg-gray-200 shadow-2xl">
-              <img 
-                src="https://images.unsplash.com/photo-1517420879524-86d64ac2f339?q=80&w=1000&auto=format&fit=crop"
-                alt="Workbench detailing"
-                className="absolute inset-0 w-full h-full object-cover filter sepia-[.3] contrast-125"
-              />
-              <div className="absolute bottom-8 left-8 right-8 bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-sm">
-                <p className="serif-font text-white text-xl tracking-wider">Meticulous observation leads to precise replication.</p>
+
+              {/* Right — Staggered Video Grid */}
+              <div className="hidden lg:grid grid-cols-2 gap-3 h-[560px]">
+                {/* Tall left */}
+                <div className="video-card bg-black rounded-sm row-span-2 overflow-hidden">
+                  <video className="w-full h-full object-cover opacity-75 filter contrast-125 grayscale-[15%]" autoPlay loop muted playsInline>
+                    <source src="https://assets.mixkit.co/videos/preview/mixkit-mysterious-pale-looking-fashion-woman-39878-large.mp4" type="video/mp4" />
+                  </video>
+                  <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 to-transparent">
+                    <p className="serif-font text-white text-sm tracking-wider">Entity: Sylph</p>
+                    <p className="text-yellow-600 text-[10px] tracking-widest uppercase">Aethereal</p>
+                  </div>
+                </div>
+                {/* Short top right */}
+                <div className="video-card bg-black rounded-sm overflow-hidden">
+                  <video className="w-full h-full object-cover opacity-75 filter contrast-125 grayscale-[15%]" autoPlay loop muted playsInline>
+                    <source src="https://assets.mixkit.co/videos/preview/mixkit-portrait-of-a-woman-in-a-pool-1259-large.mp4" type="video/mp4" />
+                  </video>
+                  <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/90 to-transparent">
+                    <p className="serif-font text-white text-sm tracking-wider">Entity: Undine</p>
+                  </div>
+                </div>
+                {/* Short bottom right */}
+                <div className="video-card bg-black rounded-sm overflow-hidden">
+                  <video className="w-full h-full object-cover opacity-75 filter contrast-125 grayscale-[15%]" autoPlay loop muted playsInline>
+                    <source src="https://assets.mixkit.co/videos/preview/mixkit-wizard-with-a-glowing-magic-wand-in-the-forest-27415-large.mp4" type="video/mp4" />
+                  </video>
+                  <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/90 to-transparent">
+                    <p className="serif-font text-white text-sm tracking-wider">Entity: Magus</p>
+                  </div>
+                </div>
               </div>
+
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* The Archives (Video Gallery) */}
-      <section id="archives" className="py-32 relative bg-[#121212] overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-20">
-            <span className="text-xs font-medium tracking-[0.2em] gold-accent uppercase block mb-4">Observation Chamber</span>
-            <h2 className="serif-font text-4xl md:text-6xl text-white">Active Specimens</h2>
-            <div className="w-16 h-px bg-yellow-700 mx-auto mt-8"></div>
-          </div>
+        {/* ─── GUILD PROCESS TABS ───────────────────────────────── */}
+        <section className="py-28 bg-[#0e0e0e] border-t border-yellow-900/20">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+            <div className="mb-16">
+              <span className="section-label block mb-4">The Craft</span>
+              <h2 className="serif-font text-4xl lg:text-5xl text-white">The Guild Process</h2>
+              <div className="gold-line mt-6" />
+            </div>
 
-          {/* Video Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Specimen 1 */}
-            <div className="glass-panel p-2 rounded-sm group mystic-glow">
-              <div className="relative aspect-[4/5] bg-black overflow-hidden border border-gray-800">
-                <video 
-                  className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500 filter contrast-125 grayscale-[20%]" 
-                  autoPlay loop muted playsInline
+            {/* Tab buttons */}
+            <div className="flex gap-0 border-b border-yellow-900/30 mb-12">
+              {tabs.map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`text-[11px] font-medium tracking-[0.15em] uppercase px-8 py-4 transition-all duration-200 border-b-2 -mb-px ${
+                    activeTab === tab.id
+                      ? 'text-yellow-500 border-yellow-600'
+                      : 'text-gray-500 border-transparent hover:text-gray-300'
+                  }`}
                 >
-                  <source src="https://assets.mixkit.co/videos/preview/mixkit-mysterious-pale-looking-fashion-woman-39878-large.mp4" type="video/mp4" />
-                </video>
-                <div className="absolute inset-0 border border-yellow-700/30 m-4 pointer-events-none"></div>
-                <div className="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black/90 to-transparent">
-                  <h3 className="serif-font text-xl text-white tracking-wider mb-1">Entity: Sylph</h3>
-                  <p className="text-xs font-light text-gray-400 tracking-widest uppercase">Class: Aethereal</p>
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+
+            {/* Tab content */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center" key={activeTab}>
+              <div>
+                <h3 className="serif-font text-2xl lg:text-3xl text-white mb-5">{currentTab.heading}</h3>
+                <p className="text-gray-400 font-light leading-relaxed mb-8">{currentTab.body}</p>
+                <ul className="space-y-3">
+                  {currentTab.items.map((item) => (
+                    <li key={item} className="flex items-start gap-3 text-sm text-gray-300 font-light">
+                      <span className="text-yellow-600 mt-0.5 flex-shrink-0">◈</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-10">
+                  <Link href="/craft" className="text-[11px] tracking-[0.2em] uppercase text-yellow-600 hover:text-yellow-400 transition-colors flex items-center gap-2">
+                    Read Full Methodology <span>&rarr;</span>
+                  </Link>
+                </div>
+              </div>
+              <div className="glass-panel p-2 rounded-sm mystic-glow">
+                <div className="relative aspect-video bg-black overflow-hidden border border-gray-800">
+                  <video className="w-full h-full object-cover opacity-70 filter contrast-125 sepia-[.2]" autoPlay loop muted playsInline>
+                    <source src={currentTab.videoSrc} type="video/mp4" />
+                  </video>
+                  <div className="absolute inset-0 border border-yellow-700/20 m-3 pointer-events-none" />
+                  <div className="absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black via-black/70 to-transparent">
+                    <span className="section-label">{currentTab.label}</span>
+                    <p className="serif-font text-white text-lg tracking-wider mt-1">{currentTab.heading}</p>
+                  </div>
                 </div>
               </div>
             </div>
+          </div>
+        </section>
 
-            {/* Specimen 2 */}
-            <div className="glass-panel p-2 rounded-sm group mystic-glow md:translate-y-12">
-              <div className="relative aspect-[4/5] bg-black overflow-hidden border border-gray-800">
-                <video 
-                  className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500 filter contrast-125 grayscale-[20%]" 
-                  autoPlay loop muted playsInline
+        {/* ─── MANIFESTO QUOTE ──────────────────────────────────── */}
+        <section className="py-28 bg-[#111111] border-t border-yellow-900/20">
+          <div className="max-w-5xl mx-auto px-6 lg:px-8 text-center">
+            <span className="section-label block mb-10">Guild Manifesto</span>
+            <blockquote className="serif-font text-3xl lg:text-5xl text-white leading-snug italic mb-10">
+              &ldquo;Meticulous observation leads to precise replication. We do not approximate the human form — we formalize it.&rdquo;
+            </blockquote>
+            <div className="gold-line mx-auto mb-6" />
+            <p className="text-gray-500 text-sm tracking-widest uppercase">Jerome Goerke, Master-in-Chief &mdash; Wivern Digital</p>
+          </div>
+        </section>
+
+        {/* ─── SPECIMENS CAROUSEL ───────────────────────────────── */}
+        <section id="specimens" className="py-28 bg-[#0e0e0e] border-t border-yellow-900/20 overflow-hidden">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8 mb-10">
+            <div className="flex justify-between items-end">
+              <div>
+                <span className="section-label block mb-4">Observation Chamber</span>
+                <h2 className="serif-font text-4xl lg:text-5xl text-white">Active Specimens</h2>
+              </div>
+              <Link href="/craft#specimens" className="hidden md:block text-[11px] tracking-[0.2em] uppercase text-yellow-600 hover:text-yellow-400 transition-colors">
+                View All &rarr;
+              </Link>
+            </div>
+            <div className="gold-line mt-6" />
+          </div>
+
+          {/* Horizontal scroll */}
+          <div className="pl-6 lg:pl-[calc((100vw-80rem)/2+2rem)]">
+            <div className="scroll-carousel">
+              {specimens.map((s, i) => (
+                <div
+                  key={i}
+                  className="group relative w-72 aspect-[4/5] flex-shrink-0 video-card bg-black rounded-sm overflow-hidden"
                 >
-                  <source src="https://assets.mixkit.co/videos/preview/mixkit-portrait-of-a-woman-in-a-pool-1259-large.mp4" type="video/mp4" />
-                </video>
-                <div className="absolute inset-0 border border-yellow-700/30 m-4 pointer-events-none"></div>
-                <div className="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black/90 to-transparent">
-                  <h3 className="serif-font text-xl text-white tracking-wider mb-1">Entity: Undine</h3>
-                  <p className="text-xs font-light text-gray-400 tracking-widest uppercase">Class: Aquatic Form</p>
+                  <video className="w-full h-full object-cover opacity-75 group-hover:opacity-100 filter contrast-125 grayscale-[20%] group-hover:grayscale-0 transition-all duration-700" autoPlay loop muted playsInline>
+                    <source src={s.src} type="video/mp4" />
+                  </video>
+                  <div className="absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/95 to-transparent">
+                    <h3 className="serif-font text-lg text-white tracking-wider mb-0.5">{s.name}</h3>
+                    <p className="text-[10px] text-gray-400 tracking-widest uppercase mb-3">{s.class}</p>
+                    {/* Hover reveal */}
+                    <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 translate-y-2 group-hover:translate-y-0">
+                      <button className="text-[10px] tracking-[0.2em] uppercase border border-yellow-700 text-yellow-500 px-4 py-2 hover:bg-yellow-700 hover:text-black transition-all">
+                        View Entity &rarr;
+                      </button>
+                    </div>
+                  </div>
                 </div>
-              </div>
+              ))}
+              {/* Spacer */}
+              <div className="w-6 flex-shrink-0" />
             </div>
+          </div>
+        </section>
 
-            {/* Specimen 3 */}
-            <div className="glass-panel p-2 rounded-sm group mystic-glow">
-              <div className="relative aspect-[4/5] bg-black overflow-hidden border border-gray-800">
-                <video 
-                  className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500 filter contrast-125 grayscale-[20%]" 
-                  autoPlay loop muted playsInline
-                >
-                  <source src="https://assets.mixkit.co/videos/preview/mixkit-wizard-with-a-glowing-magic-wand-in-the-forest-27415-large.mp4" type="video/mp4" />
-                </video>
-                <div className="absolute inset-0 border border-yellow-700/30 m-4 pointer-events-none"></div>
-                <div className="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black/90 to-transparent">
-                  <h3 className="serif-font text-xl text-white tracking-wider mb-1">Entity: Magus</h3>
-                  <p className="text-xs font-light text-gray-400 tracking-widest uppercase">Class: Practitioner</p>
+        {/* ─── HIERARCHY ────────────────────────────────────────── */}
+        <section className="py-28 bg-[#111111] border-t border-yellow-900/20">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <span className="section-label block mb-4">Operational Standards</span>
+              <h2 className="serif-font text-4xl lg:text-5xl text-white mb-4">Guild Hierarchy</h2>
+              <div className="gold-line mx-auto mt-6" />
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {hierarchy.map((h) => (
+                <div key={h.rank} className="glass-panel card-hover flex flex-col overflow-hidden">
+                  <div className="h-48 relative overflow-hidden">
+                    <img src={h.img} alt={h.title} className="w-full h-full object-cover filter contrast-125 sepia-[.2] grayscale-[30%]" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] to-transparent" />
+                  </div>
+                  <div className="p-8 flex-1 flex flex-col">
+                    <span className="section-label mb-2">{h.rank}</span>
+                    <h3 className="serif-font text-xl text-white mb-1">{h.title}</h3>
+                    <span className="text-[10px] text-gray-500 tracking-widest uppercase border-b border-gray-800 pb-3 mb-4">{h.allocation}</span>
+                    <p className="text-gray-500 text-xs font-light leading-relaxed flex-1">{h.desc}</p>
+                  </div>
                 </div>
-              </div>
+              ))}
+            </div>
+            <div className="text-center mt-12">
+              <Link href="/craft" className="text-[11px] tracking-[0.2em] uppercase border border-yellow-800 text-yellow-600 px-8 py-3 hover:border-yellow-600 hover:text-white transition-all duration-300">
+                Join the Guild &rarr;
+              </Link>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Footer / Commission CTA */}
-      <footer id="commission" className="bg-[#0a0a0a] border-t border-yellow-900/30 pt-24 pb-12 relative">
-        <div className="max-w-4xl mx-auto px-4 text-center mb-24">
-          <h2 className="serif-font text-3xl md:text-5xl text-white mb-6">Initiate the Process</h2>
-          <p className="text-gray-400 font-light mb-10 max-w-2xl mx-auto">
-            Commission slots are regulated based on current guild capacity. Formal requirements are necessary for preliminary formulation.
-          </p>
-          <a href="mailto:commissions@wiverndigital.com" className="inline-block border border-yellow-700 bg-yellow-900/10 text-yellow-500 px-12 py-4 text-xs font-medium tracking-[0.2em] uppercase hover:bg-yellow-700 hover:text-white transition-all duration-300">
-            Submit Requisition
-          </a>
-        </div>
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-12 border-t border-gray-800 pt-12">
-          <div>
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-8 h-8 rounded-full border border-yellow-700 flex items-center justify-center">
-                <span className="serif-font text-yellow-600 text-sm">W</span>
-              </div>
-              <span className="serif-font text-lg tracking-widest text-white uppercase">Wivern Digital</span>
+        {/* ─── COMMISSION CTA ───────────────────────────────────── */}
+        <section className="py-28 bg-[#0e0e0e] border-t border-yellow-900/20">
+          <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
+            <span className="section-label block mb-6">Begin the Process</span>
+            <h2 className="serif-font text-4xl lg:text-6xl text-white mb-6">Initiate the Process</h2>
+            <div className="gold-line mx-auto mb-8" />
+            <p className="text-gray-400 font-light mb-12 max-w-xl mx-auto leading-relaxed">
+              Commission slots are regulated based on current guild capacity. Formal requirements are necessary for preliminary formulation.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/commissions" className="text-[11px] font-medium tracking-[0.2em] uppercase bg-yellow-700 text-black px-12 py-4 hover:bg-yellow-500 transition-all duration-300">
+                View Tariffs
+              </Link>
+              <Link href="mailto:commissions@wiverndigital.com" className="text-[11px] font-medium tracking-[0.2em] uppercase border border-yellow-700 text-yellow-500 px-12 py-4 hover:bg-yellow-900/20 transition-all duration-300">
+                Submit Requisition
+              </Link>
             </div>
-            <p className="text-gray-500 text-xs tracking-wider uppercase font-light">Guild of Avatarists &bull; Est. 2026</p>
           </div>
-          <div className="md:text-center">
-            <h4 className="text-xs font-medium uppercase tracking-[0.2em] mb-6 text-gray-400">Guild Coordinates</h4>
-            <ul className="space-y-2 text-sm text-gray-600 font-light">
-              <li>Sector 4R, Ward 2330</li>
-              <li>The Manor Estate</li>
-              <li>Access by documented appointment</li>
-            </ul>
-          </div>
-          <div className="md:text-right">
-            <h4 className="text-xs font-medium uppercase tracking-[0.2em] mb-6 text-gray-400">Protocols</h4>
-            <ul className="space-y-2 text-sm font-light">
-              <li><a href="#" className="text-gray-600 hover:text-yellow-600 transition-colors">Client Confidentiality</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-yellow-600 transition-colors">Creation Standards</a></li>
-            </ul>
-          </div>
-        </div>
-      </footer>
-    </main>
+        </section>
+
+      </main>
+      <Footer />
+    </>
   );
 }

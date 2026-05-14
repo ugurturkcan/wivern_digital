@@ -1,0 +1,66 @@
+import Link from 'next/link';
+
+export default function Footer() {
+  return (
+    <footer className="bg-[#0a0a0a] border-t border-yellow-900/20 pt-20 pb-10">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        {/* Top Row */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+          {/* Brand */}
+          <div className="md:col-span-2">
+            <div className="flex items-center gap-3 mb-5">
+              <div className="w-9 h-9 rounded-full border border-yellow-700 flex items-center justify-center bg-black">
+                <span className="serif-font text-yellow-600 text-sm">W</span>
+              </div>
+              <span className="serif-font text-lg tracking-widest text-white uppercase">Wivern Digital</span>
+            </div>
+            <p className="text-gray-500 text-xs tracking-wider uppercase font-light mb-4">Guild of Avatarists &bull; Est. MMXXVI</p>
+            <p className="text-gray-600 text-sm font-light leading-relaxed max-w-xs">
+              Precision engineering of bespoke AI avatars. Ancient principles. Modern computation.
+            </p>
+          </div>
+
+          {/* Navigation */}
+          <div>
+            <h4 className="section-label mb-6">Navigation</h4>
+            <ul className="space-y-3">
+              {[
+                { href: '/', label: 'The Shop' },
+                { href: '/craft', label: 'The Guild' },
+                { href: '/commissions', label: 'Commissions' },
+                { href: '/master', label: 'Master-in-Chief' },
+              ].map(({ href, label }) => (
+                <li key={href}>
+                  <Link href={href} className="text-gray-500 hover:text-yellow-600 text-sm font-light transition-colors">
+                    {label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Protocols */}
+          <div>
+            <h4 className="section-label mb-6">Protocols</h4>
+            <ul className="space-y-3">
+              {['Client Confidentiality', 'Creation Standards', 'Imprint', 'Privacy'].map((item) => (
+                <li key={item}>
+                  <a href="#" className="text-gray-500 hover:text-yellow-600 text-sm font-light transition-colors">
+                    {item}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        {/* Bottom Row */}
+        <hr className="gold-rule mb-8" />
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-600 font-light tracking-wider uppercase">
+          <span>Sector 4R, Ward 2330 &mdash; The Manor Estate &mdash; Access by documented appointment</span>
+          <span>&copy; MMXXVI Wivern Digital. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+  );
+}
