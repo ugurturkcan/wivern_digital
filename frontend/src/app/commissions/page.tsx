@@ -1,6 +1,7 @@
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 
 const tiers = [
   {
@@ -76,9 +77,14 @@ export default function CommissionsPage() {
       <main className="selection:bg-yellow-900/40 selection:text-white">
 
         {/* ─── PAGE HEADER ──────────────────────────────────────── */}
-        <section className="relative pt-40 pb-24 bg-[#111111] border-b border-yellow-900/20">
+        <section className="relative pt-40 pb-24 bg-[#111111] border-b border-yellow-900/20 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-[#111111]/80 to-[#111111]" />
-          <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8"
+          >
             <span className="section-label block mb-4">Official Register</span>
             <h1 className="serif-font text-6xl lg:text-8xl text-white leading-none tracking-wide mb-6">
               Requisition<br /><span className="gradient-gold">Tariffs</span>
@@ -87,16 +93,26 @@ export default function CommissionsPage() {
             <p className="text-gray-400 font-light max-w-xl leading-relaxed">
               Standardized fees for the generation of 30-second digital avatar constructs. All submissions are subject to guild review prior to the commencement of formulation.
             </p>
-          </div>
+          </motion.div>
         </section>
 
         {/* ─── PRICING GRID ─────────────────────────────────────── */}
-        <section className="py-28 bg-[#0e0e0e]">
+        <motion.section 
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+          className="py-32 bg-[#0e0e0e]"
+        >
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
-              {tiers.map((tier) => (
-                <div
+              {tiers.map((tier, i) => (
+                <motion.div
                   key={tier.title}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.15 * i }}
                   className={`glass-panel p-10 flex flex-col ${
                     tier.featured
                       ? 'border border-yellow-600/40 mystic-glow md:-mt-4 md:pb-14'
@@ -134,14 +150,20 @@ export default function CommissionsPage() {
                   >
                     {tier.cta}
                   </Link>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
-        </section>
+        </motion.section>
 
         {/* ─── AUGMENTATIONS ────────────────────────────────────── */}
-        <section className="py-28 bg-[#111111] border-t border-yellow-900/20">
+        <motion.section 
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+          className="py-32 bg-[#111111] border-t border-yellow-900/20"
+        >
           <div className="max-w-4xl mx-auto px-6 lg:px-8">
             <div className="text-center mb-16">
               <span className="section-label block mb-4">Optional Enhancements</span>
@@ -150,11 +172,15 @@ export default function CommissionsPage() {
               <p className="text-gray-500 text-sm font-light">Fees calculated per 30-second output.</p>
             </div>
             <div className="space-y-4">
-              {addons.map((a) => (
-                <div
+              {addons.map((a, i) => (
+                <motion.div
                   key={a.title}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.1 * i }}
                   className={`glass-panel p-6 flex flex-col md:flex-row justify-between items-center gap-6 card-hover ${
-                    a.featured ? 'border border-yellow-900/40' : ''
+                    a.featured ? 'border border-yellow-900/40 mystic-glow' : ''
                   }`}
                 >
                   <div className="flex-1">
@@ -165,14 +191,20 @@ export default function CommissionsPage() {
                     <span className="text-2xl font-light text-yellow-500">{a.price}</span>
                     <span className="block text-[10px] text-gray-500 tracking-widest uppercase mt-1">Per Output</span>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
-        </section>
+        </motion.section>
 
         {/* ─── PROCESS NOTE ─────────────────────────────────────── */}
-        <section className="py-20 bg-[#0e0e0e] border-t border-yellow-900/20">
+        <motion.section 
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+          className="py-32 bg-[#0e0e0e] border-t border-yellow-900/20"
+        >
           <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
             <blockquote className="serif-font text-2xl lg:text-3xl text-white italic leading-snug mb-8">
               &ldquo;Commission slots are regulated based on current guild capacity. Formal requirements are necessary for preliminary formulation.&rdquo;
@@ -185,7 +217,7 @@ export default function CommissionsPage() {
               Submit Requisition
             </Link>
           </div>
-        </section>
+        </motion.section>
 
       </main>
       <Footer />

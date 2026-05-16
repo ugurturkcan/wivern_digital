@@ -1,6 +1,7 @@
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 
 const competencies = [
   { title: 'Innovation Management', desc: 'Structural oversight of the proprietary pipeline and guild protocols.' },
@@ -18,29 +19,53 @@ export default function MasterPage() {
         {/* ─── PAGE HEADER ──────────────────────────────────────── */}
         <section className="relative pt-40 pb-24 bg-[#111111] border-b border-yellow-900/20 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-[#111111]/60 to-[#111111]" />
-          <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8"
+          >
             <span className="section-label block mb-4">Guild Leadership</span>
             <h1 className="serif-font text-6xl lg:text-8xl text-white leading-none tracking-wide mb-6">
               Master-<br /><span className="gradient-gold">in-Chief</span>
             </h1>
             <div className="w-px h-16 bg-gradient-to-b from-yellow-600 to-transparent" />
-          </div>
+          </motion.div>
         </section>
 
         {/* ─── BIO SECTION ──────────────────────────────────────── */}
-        <section className="py-28 bg-[#0e0e0e]">
+        <motion.section 
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+          className="py-32 bg-[#0e0e0e]"
+        >
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
 
               {/* Portrait Placeholder */}
-              <div className="glass-panel p-2 mystic-glow lg:sticky lg:top-28">
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="glass-panel p-2 mystic-glow lg:sticky lg:top-28"
+              >
                 <div className="relative aspect-[4/5] bg-black/40 overflow-hidden border border-gray-800/50">
+                  <img src="https://images.unsplash.com/photo-1555596884-25cb48df13f7?q=80&w=800&auto=format&fit=crop" alt="Jerome Goerke - Master in Chief" className="w-full h-full object-cover filter contrast-125 sepia-[.4] grayscale-[20%]" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0e0e0e] to-transparent" />
                   <div className="absolute inset-0 border border-yellow-700/10 m-4 pointer-events-none" />
                 </div>
-              </div>
+              </motion.div>
 
               {/* Bio Content */}
-              <div>
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+              >
                 <span className="section-label block mb-6">Professional History</span>
                 <h2 className="serif-font text-4xl text-white mb-8">A Record of Structural Excellence</h2>
                 <div className="gold-line mb-8" />
@@ -60,11 +85,18 @@ export default function MasterPage() {
                 <div className="mt-12 pt-8 border-t border-gray-800">
                   <span className="section-label block mb-8">Core Competencies</span>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {competencies.map((c) => (
-                      <div key={c.title} className="glass-panel p-6 card-hover">
+                    {competencies.map((c, i) => (
+                      <motion.div 
+                        key={c.title} 
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: 0.6 + (0.1 * i) }}
+                        className="glass-panel p-6 card-hover"
+                      >
                         <h4 className="serif-font text-base text-white mb-2 tracking-wider">{c.title}</h4>
                         <p className="text-gray-500 text-xs font-light leading-relaxed">{c.desc}</p>
-                      </div>
+                      </motion.div>
                     ))}
                   </div>
                 </div>
@@ -79,14 +111,20 @@ export default function MasterPage() {
                     Initiate Commission
                   </Link>
                 </div>
-              </div>
+              </motion.div>
 
             </div>
           </div>
-        </section>
+        </motion.section>
 
         {/* ─── MANIFESTO QUOTE ──────────────────────────────────── */}
-        <section className="py-28 bg-[#111111] border-t border-yellow-900/20 text-center">
+        <motion.section 
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+          className="py-32 bg-[#111111] border-t border-yellow-900/20 text-center"
+        >
           <div className="max-w-4xl mx-auto px-6 lg:px-8">
             <blockquote className="serif-font text-3xl lg:text-4xl text-white italic leading-snug mb-8">
               &ldquo;We do not approximate the human form — we formalize it. Every construct is a declaration of structural intent.&rdquo;
@@ -94,7 +132,7 @@ export default function MasterPage() {
             <div className="gold-line mx-auto mb-6" />
             <p className="text-gray-500 text-sm tracking-widest uppercase">Jerome Goerke &mdash; Master-in-Chief</p>
           </div>
-        </section>
+        </motion.section>
 
       </main>
       <Footer />

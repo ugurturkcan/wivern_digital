@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
+import { motion, AnimatePresence } from 'framer-motion';
 import { PenTool, User, Mic, Zap, Eye, Share2 } from 'lucide-react';
 
 const tabs = [
@@ -78,10 +79,13 @@ export default function HomePage() {
         <section className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-[#111111]">
           {/* Background image */}
           <div className="absolute inset-0">
-            <img
+            <motion.img
+              initial={{ scale: 1.05, opacity: 0 }}
+              animate={{ scale: 1, opacity: 0.15 }}
+              transition={{ duration: 1.5, ease: "easeOut" }}
               src="/wivern_digital.png"
               alt="Wivern Digital"
-              className="w-full h-full object-cover opacity-15"
+              className="w-full h-full object-cover"
               style={{ objectPosition: 'center top' }}
             />
             <div className="absolute inset-0 bg-gradient-to-r from-[#111111] via-[#111111]/80 to-transparent" />
@@ -92,7 +96,11 @@ export default function HomePage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
               {/* Left — Text */}
-              <div>
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+              >
                 <div className="flex items-center gap-3 mb-8">
                   <span className="section-label">Enter the Workshop</span>
                   <div className="flex-1 h-px bg-yellow-800/40" />
@@ -119,12 +127,17 @@ export default function HomePage() {
                     Active Specimens
                   </Link>
                 </div>
-              </div>
+              </motion.div>
 
               {/* Right — Staggered Video Grid */}
               <div className="hidden lg:grid grid-cols-2 gap-3 h-[560px]">
                 {/* Tall left */}
-                <div className="video-card bg-black rounded-sm row-span-2 overflow-hidden">
+                <motion.div 
+                  initial={{ opacity: 0, y: 40 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.4 }}
+                  className="video-card bg-black rounded-sm row-span-2 overflow-hidden"
+                >
                   <video className="w-full h-full object-cover opacity-75 filter contrast-125 grayscale-[15%]" autoPlay loop muted playsInline>
                     <source src="https://assets.mixkit.co/videos/preview/mixkit-mysterious-pale-looking-fashion-woman-39878-large.mp4" type="video/mp4" />
                   </video>
@@ -132,25 +145,35 @@ export default function HomePage() {
                     <p className="serif-font text-white text-sm tracking-wider">Entity: Sylph</p>
                     <p className="text-yellow-600 text-[10px] tracking-widest uppercase">Aethereal</p>
                   </div>
-                </div>
+                </motion.div>
                 {/* Short top right */}
-                <div className="video-card bg-black rounded-sm overflow-hidden">
+                <motion.div 
+                  initial={{ opacity: 0, x: 40 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8, delay: 0.6 }}
+                  className="video-card bg-black rounded-sm overflow-hidden"
+                >
                   <video className="w-full h-full object-cover opacity-75 filter contrast-125 grayscale-[15%]" autoPlay loop muted playsInline>
                     <source src="https://assets.mixkit.co/videos/preview/mixkit-portrait-of-a-woman-in-a-pool-1259-large.mp4" type="video/mp4" />
                   </video>
                   <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/90 to-transparent">
                     <p className="serif-font text-white text-sm tracking-wider">Entity: Undine</p>
                   </div>
-                </div>
+                </motion.div>
                 {/* Short bottom right */}
-                <div className="video-card bg-black rounded-sm overflow-hidden">
+                <motion.div 
+                  initial={{ opacity: 0, x: 40 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8, delay: 0.8 }}
+                  className="video-card bg-black rounded-sm overflow-hidden"
+                >
                   <video className="w-full h-full object-cover opacity-75 filter contrast-125 grayscale-[15%]" autoPlay loop muted playsInline>
                     <source src="https://assets.mixkit.co/videos/preview/mixkit-wizard-with-a-glowing-magic-wand-in-the-forest-27415-large.mp4" type="video/mp4" />
                   </video>
                   <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/90 to-transparent">
                     <p className="serif-font text-white text-sm tracking-wider">Entity: Magus</p>
                   </div>
-                </div>
+                </motion.div>
               </div>
 
             </div>
@@ -158,7 +181,13 @@ export default function HomePage() {
         </section>
 
         {/* ─── GUILD PROCESS TABS ───────────────────────────────── */}
-        <section className="py-28 bg-[#0e0e0e] border-t border-yellow-900/20">
+        <motion.section 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+          className="py-32 bg-[#0e0e0e] border-t border-yellow-900/20"
+        >
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="mb-16">
               <span className="section-label block mb-4">The Craft</span>
@@ -184,46 +213,61 @@ export default function HomePage() {
             </div>
 
             {/* Tab content */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center" key={activeTab}>
-              <div>
-                <h3 className="serif-font text-2xl lg:text-3xl text-white mb-5">{currentTab.heading}</h3>
-                <p className="text-gray-400 font-light leading-relaxed mb-8">{currentTab.body}</p>
-                <ul className="space-y-3">
-                  {currentTab.items.map((item) => (
-                    <li key={item} className="flex items-start gap-3 text-sm text-gray-300 font-light">
-                      <span className="text-yellow-600 mt-0.5 flex-shrink-0">◈</span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-                <div className="mt-10">
-                  <Link href="/craft" className="text-[11px] tracking-[0.2em] uppercase text-yellow-600 hover:text-yellow-400 transition-colors flex items-center gap-2">
-                    Read Full Methodology <span>&rarr;</span>
-                  </Link>
-                </div>
-              </div>
-              <div className="glass-panel p-2 rounded-sm mystic-glow">
-                <div className="relative aspect-video bg-black overflow-hidden border border-gray-800">
-                  <video className="w-full h-full object-cover opacity-70 filter contrast-125 sepia-[.2]" autoPlay loop muted playsInline>
-                    <source src={currentTab.videoSrc} type="video/mp4" />
-                  </video>
-                  <div className="absolute inset-0 border border-yellow-700/20 m-3 pointer-events-none" />
-                  <div className="absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black via-black/70 to-transparent">
-                    <span className="section-label">{currentTab.label}</span>
-                    <p className="serif-font text-white text-lg tracking-wider mt-1">{currentTab.heading}</p>
+            <AnimatePresence mode="wait">
+              <motion.div 
+                key={activeTab}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.4 }}
+                className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
+              >
+                <div>
+                  <h3 className="serif-font text-2xl lg:text-3xl text-white mb-5">{currentTab.heading}</h3>
+                  <p className="text-gray-400 font-light leading-relaxed mb-8">{currentTab.body}</p>
+                  <ul className="space-y-3">
+                    {currentTab.items.map((item) => (
+                      <li key={item} className="flex items-start gap-3 text-sm text-gray-300 font-light">
+                        <span className="text-yellow-600 mt-0.5 flex-shrink-0">◈</span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="mt-10">
+                    <Link href="/craft" className="text-[11px] tracking-[0.2em] uppercase text-yellow-600 hover:text-yellow-400 transition-colors flex items-center gap-2">
+                      Read Full Methodology <span>&rarr;</span>
+                    </Link>
                   </div>
                 </div>
-              </div>
-            </div>
+                <div className="glass-panel p-2 rounded-sm mystic-glow">
+                  <div className="relative aspect-video bg-black overflow-hidden border border-gray-800">
+                    <video className="w-full h-full object-cover opacity-70 filter contrast-125 sepia-[.2]" autoPlay loop muted playsInline>
+                      <source src={currentTab.videoSrc} type="video/mp4" />
+                    </video>
+                    <div className="absolute inset-0 border border-yellow-700/20 m-3 pointer-events-none" />
+                    <div className="absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black via-black/70 to-transparent">
+                      <span className="section-label">{currentTab.label}</span>
+                      <p className="serif-font text-white text-lg tracking-wider mt-1">{currentTab.heading}</p>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
           </div>
-        </section>
+        </motion.section>
 
         {/* ─── HOW THE GUILD WORKS ──────────────────────────────── */}
-        <section className="py-28 bg-[#111111] border-t border-yellow-900/20">
+        <motion.section 
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+          className="py-32 bg-[#111111] border-t border-yellow-900/20"
+        >
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
 
             {/* Header */}
-            <div className="text-center mb-20">
+            <div className="text-center mb-24">
               <div className="flex items-center justify-center gap-4 mb-4">
                 <div className="flex-1 max-w-[3rem] h-px bg-yellow-800/40" />
                 <span className="section-label">The Ritual</span>
@@ -239,7 +283,13 @@ export default function HomePage() {
             {/* Steps */}
             <div className="relative">
               {/* Connector line — desktop only */}
-              <div className="hidden lg:block absolute top-10 left-[calc(8.33%+2.5rem)] right-[calc(8.33%+2.5rem)] h-px bg-yellow-900/30 z-0" />
+              <motion.div 
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1.5, ease: "easeInOut", delay: 0.2 }}
+                className="hidden lg:block absolute top-10 left-[calc(8.33%+2.5rem)] right-[calc(8.33%+2.5rem)] h-px bg-yellow-900/30 z-0 origin-left" 
+              />
 
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8">
                 {([
@@ -249,38 +299,54 @@ export default function HomePage() {
                   { step: 4, name: 'Generate',         desc: 'AI renders your scene',          Icon: Zap     },
                   { step: 5, name: 'Preview',          desc: 'Review & fine-tune',             Icon: Eye     },
                   { step: 6, name: 'Publish',          desc: 'Export to any platform',         Icon: Share2  },
-                ] as { step: number; name: string; desc: string; Icon: React.ElementType }[]).map((s) => (
-                  <div key={s.step} className="relative z-10 flex flex-col items-center text-center group">
+                ] as { step: number; name: string; desc: string; Icon: React.ElementType }[]).map((s, i) => (
+                  <motion.div 
+                    key={s.step} 
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: 0.1 * i }}
+                    className="relative z-10 flex flex-col items-center text-center group"
+                  >
                     {/* Icon circle */}
-                    <div className="w-20 h-20 rounded-full border border-yellow-900/40 bg-[#0e0e0e] flex items-center justify-center mb-4 relative group-hover:border-yellow-700 transition-colors duration-300">
+                    <div className="w-20 h-20 rounded-full border border-yellow-900/40 bg-[#0e0e0e] flex items-center justify-center mb-6 relative group-hover:border-yellow-700 mystic-glow transition-all duration-300">
                       <s.Icon className="w-6 h-6 text-gray-500 group-hover:text-yellow-500 transition-colors duration-300" />
                       {/* Step badge */}
                       <div className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-yellow-700 text-black flex items-center justify-center text-[10px] font-bold">
                         {s.step}
                       </div>
                     </div>
-                    <h3 className="serif-font text-xs text-white tracking-wider uppercase mb-1">{s.name}</h3>
-                    <p className="text-gray-500 text-[11px] leading-relaxed max-w-[100px]">{s.desc}</p>
-                  </div>
+                    <h3 className="serif-font text-sm text-white tracking-wider uppercase mb-2">{s.name}</h3>
+                    {/* Hover expand description */}
+                    <div className="h-0 opacity-0 group-hover:h-auto group-hover:opacity-100 transition-all duration-300 overflow-hidden">
+                      <p className="text-gray-500 text-[11px] leading-relaxed max-w-[120px] pt-1">{s.desc}</p>
+                    </div>
+                  </motion.div>
                 ))}
               </div>
             </div>
 
             {/* CTA */}
-            <div className="text-center mt-16">
+            <div className="text-center mt-20">
               <Link
                 href="/commissions"
-                className="inline-flex items-center gap-3 text-[11px] font-medium tracking-[0.2em] uppercase bg-yellow-700 text-black px-10 py-4 hover:bg-yellow-500 transition-all duration-300"
+                className="inline-flex items-center gap-3 text-[11px] font-medium tracking-[0.2em] uppercase border border-yellow-700 text-yellow-500 px-10 py-4 hover:bg-yellow-700 hover:text-black transition-all duration-300"
               >
                 Begin Your First Ritual &rarr;
               </Link>
             </div>
 
           </div>
-        </section>
+        </motion.section>
 
         {/* ─── MANIFESTO QUOTE ──────────────────────────────────── */}
-        <section className="py-28 bg-[#0e0e0e] border-t border-yellow-900/20">
+        <motion.section 
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+          className="py-32 bg-[#0e0e0e] border-t border-yellow-900/20"
+        >
           <div className="max-w-5xl mx-auto px-6 lg:px-8 text-center">
             <span className="section-label block mb-10">Guild Manifesto</span>
             <blockquote className="serif-font text-3xl lg:text-5xl text-white leading-snug italic mb-10">
@@ -289,10 +355,17 @@ export default function HomePage() {
             <div className="gold-line mx-auto mb-6" />
             <p className="text-gray-500 text-sm tracking-widest uppercase">Jerome Goerke, Master-in-Chief &mdash; Wivern Digital</p>
           </div>
-        </section>
+        </motion.section>
 
         {/* ─── SPECIMENS CAROUSEL ───────────────────────────────── */}
-        <section id="specimens" className="py-28 bg-[#0e0e0e] border-t border-yellow-900/20 overflow-hidden">
+        <motion.section 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1 }}
+          id="specimens" 
+          className="py-32 bg-[#0e0e0e] border-t border-yellow-900/20 overflow-hidden"
+        >
           <div className="max-w-7xl mx-auto px-6 lg:px-8 mb-10">
             <div className="flex justify-between items-end">
               <div>
@@ -312,7 +385,7 @@ export default function HomePage() {
               {specimens.map((s, i) => (
                 <div
                   key={i}
-                  className="group relative w-72 aspect-[4/5] flex-shrink-0 video-card bg-black rounded-sm overflow-hidden"
+                  className="group relative w-72 md:w-80 aspect-[4/5] flex-shrink-0 video-card bg-black rounded-sm overflow-hidden"
                 >
                   <video className="w-full h-full object-cover opacity-75 group-hover:opacity-100 filter contrast-125 grayscale-[20%] group-hover:grayscale-0 transition-all duration-700" autoPlay loop muted playsInline>
                     <source src={s.src} type="video/mp4" />
@@ -333,10 +406,16 @@ export default function HomePage() {
               <div className="w-6 flex-shrink-0" />
             </div>
           </div>
-        </section>
+        </motion.section>
 
         {/* ─── HIERARCHY ────────────────────────────────────────── */}
-        <section className="py-28 bg-[#111111] border-t border-yellow-900/20">
+        <motion.section 
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+          className="py-32 bg-[#111111] border-t border-yellow-900/20"
+        >
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="text-center mb-16">
               <span className="section-label block mb-4">Operational Standards</span>
@@ -344,10 +423,17 @@ export default function HomePage() {
               <div className="gold-line mx-auto mt-6" />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {hierarchy.map((h) => (
-                <div key={h.rank} className="glass-panel card-hover flex flex-col overflow-hidden">
+              {hierarchy.map((h, i) => (
+                <motion.div 
+                  key={h.rank} 
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.15 * i }}
+                  className="glass-panel card-hover flex flex-col overflow-hidden"
+                >
                   <div className="h-48 relative overflow-hidden">
-                    <img src={h.img} alt={h.title} className="w-full h-full object-cover filter contrast-125 sepia-[.2] grayscale-[30%]" />
+                    <img src={h.img} alt={h.title} className="w-full h-full object-cover filter contrast-125 sepia-[.2] grayscale-[30%] hover:scale-105 transition-transform duration-700" />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] to-transparent" />
                   </div>
                   <div className="p-8 flex-1 flex flex-col">
@@ -356,7 +442,7 @@ export default function HomePage() {
                     <span className="text-[10px] text-gray-500 tracking-widest uppercase border-b border-gray-800 pb-3 mb-4">{h.allocation}</span>
                     <p className="text-gray-500 text-xs font-light leading-relaxed flex-1">{h.desc}</p>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
             <div className="text-center mt-12">
@@ -365,10 +451,16 @@ export default function HomePage() {
               </Link>
             </div>
           </div>
-        </section>
+        </motion.section>
 
         {/* ─── COMMISSION CTA ───────────────────────────────────── */}
-        <section className="py-28 bg-[#0e0e0e] border-t border-yellow-900/20">
+        <motion.section 
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+          className="py-32 bg-[#0e0e0e] border-t border-yellow-900/20"
+        >
           <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
             <span className="section-label block mb-6">Begin the Process</span>
             <h2 className="serif-font text-4xl lg:text-6xl text-white mb-6">Initiate the Process</h2>
@@ -385,7 +477,7 @@ export default function HomePage() {
               </Link>
             </div>
           </div>
-        </section>
+        </motion.section>
 
       </main>
       <Footer />

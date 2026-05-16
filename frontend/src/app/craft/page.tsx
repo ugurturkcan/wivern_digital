@@ -1,6 +1,8 @@
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 const pipeline = [
   {
@@ -61,14 +63,22 @@ export default function CraftPage() {
         {/* ─── PAGE HEADER ──────────────────────────────────────── */}
         <section className="relative pt-40 pb-24 bg-[#111111] overflow-hidden border-b border-yellow-900/20">
           <div className="absolute inset-0">
-            <img
+            <motion.img
+              initial={{ scale: 1.05, opacity: 0 }}
+              animate={{ scale: 1, opacity: 0.1 }}
+              transition={{ duration: 1.5, ease: "easeOut" }}
               src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=2070&auto=format&fit=crop"
               alt="Alchemical Apparatus"
-              className="w-full h-full object-cover opacity-10 filter sepia contrast-125"
+              className="w-full h-full object-cover filter sepia contrast-125"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-[#111111]/60 to-[#111111]" />
           </div>
-          <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8"
+          >
             <span className="section-label block mb-4">Operational Methodology</span>
             <h1 className="serif-font text-6xl lg:text-8xl text-white leading-none tracking-wide mb-6">
               The <span className="gradient-gold">Guild</span>
@@ -77,11 +87,17 @@ export default function CraftPage() {
             <p className="text-gray-400 font-light max-w-xl leading-relaxed">
               The proprietary assembly pipeline, ecological parameters, and the structural hierarchy of the avatarist guild.
             </p>
-          </div>
+          </motion.div>
         </section>
 
         {/* ─── PIPELINE ─────────────────────────────────────────── */}
-        <section className="py-28 bg-[#0e0e0e]">
+        <motion.section 
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+          className="py-32 bg-[#0e0e0e]"
+        >
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="mb-16">
               <span className="section-label block mb-4">System Core</span>
@@ -90,8 +106,15 @@ export default function CraftPage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {pipeline.map((p) => (
-                <div key={p.step} className="glass-panel p-8 card-hover">
+              {pipeline.map((p, i) => (
+                <motion.div 
+                  key={p.step} 
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.15 * i }}
+                  className="glass-panel p-8 card-hover"
+                >
                   <span className="serif-font text-5xl text-yellow-900/40 block mb-4 leading-none">{p.step}</span>
                   <h3 className="serif-font text-xl text-white mb-3 tracking-wider">{p.title}</h3>
                   <p className="text-gray-500 text-sm font-light leading-relaxed mb-6">{p.desc}</p>
@@ -102,12 +125,18 @@ export default function CraftPage() {
                       </li>
                     ))}
                   </ul>
-                </div>
+                </motion.div>
               ))}
             </div>
 
             {/* Pipeline video */}
-            <div className="mt-12 glass-panel p-2 mystic-glow">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.98 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="mt-12 glass-panel p-2 mystic-glow"
+            >
               <div className="relative w-full aspect-video bg-black overflow-hidden border border-gray-800">
                 <video className="w-full h-full object-cover opacity-50 filter contrast-125 sepia-[.3]" autoPlay loop muted playsInline>
                   <source src="https://assets.mixkit.co/videos/preview/mixkit-animation-of-a-futuristic-device-in-a-dark-room-32360-large.mp4" type="video/mp4" />
@@ -118,12 +147,18 @@ export default function CraftPage() {
                   <p className="serif-font text-white text-2xl tracking-wider mt-1">The Formulation Engine</p>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
-        </section>
+        </motion.section>
 
         {/* ─── GUILD PRINCIPLES ─────────────────────────────────── */}
-        <section className="py-28 bg-[#111111] border-t border-yellow-900/20">
+        <motion.section 
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+          className="py-32 bg-[#111111] border-t border-yellow-900/20"
+        >
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="text-center mb-16">
               <span className="section-label block mb-4">Operational Standards</span>
@@ -131,18 +166,31 @@ export default function CraftPage() {
               <div className="gold-line mx-auto mt-6" />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {principles.map((p) => (
-                <div key={p.title} className="glass-panel p-10 card-hover">
+              {principles.map((p, i) => (
+                <motion.div 
+                  key={p.title} 
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.2 * i }}
+                  className="glass-panel p-10 card-hover"
+                >
                   <h3 className="serif-font text-xl text-white mb-4 tracking-wider">{p.title}</h3>
                   <p className="text-gray-400 font-light text-sm leading-relaxed">{p.body}</p>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
-        </section>
+        </motion.section>
 
         {/* ─── HIERARCHY ────────────────────────────────────────── */}
-        <section className="py-28 bg-[#0e0e0e] border-t border-yellow-900/20">
+        <motion.section 
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+          className="py-32 bg-[#0e0e0e] border-t border-yellow-900/20"
+        >
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="text-center mb-16">
               <span className="section-label block mb-4">Rank Structure</span>
@@ -150,10 +198,17 @@ export default function CraftPage() {
               <div className="gold-line mx-auto mt-6" />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {ranks.map((r) => (
-                <div key={r.rank} className="glass-panel card-hover flex flex-col overflow-hidden">
+              {ranks.map((r, i) => (
+                <motion.div 
+                  key={r.rank} 
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.15 * i }}
+                  className="glass-panel card-hover flex flex-col overflow-hidden"
+                >
                   <div className="h-52 relative overflow-hidden">
-                    <img src={r.img} alt={r.title} className="w-full h-full object-cover filter contrast-125 sepia-[.2] grayscale-[30%]" />
+                    <img src={r.img} alt={r.title} className="w-full h-full object-cover filter contrast-125 sepia-[.2] grayscale-[30%] hover:scale-105 transition-transform duration-700" />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] to-transparent" />
                   </div>
                   <div className="p-8 flex-1 flex flex-col">
@@ -162,14 +217,20 @@ export default function CraftPage() {
                     <span className="text-[10px] text-yellow-700 tracking-widest uppercase border-b border-gray-800 pb-3 mb-4">{r.allocation} Revenue Allocation</span>
                     <p className="text-gray-500 text-xs font-light leading-relaxed flex-1">{r.desc}</p>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
-        </section>
+        </motion.section>
 
         {/* ─── JOIN CTA ─────────────────────────────────────────── */}
-        <section className="py-28 bg-[#111111] border-t border-yellow-900/20 text-center">
+        <motion.section 
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+          className="py-32 bg-[#111111] border-t border-yellow-900/20 text-center"
+        >
           <div className="max-w-3xl mx-auto px-6 lg:px-8">
             <span className="section-label block mb-6">Enlistment</span>
             <h2 className="serif-font text-4xl lg:text-5xl text-white mb-6">Join the Guild</h2>
@@ -181,7 +242,7 @@ export default function CraftPage() {
               Submit Credentials
             </Link>
           </div>
-        </section>
+        </motion.section>
 
       </main>
       <Footer />
