@@ -14,7 +14,7 @@ const tabs = [
     heading: 'Structural Analysis & Parameter Setting',
     body: 'Every avatar construct begins with a rigorous formulation phase. The client\'s conceptual requirements are deconstructed into atomic parameters—identity, aesthetic range, vocal signature, and somatic baseline. Each variable is catalogued before a single generative cycle is initiated.',
     items: ['Identity deconstruction & archetype mapping', 'Aesthetic parameter calibration', 'Negative space definition — what the entity is not', 'Structural blueprint approval before synthesis'],
-    videoSrc: 'https://assets.mixkit.co/videos/preview/mixkit-animation-of-a-futuristic-device-in-a-dark-room-32360-large.mp4',
+    imgSrc: '/images/pipeline_bg_1778958130205.png',
   },
   {
     id: 'infusion',
@@ -22,7 +22,7 @@ const tabs = [
     heading: 'Application of Animation Logic',
     body: 'Once the structural blueprint is ratified, infusion begins. Raw generative outputs are subjected to localized inpainting, control network alignment, and iterative refinement cycles. The latent space is navigated with surgical precision until the static form achieves fidelity.',
     items: ['Latent space navigation & seed locking', 'ControlNet skeleton alignment', 'Localized inpainting for artifact suppression', 'High-fidelity static asset extraction'],
-    videoSrc: 'https://assets.mixkit.co/videos/preview/mixkit-mysterious-pale-looking-fashion-woman-39878-large.mp4',
+    imgSrc: '/images/specimen_4_1778958114762.png',
   },
   {
     id: 'rendering',
@@ -30,16 +30,15 @@ const tabs = [
     heading: 'Temporal Formalization & Final Output',
     body: 'The final phase transforms static constructs into living, animated entities. Generative video sequencing, audio-to-labial synchronization, and temporal coherence algorithms are applied. The output is a 30-second sequence of absolute structural fidelity.',
     items: ['Generative video sequencing (30s output)', 'Audio-to-labial synchronization', 'Temporal coherence & artifact suppression', 'Final quality certification by Master Avatarist'],
-    videoSrc: 'https://assets.mixkit.co/videos/preview/mixkit-wizard-with-a-glowing-magic-wand-in-the-forest-27415-large.mp4',
+    imgSrc: '/images/specimen_1_1778958073711.png',
   },
 ];
 
 const specimens = [
-  { name: 'Entity: Sylph', class: 'Aethereal', src: 'https://assets.mixkit.co/videos/preview/mixkit-mysterious-pale-looking-fashion-woman-39878-large.mp4' },
-  { name: 'Entity: Undine', class: 'Aquatic Form', src: 'https://assets.mixkit.co/videos/preview/mixkit-portrait-of-a-woman-in-a-pool-1259-large.mp4' },
-  { name: 'Entity: Magus', class: 'Practitioner', src: 'https://assets.mixkit.co/videos/preview/mixkit-wizard-with-a-glowing-magic-wand-in-the-forest-27415-large.mp4' },
-  { name: 'Entity: Duskweaver', class: 'Shadow Form', src: 'https://assets.mixkit.co/videos/preview/mixkit-mysterious-pale-looking-fashion-woman-39878-large.mp4' },
-  { name: 'Entity: Ignis', class: 'Elemental', src: 'https://assets.mixkit.co/videos/preview/mixkit-portrait-of-a-woman-in-a-pool-1259-large.mp4' },
+  { name: 'Entity: Sylph', class: 'Aethereal', src: '/images/specimen_2_1778958085693.png' },
+  { name: 'Entity: Magus', class: 'Practitioner', src: '/images/specimen_1_1778958073711.png' },
+  { name: 'Entity: Duskweaver', class: 'Shadow Form', src: '/images/specimen_3_1778958099280.png' },
+  { name: 'Entity: Ignis', class: 'Elemental', src: '/images/specimen_4_1778958114762.png' },
 ];
 
 const hierarchy = [
@@ -47,21 +46,21 @@ const hierarchy = [
     rank: 'Rank I',
     title: 'The Apprentice',
     allocation: '0% Revenue',
-    img: 'https://images.unsplash.com/photo-1544507851-bc015112521c?q=80&w=600&auto=format&fit=crop',
+    img: '/images/apprentice_rank_1778953240342.png',
     desc: 'Dataset curation, prompt architecture, and latent space exploration.',
   },
   {
     rank: 'Rank II',
     title: 'The Journeyman',
     allocation: '16.6% Revenue',
-    img: 'https://images.unsplash.com/photo-1614030612660-f1db1f88eb22?q=80&w=600&auto=format&fit=crop',
+    img: '/images/journeyman_rank_1778953254032.png',
     desc: 'Algorithmic refinement, inpainting, and control network alignment.',
   },
   {
     rank: 'Rank III',
     title: 'The Master',
     allocation: '33.3% Revenue',
-    img: 'https://images.unsplash.com/photo-1544883441-118ffeb370ce?q=80&w=600&auto=format&fit=crop',
+    img: '/images/master_rank_1778953267725.png',
     desc: 'Final temporal formalization, video sequencing, and synchronization.',
   },
 ];
@@ -78,18 +77,31 @@ export default function HomePage() {
         {/* ─── HERO ─────────────────────────────────────────────── */}
         <section className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-[#111111]">
           {/* Background image */}
-          <div className="absolute inset-0">
+          <div className="absolute inset-0 flex items-center justify-center">
+            {/* Pulsing Aura */}
+            <motion.div
+              animate={{
+                scale: [1, 1.2, 1],
+                opacity: [0.3, 0.5, 0.3],
+              }}
+              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute w-[60vw] h-[60vw] max-w-[600px] max-h-[600px] rounded-full bg-gradient-to-tr from-yellow-900/40 via-yellow-600/10 to-transparent blur-[120px] pointer-events-none"
+            />
+            {/* The Logo */}
             <motion.img
-              initial={{ scale: 1.05, opacity: 0 }}
-              animate={{ scale: 1, opacity: 0.15 }}
-              transition={{ duration: 1.5, ease: "easeOut" }}
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 0.6, y: [0, -15, 0] }}
+              transition={{
+                duration: 6,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
               src="/wivern_digital.png"
               alt="Wivern Digital"
-              className="w-full h-full object-cover"
-              style={{ objectPosition: 'center top' }}
+              className="w-full max-w-[500px] object-contain drop-shadow-[0_0_50px_rgba(202,138,4,0.3)] pointer-events-none z-0 mix-blend-screen"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#111111] via-[#111111]/80 to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-transparent to-[#111111]/60" />
+            <div className="absolute inset-0 bg-[#111111]/40 backdrop-blur-[2px]" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#111111]/80 via-transparent to-[#111111]" />
           </div>
 
           <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full py-20">
@@ -129,18 +141,16 @@ export default function HomePage() {
                 </div>
               </motion.div>
 
-              {/* Right — Staggered Video Grid */}
+              {/* Right — Staggered Image Grid */}
               <div className="hidden lg:grid grid-cols-2 gap-3 h-[560px]">
                 {/* Tall left */}
                 <motion.div 
                   initial={{ opacity: 0, y: 40 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.4 }}
-                  className="video-card bg-black rounded-sm row-span-2 overflow-hidden"
+                  className="video-card bg-black rounded-sm row-span-2 overflow-hidden relative"
                 >
-                  <video className="w-full h-full object-cover opacity-75 filter contrast-125 grayscale-[15%]" autoPlay loop muted playsInline>
-                    <source src="https://assets.mixkit.co/videos/preview/mixkit-mysterious-pale-looking-fashion-woman-39878-large.mp4" type="video/mp4" />
-                  </video>
+                  <img src="/images/specimen_2_1778958085693.png" alt="Entity Sylph" className="w-full h-full object-cover opacity-75 filter contrast-125 grayscale-[15%]" />
                   <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 to-transparent">
                     <p className="serif-font text-white text-sm tracking-wider">Entity: Sylph</p>
                     <p className="text-yellow-600 text-[10px] tracking-widest uppercase">Aethereal</p>
@@ -151,13 +161,11 @@ export default function HomePage() {
                   initial={{ opacity: 0, x: 40 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.8, delay: 0.6 }}
-                  className="video-card bg-black rounded-sm overflow-hidden"
+                  className="video-card bg-black rounded-sm overflow-hidden relative"
                 >
-                  <video className="w-full h-full object-cover opacity-75 filter contrast-125 grayscale-[15%]" autoPlay loop muted playsInline>
-                    <source src="https://assets.mixkit.co/videos/preview/mixkit-portrait-of-a-woman-in-a-pool-1259-large.mp4" type="video/mp4" />
-                  </video>
+                  <img src="/images/specimen_1_1778958073711.png" alt="Entity Magus" className="w-full h-full object-cover opacity-75 filter contrast-125 grayscale-[15%]" />
                   <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/90 to-transparent">
-                    <p className="serif-font text-white text-sm tracking-wider">Entity: Undine</p>
+                    <p className="serif-font text-white text-sm tracking-wider">Entity: Magus</p>
                   </div>
                 </motion.div>
                 {/* Short bottom right */}
@@ -165,13 +173,11 @@ export default function HomePage() {
                   initial={{ opacity: 0, x: 40 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.8, delay: 0.8 }}
-                  className="video-card bg-black rounded-sm overflow-hidden"
+                  className="video-card bg-black rounded-sm overflow-hidden relative"
                 >
-                  <video className="w-full h-full object-cover opacity-75 filter contrast-125 grayscale-[15%]" autoPlay loop muted playsInline>
-                    <source src="https://assets.mixkit.co/videos/preview/mixkit-wizard-with-a-glowing-magic-wand-in-the-forest-27415-large.mp4" type="video/mp4" />
-                  </video>
+                  <img src="/images/specimen_3_1778958099280.png" alt="Entity Duskweaver" className="w-full h-full object-cover opacity-75 filter contrast-125 grayscale-[15%]" />
                   <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/90 to-transparent">
-                    <p className="serif-font text-white text-sm tracking-wider">Entity: Magus</p>
+                    <p className="serif-font text-white text-sm tracking-wider">Entity: Duskweaver</p>
                   </div>
                 </motion.div>
               </div>
@@ -241,9 +247,7 @@ export default function HomePage() {
                 </div>
                 <div className="glass-panel p-2 rounded-sm mystic-glow">
                   <div className="relative aspect-video bg-black overflow-hidden border border-gray-800">
-                    <video className="w-full h-full object-cover opacity-70 filter contrast-125 sepia-[.2]" autoPlay loop muted playsInline>
-                      <source src={currentTab.videoSrc} type="video/mp4" />
-                    </video>
+                    <img src={currentTab.imgSrc} alt={currentTab.label} className="w-full h-full object-cover opacity-70 filter contrast-125 sepia-[.2]" />
                     <div className="absolute inset-0 border border-yellow-700/20 m-3 pointer-events-none" />
                     <div className="absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black via-black/70 to-transparent">
                       <span className="section-label">{currentTab.label}</span>
@@ -387,9 +391,7 @@ export default function HomePage() {
                   key={i}
                   className="group relative w-72 md:w-80 aspect-[4/5] flex-shrink-0 video-card bg-black rounded-sm overflow-hidden"
                 >
-                  <video className="w-full h-full object-cover opacity-75 group-hover:opacity-100 filter contrast-125 grayscale-[20%] group-hover:grayscale-0 transition-all duration-700" autoPlay loop muted playsInline>
-                    <source src={s.src} type="video/mp4" />
-                  </video>
+                  <img src={s.src} alt={s.name} className="w-full h-full object-cover opacity-75 group-hover:opacity-100 filter contrast-125 grayscale-[20%] group-hover:grayscale-0 transition-all duration-700" />
                   <div className="absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/95 to-transparent">
                     <h3 className="serif-font text-lg text-white tracking-wider mb-0.5">{s.name}</h3>
                     <p className="text-[10px] text-gray-400 tracking-widest uppercase mb-3">{s.class}</p>

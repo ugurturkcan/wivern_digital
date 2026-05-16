@@ -40,17 +40,17 @@ const principles = [
 const ranks = [
   {
     rank: 'Rank I', title: 'The Apprentice', allocation: '0%',
-    img: 'https://images.unsplash.com/photo-1544507851-bc015112521c?q=80&w=600&auto=format&fit=crop',
+    img: '/images/apprentice_rank_1778953240342.png',
     desc: 'Tasked with initial dataset curation, prompt architecture, and latent space exploration. Advancement requires a verified majority vote from existing Journeymen and Masters.',
   },
   {
     rank: 'Rank II', title: 'The Journeyman', allocation: '16.6%',
-    img: 'https://images.unsplash.com/photo-1614030612660-f1db1f88eb22?q=80&w=600&auto=format&fit=crop',
+    img: '/images/journeyman_rank_1778953254032.png',
     desc: 'Responsible for algorithmic refinement, localized inpainting, and establishing structural coherence utilizing control networks. Operates independently or with a Master.',
   },
   {
     rank: 'Rank III', title: 'The Master', allocation: '33.3%',
-    img: 'https://images.unsplash.com/photo-1544883441-118ffeb370ce?q=80&w=600&auto=format&fit=crop',
+    img: '/images/master_rank_1778953267725.png',
     desc: 'Executes final temporal formalization. Manages generative video sequencing, audio-to-labial synchronization algorithms, and artifact suppression.',
   },
 ];
@@ -66,9 +66,9 @@ export default function CraftPage() {
           <div className="absolute inset-0">
             <motion.img
               initial={{ scale: 1.05, opacity: 0 }}
-              animate={{ scale: 1, opacity: 0.1 }}
+              animate={{ scale: 1, opacity: 0.15 }}
               transition={{ duration: 1.5, ease: "easeOut" }}
-              src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=2070&auto=format&fit=crop"
+              src="/images/craft_hero_1778953294874.png"
               alt="Alchemical Apparatus"
               className="w-full h-full object-cover filter sepia contrast-125"
             />
@@ -139,9 +139,7 @@ export default function CraftPage() {
               className="mt-12 glass-panel p-2 mystic-glow"
             >
               <div className="relative w-full aspect-video bg-black overflow-hidden border border-gray-800">
-                <video className="w-full h-full object-cover opacity-50 filter contrast-125 sepia-[.3]" autoPlay loop muted playsInline>
-                  <source src="https://assets.mixkit.co/videos/preview/mixkit-animation-of-a-futuristic-device-in-a-dark-room-32360-large.mp4" type="video/mp4" />
-                </video>
+                <img src="/images/pipeline_bg_1778958130205.png" alt="Formulation Engine" className="w-full h-full object-cover opacity-50 filter contrast-125 sepia-[.3]" />
                 <div className="absolute inset-0 border border-yellow-700/20 m-4 pointer-events-none" />
                 <div className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black via-black/80 to-transparent">
                   <span className="section-label">System Core</span>

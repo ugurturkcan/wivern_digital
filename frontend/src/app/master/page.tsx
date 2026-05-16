@@ -55,7 +55,7 @@ export default function MasterPage() {
                 className="glass-panel p-2 mystic-glow lg:sticky lg:top-28"
               >
                 <div className="relative aspect-[4/5] bg-black/40 overflow-hidden border border-gray-800/50">
-                  <img src="https://images.unsplash.com/photo-1555596884-25cb48df13f7?q=80&w=800&auto=format&fit=crop" alt="Jerome Goerke - Master in Chief" className="w-full h-full object-cover filter contrast-125 sepia-[.4] grayscale-[20%]" />
+                  <img src="/images/jerome_photo.png" alt="Jerome Goerke - Master in Chief" className="w-full h-full object-cover filter contrast-125 sepia-[.4] grayscale-[20%]" />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0e0e0e] to-transparent" />
                   <div className="absolute inset-0 border border-yellow-700/10 m-4 pointer-events-none" />
                 </div>
