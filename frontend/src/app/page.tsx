@@ -1,9 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
+import { PenTool, User, Mic, Zap, Eye, Share2 } from 'lucide-react';
 
 const tabs = [
   {
@@ -217,8 +218,69 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ─── MANIFESTO QUOTE ──────────────────────────────────── */}
+        {/* ─── HOW THE GUILD WORKS ──────────────────────────────── */}
         <section className="py-28 bg-[#111111] border-t border-yellow-900/20">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+
+            {/* Header */}
+            <div className="text-center mb-20">
+              <div className="flex items-center justify-center gap-4 mb-4">
+                <div className="flex-1 max-w-[3rem] h-px bg-yellow-800/40" />
+                <span className="section-label">The Ritual</span>
+                <div className="flex-1 max-w-[3rem] h-px bg-yellow-800/40" />
+              </div>
+              <h2 className="serif-font text-4xl lg:text-5xl text-white mb-4">How The Guild Works</h2>
+              <div className="gold-line mx-auto mt-6 mb-6" />
+              <p className="text-gray-400 font-light max-w-xl mx-auto text-sm leading-relaxed">
+                Six ancient steps, perfected over centuries, now executed at the speed of thought.
+              </p>
+            </div>
+
+            {/* Steps */}
+            <div className="relative">
+              {/* Connector line — desktop only */}
+              <div className="hidden lg:block absolute top-10 left-[calc(8.33%+2.5rem)] right-[calc(8.33%+2.5rem)] h-px bg-yellow-900/30 z-0" />
+
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8">
+                {([
+                  { step: 1, name: 'Script',           desc: 'Write or import your narrative', Icon: PenTool },
+                  { step: 2, name: 'Avatar',           desc: 'Choose your guild character',    Icon: User    },
+                  { step: 3, name: 'Voice & Lip Sync', desc: 'Select voice & sync lips',       Icon: Mic     },
+                  { step: 4, name: 'Generate',         desc: 'AI renders your scene',          Icon: Zap     },
+                  { step: 5, name: 'Preview',          desc: 'Review & fine-tune',             Icon: Eye     },
+                  { step: 6, name: 'Publish',          desc: 'Export to any platform',         Icon: Share2  },
+                ] as { step: number; name: string; desc: string; Icon: React.ElementType }[]).map((s) => (
+                  <div key={s.step} className="relative z-10 flex flex-col items-center text-center group">
+                    {/* Icon circle */}
+                    <div className="w-20 h-20 rounded-full border border-yellow-900/40 bg-[#0e0e0e] flex items-center justify-center mb-4 relative group-hover:border-yellow-700 transition-colors duration-300">
+                      <s.Icon className="w-6 h-6 text-gray-500 group-hover:text-yellow-500 transition-colors duration-300" />
+                      {/* Step badge */}
+                      <div className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-yellow-700 text-black flex items-center justify-center text-[10px] font-bold">
+                        {s.step}
+                      </div>
+                    </div>
+                    <h3 className="serif-font text-xs text-white tracking-wider uppercase mb-1">{s.name}</h3>
+                    <p className="text-gray-500 text-[11px] leading-relaxed max-w-[100px]">{s.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* CTA */}
+            <div className="text-center mt-16">
+              <Link
+                href="/commissions"
+                className="inline-flex items-center gap-3 text-[11px] font-medium tracking-[0.2em] uppercase bg-yellow-700 text-black px-10 py-4 hover:bg-yellow-500 transition-all duration-300"
+              >
+                Begin Your First Ritual &rarr;
+              </Link>
+            </div>
+
+          </div>
+        </section>
+
+        {/* ─── MANIFESTO QUOTE ──────────────────────────────────── */}
+        <section className="py-28 bg-[#0e0e0e] border-t border-yellow-900/20">
           <div className="max-w-5xl mx-auto px-6 lg:px-8 text-center">
             <span className="section-label block mb-10">Guild Manifesto</span>
             <blockquote className="serif-font text-3xl lg:text-5xl text-white leading-snug italic mb-10">
