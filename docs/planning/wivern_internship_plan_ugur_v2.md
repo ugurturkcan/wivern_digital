@@ -28,7 +28,7 @@ To ensure a highly responsive, cinematic user experience (matching the Figma des
 
 ## 3. Security Considerations
 
-*   **Database Security:** Implementation of **Supabase Row Level Security (RLS)** to guarantee that users can strictly access only their own uploaded photos, scripts, and generated videos.
+*   **Database Security:** Implementation of secure API endpoints via **Railway (FastAPI)** and **Clerk token verification** to guarantee that users can strictly access only their own uploaded photos, scripts, and generated videos.
 *   **Authentication & Session Management:** Utilizing **Clerk's JWT-based authentication** to secure all API routes and dashboard pages.
 *   **Asset & Data Privacy:** Secure, encrypted bucket storage for client source files. Temporary files used during generation will be purged securely to protect the "Master Driver" proprietary data.
 *   **Secure Webhooks:** Implementing signature validation for Stripe payment webhooks and RunPod generation completion webhooks to prevent spoofing.
@@ -44,8 +44,8 @@ As requested, here is the detailed pricing research for the core services, organ
 | | Pro | $20/mo | 50k MRU included (+$0.02/mo each extra), Custom session lifetime, MFA. |
 | **Vercel (Hosting)** | Hobby | $0 | Automatic CI/CD, Global CDN, ideal for MVP development. |
 | | Pro | $20/mo/user | Advanced spend management, faster builds, team collaboration. |
-| **Supabase (DB)** | Free | $0 | 50k MAU, 500MB DB, 1GB Storage, 5GB bandwidth. |
-| | Pro | $25/mo | 100k MAU, 8GB DB, 100GB Storage, daily backups. |
+| **Cloudflare R2 (Storage)** | Free | $0 | Up to 10GB storage, free egress bandwidth. |
+| **Railway.app (DB & API)** | Developer | $5/mo | Free $5 credit/mo for hosting FastAPI and PostgreSQL. |
 
 ### Backend & Cloud Computing
 | Service | Instance Type | Price | Specifications / Use Case |
@@ -78,7 +78,7 @@ As requested, here is the detailed pricing research for the core services, organ
 
 ### Month 1: Phase 1 - Digital Infrastructure & Foundation
 *   **Week 1:** Initialize Next.js project, setup Tailwind CSS matching the Figma design. Deploy base project to Vercel.
-*   **Week 2:** Integrate Clerk for authentication and protect dashboard routes. Setup Supabase database, define schemas, and configure RLS.
+*   **Week 2:** Integrate Clerk for authentication and protect dashboard routes. Setup Railway PostgreSQL database, define schemas, and configure Cloudflare R2 for storage.
 *   **Week 3:** Build the frontend UI: Landing Page, Dashboard Home, and Creation Studio pages.
 *   **Week 4:** Integrate Stripe for payment processing and credit allocation. Finalize Phase 1 UI/UX.
 
