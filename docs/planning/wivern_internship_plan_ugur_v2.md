@@ -50,8 +50,8 @@ As requested, here is the detailed pricing research for the core services, organ
 ### Backend & Cloud Computing
 | Service | Instance Type | Price | Specifications / Use Case |
 | :--- | :--- | :--- | :--- |
-| **Contabo (VPS)** | Cloud VPS 10 | €4.28/mo | 4 vCPU, 8GB RAM, 75GB NVMe. Perfect for FastAPI task orchestrator. |
-| | Cloud VPS 20 | €6.66/mo | 6 vCPU, 12GB RAM, 100GB NVMe. Scales for heavier queueing. |
+| **Railway.app** | Developer Tier | $5 credit/mo | Host FastAPI backend + job queue. |
+| **Upstash Redis** | Free Tier | $0 | 10K req/day. Cloud Redis for BullMQ. |
 | **RunPod (GPU)** | RTX 4090 | $0.69/hr | 24GB VRAM. Extremely cost-effective for development & testing. |
 | | L40S | $0.86/hr | 48GB VRAM. Fast inference for mid-sized generative models. |
 | | H100 PCIe | $2.39/hr | 80GB VRAM. Maximum throughput for heavy production models (e.g., Wan 2.2). |
@@ -83,9 +83,9 @@ As requested, here is the detailed pricing research for the core services, organ
 *   **Week 4:** Integrate Stripe for payment processing and credit allocation. Finalize Phase 1 UI/UX.
 
 ### Month 2: Phase 2 - AI Pipeline Connection & Backend Orchestration
-*   **Week 5:** Setup Contabo VPS with Python/FastAPI to act as the central task orchestrator.
+*   **Week 5:** Setup Railway.app with Python/FastAPI to act as the central task orchestrator. Configure Upstash Redis for BullMQ.
 *   **Week 6:** Configure RunPod endpoints and ComfyUI workflows for the "Master Driver" AI architecture (Wan2.2, LivePortrait, TTS).
-*   **Week 7:** Connect the Next.js Creation Studio to the Contabo API to send upload data securely to the RunPod generation queue.
+*   **Week 7:** Connect the Next.js Creation Studio to the Railway FastAPI to send upload data securely to the RunPod generation queue.
 *   **Week 8:** Develop the internal "Guild Admin Dashboard" to allow artists to intercept raw generation for human-in-the-loop refinement.
 
 ### Month 3: Phase 3 - Polish, Automation & Commercial Fulfillment
