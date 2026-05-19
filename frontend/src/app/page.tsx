@@ -116,14 +116,14 @@ export default function HomePage() {
                 <div className="flex items-center gap-3 mb-8">
                   <span className="section-label">Enter the Workshop</span>
                   <div className="flex-1 h-px bg-yellow-800/40" />
-                  <span className="text-[10px] tracking-widest uppercase text-yellow-700 border border-yellow-800/40 px-2 py-0.5">Est. MMXXVI</span>
+                  <span className="text-[10px] tracking-widest uppercase text-yellow-700 border border-yellow-800/40 px-2 py-0.5">Est. 2011</span>
                 </div>
                 <h1 className="serif-font text-6xl lg:text-8xl text-white leading-none tracking-wide mb-4">
                   Digital<br />
                   <span className="gradient-gold">Alchemy</span>
                 </h1>
                 <p className="text-gray-400 text-lg font-light leading-relaxed max-w-md mt-6 mb-10">
-                  Precision engineering of bespoke AI avatars. Ancient aesthetic principles realized through modern computational methodology.
+                  Precision engineering of bespoke AI avatars. Ancient aesthetic & ethical principles coupled with modern methodology to embody your voice online.
                 </p>
                 <div className="flex items-center gap-4">
                   <Link
@@ -239,11 +239,7 @@ export default function HomePage() {
                       </li>
                     ))}
                   </ul>
-                  <div className="mt-10">
-                    <Link href="/craft" className="text-[11px] tracking-[0.2em] uppercase text-yellow-600 hover:text-yellow-400 transition-colors flex items-center gap-2">
-                      Read Full Methodology <span>&rarr;</span>
-                    </Link>
-                  </div>
+
                 </div>
                 <div className="glass-panel p-2 rounded-sm mystic-glow">
                   <div className="relative aspect-video bg-black overflow-hidden border border-gray-800">
@@ -336,7 +332,7 @@ export default function HomePage() {
                 href="/commissions"
                 className="inline-flex items-center gap-3 text-[11px] font-medium tracking-[0.2em] uppercase border border-yellow-700 text-yellow-500 px-10 py-4 hover:bg-yellow-700 hover:text-black transition-all duration-300"
               >
-                Begin Your First Ritual &rarr;
+                SUMMON YOUR FIRST AVATAR &rarr;
               </Link>
             </div>
 
@@ -354,10 +350,10 @@ export default function HomePage() {
           <div className="max-w-5xl mx-auto px-6 lg:px-8 text-center">
             <span className="section-label block mb-10">Guild Manifesto</span>
             <blockquote className="serif-font text-3xl lg:text-5xl text-white leading-snug italic mb-10">
-              &ldquo;Meticulous observation leads to precise replication. We do not approximate the human form — we formalize it.&rdquo;
+              &ldquo;As the web becomes an AI-shaped dreamscape, our guild remains committed to ethical creation, transparent and fair collaboration, and resource-supportive processes.&rdquo;
             </blockquote>
             <div className="gold-line mx-auto mb-6" />
-            <p className="text-gray-500 text-sm tracking-widest uppercase">Jerome Goerke, Master-in-Chief &mdash; Wivern Digital</p>
+            <p className="text-gray-500 text-sm tracking-widest uppercase">Jerome Goerke, Ecology Fund + Data &mdash; Wivern Digital</p>
           </div>
         </motion.section>
 

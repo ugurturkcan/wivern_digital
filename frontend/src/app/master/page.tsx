@@ -29,7 +29,7 @@ export default function MasterPage() {
           >
             <span className="section-label block mb-4">Guild Leadership</span>
             <h1 className="serif-font text-6xl lg:text-8xl text-white leading-none tracking-wide mb-6">
-              Master-<br /><span className="gradient-gold">in-Chief</span>
+              Ecology Fund <br /><span className="gradient-gold">+ Data</span>
             </h1>
             <div className="w-px h-16 bg-gradient-to-b from-yellow-600 to-transparent" />
           </motion.div>
@@ -55,7 +55,7 @@ export default function MasterPage() {
                 className="glass-panel p-2 mystic-glow lg:sticky lg:top-28"
               >
                 <div className="relative aspect-[4/5] bg-black/40 overflow-hidden border border-gray-800/50">
-                  <img src="/images/jerome_photo.png" alt="Jerome Goerke - Master in Chief" className="w-full h-full object-cover filter contrast-125 sepia-[.4] grayscale-[20%]" />
+                  <img src="/images/jerome_photo.png" alt="Jerome Goerke - Ecology Fund + Data" className="w-full h-full object-cover filter contrast-125 sepia-[.4] grayscale-[20%]" />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0e0e0e] to-transparent" />
                   <div className="absolute inset-0 border border-yellow-700/10 m-4 pointer-events-none" />
                 </div>
@@ -73,7 +73,7 @@ export default function MasterPage() {
                 <div className="gold-line mb-8" />
                 <div className="space-y-6 text-gray-400 font-light leading-relaxed text-sm">
                   <p>
-                    Jerome Goerke serves as the Master-in-Chief and founder of Wivern Digital. His professional background originates in newsroom journalism — a discipline that provided the structural foundation for his subsequent transition into organizational leadership and digital media generation.
+                    Jerome Goerke serves as the Ecology Fund + Data and founder of Wivern Digital. His professional background originates in newsroom journalism — a discipline that provided the structural foundation for his subsequent transition into organizational leadership and digital media generation.
                   </p>
                   <p>
                     His primary expertise lies in innovation management and narrative structuring. These core competencies are currently applied to the development of the guild&rsquo;s proprietary assembly pipelines and the temporal formalization of digital avatars.
@@ -132,7 +132,7 @@ export default function MasterPage() {
               &ldquo;We do not approximate the human form — we formalize it. Every construct is a declaration of structural intent.&rdquo;
             </blockquote>
             <div className="gold-line mx-auto mb-6" />
-            <p className="text-gray-500 text-sm tracking-widest uppercase">Jerome Goerke &mdash; Master-in-Chief</p>
+            <p className="text-gray-500 text-sm tracking-widest uppercase">Jerome Goerke &mdash; Ecology Fund + Data</p>
           </div>
         </motion.section>
 

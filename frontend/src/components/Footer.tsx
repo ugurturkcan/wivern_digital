@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Footer() {
   return (
@@ -9,12 +10,12 @@ export default function Footer() {
           {/* Brand */}
           <div className="md:col-span-2">
             <div className="flex items-center gap-3 mb-5">
-              <div className="w-9 h-9 rounded-full border border-yellow-700 flex items-center justify-center bg-black">
-                <span className="serif-font text-yellow-600 text-sm">W</span>
+              <div className="w-10 h-10 rounded-full border border-yellow-700 flex items-center justify-center bg-black overflow-hidden shrink-0">
+                <Image src="/wivern_logo.png" alt="Wivern Digital Logo" width={40} height={40} className="w-full h-full object-cover" />
               </div>
               <span className="serif-font text-lg tracking-widest text-white uppercase">Wivern Digital</span>
             </div>
-            <p className="text-gray-500 text-xs tracking-wider uppercase font-light mb-4">Guild of Avatarists &bull; Est. MMXXVI</p>
+            <p className="text-gray-500 text-xs tracking-wider uppercase font-light mb-4">Guild of Avatarists &bull; Est. 2011</p>
             <p className="text-gray-600 text-sm font-light leading-relaxed max-w-xs">
               Precision engineering of bespoke AI avatars. Ancient principles. Modern computation.
             </p>
@@ -28,7 +29,7 @@ export default function Footer() {
                 { href: '/', label: 'The Shop' },
                 { href: '/craft', label: 'The Guild' },
                 { href: '/commissions', label: 'Commissions' },
-                { href: '/master', label: 'Master-in-Chief' },
+                { href: '/master', label: 'Ecology Fund + Data' },
               ].map(({ href, label }) => (
                 <li key={href}>
                   <Link href={href} className="text-gray-500 hover:text-yellow-600 text-sm font-light transition-colors">
@@ -58,7 +59,7 @@ export default function Footer() {
         <hr className="gold-rule mb-8" />
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-600 font-light tracking-wider uppercase">
           <span>Sector 4R, Ward 2330 &mdash; The Manor Estate &mdash; Access by documented appointment</span>
-          <span>&copy; MMXXVI Wivern Digital. All rights reserved.</span>
+          <span>&copy; 2011 Wivern Digital. All rights reserved.</span>
         </div>
       </div>
     </footer>

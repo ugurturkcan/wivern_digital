@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
@@ -8,7 +9,7 @@ const navLinks = [
   { href: '/', label: 'The Shop' },
   { href: '/craft', label: 'The Guild' },
   { href: '/commissions', label: 'Commission' },
-  { href: '/master', label: 'Master-in-Chief' },
+  { href: '/master', label: 'Ecology Fund + Data' },
 ];
 
 export default function Nav() {
@@ -43,8 +44,8 @@ export default function Nav() {
 
             {/* Logo */}
             <Link href="/" className="flex items-center gap-3 flex-shrink-0">
-              <div className="w-10 h-10 rounded-full border border-yellow-700 flex items-center justify-center bg-black/60">
-                <span className="serif-font text-yellow-600 text-lg">W</span>
+              <div className="w-12 h-12 rounded-full border border-yellow-700 flex items-center justify-center bg-black/60 overflow-hidden shrink-0">
+                <Image src="/wivern_logo.png" alt="Wivern Digital Logo" width={48} height={48} className="w-full h-full object-cover" />
               </div>
               <div className="flex flex-col leading-tight">
                 <span className="serif-font text-base tracking-widest text-white uppercase">Wivern Digital</span>
@@ -132,7 +133,7 @@ export default function Nav() {
           Submit Requisition
         </Link>
 
-        <p className="text-gray-600 text-[10px] tracking-[0.2em] uppercase">Guild of Avatarists · Est. 2026</p>
+        <p className="text-gray-600 text-[10px] tracking-[0.2em] uppercase">Guild of Avatarists · Est. 2011</p>
       </div>
     </>
   );
