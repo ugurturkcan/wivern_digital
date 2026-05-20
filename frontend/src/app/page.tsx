@@ -65,18 +65,17 @@ export default function HomePage() {
               transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
               className="absolute w-[60vw] h-[60vw] max-w-[600px] max-h-[600px] rounded-full bg-gradient-to-tr from-yellow-900/40 via-yellow-600/10 to-transparent blur-[120px] pointer-events-none"
             />
-            {/* The Logo */}
+            {/* The Street Animation Image */}
             <motion.img
-              initial={{ scale: 0.9, opacity: 0, y: 20 }}
-              animate={{ scale: 1, opacity: 0.6, y: [0, -15, 0] }}
+              initial={{ scale: 1.1, opacity: 0 }}
+              animate={{ scale: 1, opacity: 0.5 }}
               transition={{
-                duration: 6,
-                repeat: Infinity,
-                ease: "easeInOut"
+                duration: 1.5,
+                ease: "easeOut"
               }}
               src="/wivern_digital.png"
-              alt="Wivern Digital"
-              className="w-full max-w-[500px] object-contain drop-shadow-[0_0_50px_rgba(202,138,4,0.3)] pointer-events-none z-0 mix-blend-screen"
+              alt="Wivern Digital Street"
+              className="absolute inset-0 w-full h-full object-cover pointer-events-none z-0"
             />
             <div className="absolute inset-0 bg-[#111111]/40 backdrop-blur-[2px]" />
             <div className="absolute inset-0 bg-gradient-to-b from-[#111111]/80 via-transparent to-[#111111]" />
