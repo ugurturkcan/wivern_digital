@@ -21,15 +21,15 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Navigation */}
+          {/* Legal */}
           <div>
-            <h4 className="section-label mb-6">Navigation</h4>
+            <h4 className="section-label mb-6">Legal</h4>
             <ul className="space-y-3">
               {[
-                { href: '/', label: 'The Shop' },
-                { href: '/craft', label: 'The Guild' },
-                { href: '/commissions', label: 'Commissions' },
-                { href: '/master', label: 'Ecology Fund + Data' },
+                { href: '/legal/terms-of-service', label: 'Terms of Service' },
+                { href: '/legal/acceptable-use', label: 'Acceptable Use' },
+                { href: '/legal/gdpr', label: 'GDPR' },
+                { href: '/legal/privacy-data-policy', label: 'Privacy & Data Policy' },
               ].map(({ href, label }) => (
                 <li key={href}>
                   <Link href={href} className="text-gray-500 hover:text-yellow-600 text-sm font-light transition-colors">
@@ -44,11 +44,16 @@ export default function Footer() {
           <div>
             <h4 className="section-label mb-6">Protocols</h4>
             <ul className="space-y-3">
-              {['Client Confidentiality', 'Creation Standards', 'Imprint', 'Privacy'].map((item) => (
-                <li key={item}>
-                  <a href="#" className="text-gray-500 hover:text-yellow-600 text-sm font-light transition-colors">
-                    {item}
-                  </a>
+              {[
+                { href: '/protocols/client-confidentiality', label: 'Client Confidentiality' },
+                { href: '/protocols/creation-standards', label: 'Creation Standards' },
+                { href: '/our-story', label: 'Our Story' },
+                { href: '/imprint', label: 'Imprint' },
+              ].map(({ href, label }) => (
+                <li key={href}>
+                  <Link href={href} className="text-gray-500 hover:text-yellow-600 text-sm font-light transition-colors">
+                    {label}
+                  </Link>
                 </li>
               ))}
             </ul>
