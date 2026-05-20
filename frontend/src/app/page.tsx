@@ -102,16 +102,16 @@ export default function HomePage() {
                 <p className="text-gray-400 text-lg font-light leading-relaxed max-w-md mt-6 mb-10">
                   Precision engineering of bespoke AI avatars. Ancient aesthetic & ethical principles coupled with modern methodology to embody your voice online.
                 </p>
-                <div className="flex items-center gap-4">
+                <div className="flex flex-wrap items-center gap-4">
                   <Link
                     href="/commissions"
-                    className="text-[11px] font-medium tracking-[0.2em] uppercase bg-yellow-700 text-black px-8 py-3.5 hover:bg-yellow-500 transition-all duration-300"
+                    className="text-[11px] font-medium tracking-[0.2em] uppercase bg-yellow-700 text-black px-6 sm:px-8 py-3.5 hover:bg-yellow-500 transition-all duration-300"
                   >
                     View Tariffs
                   </Link>
                   <Link
                     href="#specimens"
-                    className="text-[11px] font-medium tracking-[0.2em] uppercase border border-yellow-800 text-yellow-600 px-8 py-3.5 hover:border-yellow-600 hover:text-white transition-all duration-300"
+                    className="text-[11px] font-medium tracking-[0.2em] uppercase border border-yellow-800 text-yellow-600 px-6 sm:px-8 py-3.5 hover:border-yellow-600 hover:text-white transition-all duration-300"
                   >
                     Active Specimens
                   </Link>
@@ -181,12 +181,12 @@ export default function HomePage() {
             </div>
 
             {/* Tab buttons */}
-            <div className="flex gap-0 border-b border-yellow-900/30 mb-12">
+            <div className="flex overflow-x-auto whitespace-nowrap scrollbar-hide gap-0 border-b border-yellow-900/30 mb-12">
               {tabs.map((tab) => (
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`text-[11px] font-medium tracking-[0.15em] uppercase px-8 py-4 transition-all duration-200 border-b-2 -mb-px ${
+                  className={`text-[10px] md:text-[11px] font-medium tracking-[0.15em] uppercase px-5 md:px-8 py-4 transition-all duration-200 border-b-2 -mb-px flex-shrink-0 ${
                     activeTab === tab.id
                       ? 'text-yellow-500 border-yellow-600'
                       : 'text-gray-500 border-transparent hover:text-gray-300'
@@ -270,11 +270,11 @@ export default function HomePage() {
                 className="hidden lg:block absolute top-10 left-[calc(8.33%+2.5rem)] right-[calc(8.33%+2.5rem)] h-px bg-yellow-900/30 z-0 origin-left" 
               />
 
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8">
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 sm:gap-8">
                 {([
                   { step: 1, name: 'Script',           desc: 'Write or import your narrative', Icon: PenTool },
                   { step: 2, name: 'Avatar',           desc: 'Choose your guild character',    Icon: User    },
-                  { step: 3, name: 'Voice & Lip Sync', desc: 'Select voice & sync lips',       Icon: Mic     },
+                  { step: 3, name: 'Voice & Sync',     desc: 'Select voice & sync lips',       Icon: Mic     },
                   { step: 4, name: 'Generate',         desc: 'AI renders your scene',          Icon: Zap     },
                   { step: 5, name: 'Preview',          desc: 'Review & fine-tune',             Icon: Eye     },
                   { step: 6, name: 'Publish',          desc: 'Export to any platform',         Icon: Share2  },
