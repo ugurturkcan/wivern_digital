@@ -3,6 +3,7 @@
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 
 export default function EcologyFundPage() {
@@ -48,7 +49,7 @@ export default function EcologyFundPage() {
                 className="glass-panel p-2 mystic-glow lg:sticky lg:top-28"
               >
                 <div className="relative aspect-[4/5] bg-black/40 overflow-hidden border border-gray-800/50">
-                  <img src="/images/jerome_photo.png" alt="Jerome Goerke - Ecology Fund + Data" className="w-full h-full object-cover filter contrast-125 sepia-[.4] grayscale-[20%]" />
+                  <Image src="/images/jerome_photo.png" alt="Jerome Goerke - Ecology Fund + Data" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover filter contrast-125 sepia-[.4] grayscale-[20%]" />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0e0e0e] to-transparent" />
                   <div className="absolute inset-0 border border-yellow-700/10 m-4 pointer-events-none" />
                 </div>

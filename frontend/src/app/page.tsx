@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { PenTool, User, Mic, Zap, Eye, Share2 } from 'lucide-react';
 
@@ -63,20 +64,22 @@ export default function HomePage() {
                 opacity: [0.3, 0.5, 0.3],
               }}
               transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+              style={{ willChange: "transform, opacity", transform: "translateZ(0)" }}
               className="absolute w-[60vw] h-[60vw] max-w-[600px] max-h-[600px] rounded-full bg-gradient-to-tr from-yellow-900/40 via-yellow-600/10 to-transparent blur-[120px] pointer-events-none"
             />
             {/* The Street Animation Image */}
-            <motion.img
+            <motion.div
               initial={{ scale: 1.1, opacity: 0 }}
               animate={{ scale: 1, opacity: 0.5 }}
               transition={{
                 duration: 1.5,
                 ease: "easeOut"
               }}
-              src="/wivern_digital.png"
-              alt="Wivern Digital Street"
-              className="absolute inset-0 w-full h-full object-cover pointer-events-none z-0"
-            />
+              style={{ willChange: "transform, opacity" }}
+              className="absolute inset-0 w-full h-full pointer-events-none z-0"
+            >
+              <Image src="/wivern_digital.png" alt="Wivern Digital Street" fill priority className="object-cover" />
+            </motion.div>
             <div className="absolute inset-0 bg-[#111111]/40 backdrop-blur-[2px]" />
             <div className="absolute inset-0 bg-gradient-to-b from-[#111111]/80 via-transparent to-[#111111]" />
           </div>
@@ -127,7 +130,7 @@ export default function HomePage() {
                   transition={{ duration: 0.8, delay: 0.4 }}
                   className="video-card bg-black rounded-sm row-span-2 overflow-hidden relative"
                 >
-                  <img src="/images/specimen_2_1778958085693.png" alt="Entity Sylph" className="w-full h-full object-cover opacity-75 filter contrast-125 grayscale-[15%]" />
+                  <Image src="/images/specimen_2_1778958085693.png" alt="Entity Sylph" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover opacity-75 filter contrast-125 grayscale-[15%]" />
                   <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 to-transparent">
                     <p className="serif-font text-white text-sm tracking-wider">Entity: Sylph</p>
                     <p className="text-yellow-600 text-[9px] tracking-wider uppercase font-semibold mt-1">DOMAIN OF EXPERTISE: ESOTERICA, OCCULT, WICCA, MAGICK</p>
@@ -140,7 +143,7 @@ export default function HomePage() {
                   transition={{ duration: 0.8, delay: 0.6 }}
                   className="video-card bg-black rounded-sm overflow-hidden relative"
                 >
-                  <img src="/images/specimen_1_1778958073711.png" alt="Entity Magus" className="w-full h-full object-cover opacity-75 filter contrast-125 grayscale-[15%]" />
+                  <Image src="/images/specimen_1_1778958073711.png" alt="Entity Magus" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover opacity-75 filter contrast-125 grayscale-[15%]" />
                   <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/90 to-transparent">
                     <p className="serif-font text-white text-sm tracking-wider">Entity: Magus</p>
                     <p className="text-yellow-600 text-[9px] tracking-wider uppercase font-semibold mt-1">DOMAIN OF EXPERTISE: PHILOSOPHY, ANCIENT HISTORY, ART</p>
@@ -153,7 +156,7 @@ export default function HomePage() {
                   transition={{ duration: 0.8, delay: 0.8 }}
                   className="video-card bg-black rounded-sm overflow-hidden relative"
                 >
-                  <img src="/images/specimen_3_1778958099280.png" alt="Entity Duskweaver" className="w-full h-full object-cover opacity-75 filter contrast-125 grayscale-[15%]" />
+                  <Image src="/images/specimen_3_1778958099280.png" alt="Entity Duskweaver" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover opacity-75 filter contrast-125 grayscale-[15%]" />
                   <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/90 to-transparent">
                     <p className="serif-font text-white text-sm tracking-wider">Entity: Duskweaver</p>
                     <p className="text-yellow-600 text-[9px] tracking-wider uppercase font-semibold mt-1">DOMAIN OF EXPERTISE: ETHICAL HACKING, CYBERSECURITY, AI</p>
@@ -222,7 +225,7 @@ export default function HomePage() {
                 </div>
                 <div className="glass-panel p-2 rounded-sm mystic-glow">
                   <div className="relative aspect-video bg-black overflow-hidden border border-gray-800">
-                    <img src={currentTab.imgSrc} alt={currentTab.label} className="w-full h-full object-cover opacity-70 filter contrast-125 sepia-[.2]" />
+                    <Image src={currentTab.imgSrc} alt={currentTab.label} fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover opacity-70 filter contrast-125 sepia-[.2]" />
                     <div className="absolute inset-0 border border-yellow-700/20 m-3 pointer-events-none" />
                     <div className="absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black via-black/70 to-transparent">
                       <span className="section-label">{currentTab.label}</span>
@@ -363,7 +366,7 @@ export default function HomePage() {
                   key={i}
                   className="group relative w-72 md:w-80 aspect-[4/5] flex-shrink-0 video-card bg-black rounded-sm overflow-hidden"
                 >
-                  <img src={s.src} alt={s.name} className="w-full h-full object-cover opacity-75 group-hover:opacity-100 filter contrast-125 grayscale-[20%] group-hover:grayscale-0 transition-all duration-700" />
+                  <Image src={s.src} alt={s.name} fill sizes="320px" className="object-cover opacity-75 group-hover:opacity-100 filter contrast-125 grayscale-[20%] group-hover:grayscale-0 transition-all duration-700" />
                   <div className="absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/95 to-transparent">
                     <h3 className="serif-font text-lg text-white tracking-wider mb-3 group-hover:opacity-0 transition-opacity duration-300">{s.name}</h3>
                     {/* Hover reveal */}

@@ -3,6 +3,7 @@
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 
 const pipeline = [
@@ -139,7 +140,7 @@ export default function CraftPage() {
               className="mt-12 glass-panel p-2 mystic-glow"
             >
               <div className="relative w-full aspect-video bg-black overflow-hidden border border-gray-800">
-                <img src="/images/pipeline_bg_1778958130205.png" alt="Formulation Engine" className="w-full h-full object-cover opacity-50 filter contrast-125 sepia-[.3]" />
+                <Image src="/images/pipeline_bg_1778958130205.png" alt="Formulation Engine" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover opacity-50 filter contrast-125 sepia-[.3]" />
                 <div className="absolute inset-0 border border-yellow-700/20 m-4 pointer-events-none" />
                 <div className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black via-black/80 to-transparent">
                   <span className="section-label">System Core</span>
@@ -207,7 +208,7 @@ export default function CraftPage() {
                   className="glass-panel card-hover flex flex-col overflow-hidden"
                 >
                   <div className="h-52 relative overflow-hidden">
-                    <img src={r.img} alt={r.title} className="w-full h-full object-cover filter contrast-125 sepia-[.2] grayscale-[30%] hover:scale-105 transition-transform duration-700" />
+                    <Image src={r.img} alt={r.title} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover filter contrast-125 sepia-[.2] grayscale-[30%] hover:scale-105 transition-transform duration-700" />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] to-transparent" />
                   </div>
                   <div className="p-8 flex-1 flex flex-col">
