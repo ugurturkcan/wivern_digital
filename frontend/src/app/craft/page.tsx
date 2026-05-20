@@ -33,7 +33,7 @@ const principles = [
   },
   {
     title: 'Equitable Remuneration',
-    body: 'A fixed compensation structure mandates the distribution of project receipts. Master Avatarists receive 33.3%, Journeymen 16.6%, and Apprenticeships are uncompensated. Undistributed capital defaults to the Ecology Fund.',
+    body: 'A fixed compensation structure mandates the distribution of project receipts. Master Avatarists receive 33.3%, Journeyers 16.6%, and Apprenticeships are uncompensated. Undistributed capital defaults to the Ecology Fund.',
   },
 ];
 
@@ -41,10 +41,10 @@ const ranks = [
   {
     rank: 'Rank I', title: 'The Apprentice', allocation: '0%',
     img: '/images/apprentice_rank_1778953240342.png',
-    desc: 'Tasked with initial dataset curation, prompt architecture, and latent space exploration. Advancement requires a verified majority vote from existing Journeymen and Masters.',
+    desc: 'Tasked with initial dataset curation, prompt architecture, and latent space exploration. Advancement requires a verified majority vote from existing Journeyers and Masters.',
   },
   {
-    rank: 'Rank II', title: 'The Journeyman', allocation: '16.6%',
+    rank: 'Rank II', title: 'The Journeyer', allocation: '16.6%',
     img: '/images/journeyman_rank_1778953254032.png',
     desc: 'Responsible for algorithmic refinement, localized inpainting, and establishing structural coherence utilizing control networks. Operates independently or with a Master.',
   },

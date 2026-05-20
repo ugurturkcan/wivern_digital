@@ -41,29 +41,7 @@ const specimens = [
   { name: 'Entity: Ignis', class: 'Elemental', src: '/images/specimen_4_1778958114762.png' },
 ];
 
-const hierarchy = [
-  {
-    rank: 'Rank I',
-    title: 'The Apprentice',
-    allocation: '0% Revenue',
-    img: '/images/apprentice_rank_1778953240342.png',
-    desc: 'Dataset curation, prompt architecture, and latent space exploration.',
-  },
-  {
-    rank: 'Rank II',
-    title: 'The Journeyman',
-    allocation: '16.6% Revenue',
-    img: '/images/journeyman_rank_1778953254032.png',
-    desc: 'Algorithmic refinement, inpainting, and control network alignment.',
-  },
-  {
-    rank: 'Rank III',
-    title: 'The Master',
-    allocation: '33.3% Revenue',
-    img: '/images/master_rank_1778953267725.png',
-    desc: 'Final temporal formalization, video sequencing, and synchronization.',
-  },
-];
+
 
 export default function HomePage() {
   const [activeTab, setActiveTab] = useState('formulation');
@@ -153,7 +131,7 @@ export default function HomePage() {
                   <img src="/images/specimen_2_1778958085693.png" alt="Entity Sylph" className="w-full h-full object-cover opacity-75 filter contrast-125 grayscale-[15%]" />
                   <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 to-transparent">
                     <p className="serif-font text-white text-sm tracking-wider">Entity: Sylph</p>
-                    <p className="text-yellow-600 text-[10px] tracking-widest uppercase">Aethereal</p>
+                    <p className="text-yellow-600 text-[9px] tracking-wider uppercase font-semibold mt-1">DOMAIN OF EXPERTISE: ESOTERICA, OCCULT, WICCA, MAGICK</p>
                   </div>
                 </motion.div>
                 {/* Short top right */}
@@ -166,6 +144,7 @@ export default function HomePage() {
                   <img src="/images/specimen_1_1778958073711.png" alt="Entity Magus" className="w-full h-full object-cover opacity-75 filter contrast-125 grayscale-[15%]" />
                   <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/90 to-transparent">
                     <p className="serif-font text-white text-sm tracking-wider">Entity: Magus</p>
+                    <p className="text-yellow-600 text-[9px] tracking-wider uppercase font-semibold mt-1">DOMAIN OF EXPERTISE: PHILOSOPHY, ANCIENT HISTORY, ART</p>
                   </div>
                 </motion.div>
                 {/* Short bottom right */}
@@ -178,6 +157,7 @@ export default function HomePage() {
                   <img src="/images/specimen_3_1778958099280.png" alt="Entity Duskweaver" className="w-full h-full object-cover opacity-75 filter contrast-125 grayscale-[15%]" />
                   <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/90 to-transparent">
                     <p className="serif-font text-white text-sm tracking-wider">Entity: Duskweaver</p>
+                    <p className="text-yellow-600 text-[9px] tracking-wider uppercase font-semibold mt-1">DOMAIN OF EXPERTISE: ETHICAL HACKING, CYBERSECURITY, AI</p>
                   </div>
                 </motion.div>
               </div>
@@ -372,9 +352,6 @@ export default function HomePage() {
                 <span className="section-label block mb-4">Observation Chamber</span>
                 <h2 className="serif-font text-4xl lg:text-5xl text-white">Active Specimens</h2>
               </div>
-              <Link href="/craft#specimens" className="hidden md:block text-[11px] tracking-[0.2em] uppercase text-yellow-600 hover:text-yellow-400 transition-colors">
-                View All &rarr;
-              </Link>
             </div>
             <div className="gold-line mt-6" />
           </div>
@@ -389,12 +366,11 @@ export default function HomePage() {
                 >
                   <img src={s.src} alt={s.name} className="w-full h-full object-cover opacity-75 group-hover:opacity-100 filter contrast-125 grayscale-[20%] group-hover:grayscale-0 transition-all duration-700" />
                   <div className="absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/95 to-transparent">
-                    <h3 className="serif-font text-lg text-white tracking-wider mb-0.5">{s.name}</h3>
-                    <p className="text-[10px] text-gray-400 tracking-widest uppercase mb-3">{s.class}</p>
+                    <h3 className="serif-font text-lg text-white tracking-wider mb-3 group-hover:opacity-0 transition-opacity duration-300">{s.name}</h3>
                     {/* Hover reveal */}
                     <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 translate-y-2 group-hover:translate-y-0">
                       <button className="text-[10px] tracking-[0.2em] uppercase border border-yellow-700 text-yellow-500 px-4 py-2 hover:bg-yellow-700 hover:text-black transition-all">
-                        View Entity &rarr;
+                        Quicken Specimen
                       </button>
                     </div>
                   </div>
@@ -406,50 +382,7 @@ export default function HomePage() {
           </div>
         </motion.section>
 
-        {/* ─── HIERARCHY ────────────────────────────────────────── */}
-        <motion.section 
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8 }}
-          className="py-32 bg-[#111111] border-t border-yellow-900/20"
-        >
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <span className="section-label block mb-4">Operational Standards</span>
-              <h2 className="serif-font text-4xl lg:text-5xl text-white mb-4">Guild Hierarchy</h2>
-              <div className="gold-line mx-auto mt-6" />
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {hierarchy.map((h, i) => (
-                <motion.div 
-                  key={h.rank} 
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.15 * i }}
-                  className="glass-panel card-hover flex flex-col overflow-hidden"
-                >
-                  <div className="h-48 relative overflow-hidden">
-                    <img src={h.img} alt={h.title} className="w-full h-full object-cover filter contrast-125 sepia-[.2] grayscale-[30%] hover:scale-105 transition-transform duration-700" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] to-transparent" />
-                  </div>
-                  <div className="p-8 flex-1 flex flex-col">
-                    <span className="section-label mb-2">{h.rank}</span>
-                    <h3 className="serif-font text-xl text-white mb-1">{h.title}</h3>
-                    <span className="text-[10px] text-gray-500 tracking-widest uppercase border-b border-gray-800 pb-3 mb-4">{h.allocation}</span>
-                    <p className="text-gray-500 text-xs font-light leading-relaxed flex-1">{h.desc}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-            <div className="text-center mt-12">
-              <Link href="/craft" className="text-[11px] tracking-[0.2em] uppercase border border-yellow-800 text-yellow-600 px-8 py-3 hover:border-yellow-600 hover:text-white transition-all duration-300">
-                Join the Guild &rarr;
-              </Link>
-            </div>
-          </div>
-        </motion.section>
+
 
         {/* ─── COMMISSION CTA ───────────────────────────────────── */}
         <motion.section 
@@ -471,7 +404,7 @@ export default function HomePage() {
                 View Tariffs
               </Link>
               <Link href="mailto:commissions@wiverndigital.com" className="text-[11px] font-medium tracking-[0.2em] uppercase border border-yellow-700 text-yellow-500 px-12 py-4 hover:bg-yellow-900/20 transition-all duration-300">
-                Submit Requisition
+                Request Avatar
               </Link>
             </div>
           </div>

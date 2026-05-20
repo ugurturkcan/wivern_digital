@@ -79,7 +79,7 @@ export default function Nav() {
                 href="mailto:commissions@wiverndigital.com"
                 className="text-[11px] font-medium tracking-[0.15em] uppercase border border-yellow-700 text-yellow-500 px-6 py-2.5 hover:bg-yellow-700 hover:text-black transition-all duration-300"
               >
-                Submit Requisition
+                Request Avatar
               </Link>
             </div>
 
@@ -130,7 +130,7 @@ export default function Nav() {
           href="mailto:commissions@wiverndigital.com"
           className="text-[11px] font-medium tracking-[0.2em] uppercase border border-yellow-700 text-yellow-500 px-10 py-4 hover:bg-yellow-700 hover:text-black transition-all duration-300"
         >
-          Submit Requisition
+          Request Avatar
         </Link>
 
         <p className="text-gray-600 text-[10px] tracking-[0.2em] uppercase">Guild of Avatarists · Est. 2011</p>
