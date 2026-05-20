@@ -25,9 +25,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${cinzel.variable} scroll-smooth`}
+      className={`${inter.variable} ${cinzel.variable} scroll-smooth overflow-x-hidden`}
     >
-      <body className="min-h-full antialiased bg-[#111111] text-[#f4f1ea]">
+      <body className="min-h-full antialiased bg-[#111111] text-[#f4f1ea] overflow-x-hidden flex flex-col relative w-full">
         {children}
       </body>
     </html>
