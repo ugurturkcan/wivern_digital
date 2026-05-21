@@ -26,6 +26,7 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${inter.variable} ${cinzel.variable} scroll-smooth overflow-x-hidden`}
+      data-scroll-behavior="smooth"
     >
       <body className="min-h-full antialiased bg-[#111111] text-[#f4f1ea] overflow-x-hidden flex flex-col relative w-full">
         {children}

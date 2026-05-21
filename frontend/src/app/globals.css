@@ -98,6 +98,15 @@ body {
   flex-shrink: 0;
 }
 
+/* Hide generic scrollbars */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 /* Gold divider line */
 .gold-line {
   width: 48px;

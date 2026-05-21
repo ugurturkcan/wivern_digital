@@ -184,7 +184,7 @@ export default function HomePage() {
             </div>
 
             {/* Tab buttons */}
-            <div className="flex overflow-x-auto whitespace-nowrap scrollbar-hide gap-0 border-b border-yellow-900/30 mb-12">
+            <div className="flex overflow-x-auto whitespace-nowrap [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none'] gap-0 border-b border-yellow-900/30 mb-12">
               {tabs.map((tab) => (
                 <button
                   key={tab.id}
@@ -359,14 +359,13 @@ export default function HomePage() {
           </div>
 
           {/* Horizontal scroll */}
-          <div className="pl-6 lg:pl-[calc((100vw-80rem)/2+2rem)]">
-            <div className="scroll-carousel">
+          <div className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none'] pl-6 lg:pl-[calc((100vw-80rem)/2+2rem)]">
               {specimens.map((s, i) => (
                 <div
                   key={i}
                   className="group relative w-72 md:w-80 aspect-[4/5] flex-shrink-0 video-card bg-black rounded-sm overflow-hidden"
                 >
-                  <Image src={s.src} alt={s.name} fill sizes="320px" className="object-cover opacity-75 group-hover:opacity-100 filter contrast-125 grayscale-[20%] group-hover:grayscale-0 transition-all duration-700" />
+                  <Image src={s.src} alt={s.name} fill priority={i < 2} sizes="320px" className="object-cover opacity-75 group-hover:opacity-100 filter contrast-125 grayscale-[20%] group-hover:grayscale-0 transition-all duration-700" />
                   <div className="absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/95 to-transparent">
                     <h3 className="serif-font text-lg text-white tracking-wider mb-3 group-hover:opacity-0 transition-opacity duration-300">{s.name}</h3>
                     {/* Hover reveal */}
@@ -381,7 +380,6 @@ export default function HomePage() {
               {/* Spacer */}
               <div className="w-6 flex-shrink-0" />
             </div>
-          </div>
         </motion.section>
 
 
