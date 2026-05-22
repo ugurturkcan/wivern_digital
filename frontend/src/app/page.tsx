@@ -69,19 +69,19 @@ export default function HomePage() {
             />
             {/* The Street Animation Image */}
             <motion.div
-              initial={{ scale: 1.1, opacity: 0 }}
-              animate={{ scale: 1, opacity: 0.5 }}
+              initial={{ scale: 1.05, opacity: 0 }}
+              animate={{ scale: [1.05, 1.15, 1.05], opacity: 0.85 }}
               transition={{
-                duration: 1.5,
-                ease: "easeOut"
+                scale: { duration: 25, repeat: Infinity, ease: "easeInOut" },
+                opacity: { duration: 1.5, ease: "easeOut" }
               }}
               style={{ willChange: "transform, opacity" }}
               className="absolute inset-0 w-full h-full pointer-events-none z-0"
             >
               <Image src="/wivern_digital.png" alt="Wivern Digital Street" fill priority className="object-cover" />
             </motion.div>
-            <div className="absolute inset-0 bg-[#111111]/40 backdrop-blur-[2px]" />
-            <div className="absolute inset-0 bg-gradient-to-b from-[#111111]/80 via-transparent to-[#111111]" />
+            {/* Dark gradient overlay for text readability without obscuring the street */}
+            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-[#111111]" />
           </div>
 
           <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full py-20">

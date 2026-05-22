@@ -39,7 +39,7 @@ body {
 }
 
 /* Typography */
-.serif-font {
+h1, h2, h3, .serif-font {
   font-family: var(--font-cinzel), serif;
 }
 
