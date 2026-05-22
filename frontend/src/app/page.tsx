@@ -133,7 +133,7 @@ export default function HomePage() {
                   <Image src="/images/specimen_2_1778958085693.png" alt="Entity Sylph" fill priority sizes="(max-width: 768px) 100vw, 33vw" className="object-cover opacity-75 filter contrast-125 grayscale-[15%]" />
                   <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 to-transparent">
                     <p className="serif-font text-white text-sm tracking-wider">Entity: Sylph</p>
-                    <p className="text-yellow-600 text-[9px] tracking-wider uppercase font-semibold mt-1">DOMAIN OF EXPERTISE: ESOTERICA, OCCULT, WICCA, MAGICK</p>
+                    <p className="text-yellow-600 text-[9px] tracking-wider uppercase font-semibold mt-1 truncate">ESOTERICA, OCCULT, WICCA, MAGICK</p>
                   </div>
                 </motion.div>
                 {/* Short top right */}
@@ -146,7 +146,7 @@ export default function HomePage() {
                   <Image src="/images/specimen_1_1778958073711.png" alt="Entity Magus" fill priority sizes="(max-width: 768px) 100vw, 33vw" className="object-cover opacity-75 filter contrast-125 grayscale-[15%]" />
                   <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/90 to-transparent">
                     <p className="serif-font text-white text-sm tracking-wider">Entity: Magus</p>
-                    <p className="text-yellow-600 text-[9px] tracking-wider uppercase font-semibold mt-1">DOMAIN OF EXPERTISE: PHILOSOPHY, ANCIENT HISTORY, ART</p>
+                    <p className="text-yellow-600 text-[9px] tracking-wider uppercase font-semibold mt-1 truncate">PHILOSOPHY, ANCIENT HISTORY, ART</p>
                   </div>
                 </motion.div>
                 {/* Short bottom right */}
@@ -159,7 +159,7 @@ export default function HomePage() {
                   <Image src="/images/specimen_3_1778958099280.png" alt="Entity Duskweaver" fill priority sizes="(max-width: 768px) 100vw, 33vw" className="object-cover opacity-75 filter contrast-125 grayscale-[15%]" />
                   <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/90 to-transparent">
                     <p className="serif-font text-white text-sm tracking-wider">Entity: Duskweaver</p>
-                    <p className="text-yellow-600 text-[9px] tracking-wider uppercase font-semibold mt-1">DOMAIN OF EXPERTISE: ETHICAL HACKING, CYBERSECURITY, AI</p>
+                    <p className="text-yellow-600 text-[9px] tracking-wider uppercase font-semibold mt-1 truncate">ETHICAL HACKING, CYBERSECURITY, AI</p>
                   </div>
                 </motion.div>
               </div>
