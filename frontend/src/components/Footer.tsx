@@ -10,8 +10,8 @@ export default function Footer() {
           {/* Brand */}
           <div className="md:col-span-2">
             <div className="flex items-center gap-3 mb-5">
-              <div className="w-10 h-10 rounded-full border border-yellow-600/50 flex items-center justify-center bg-white/95 shadow-[0_0_15px_rgba(202,138,4,0.3)] shrink-0 overflow-hidden">
-                <Image src="/wivern_logo.png" alt="Wivern Digital Logo" width={40} height={40} className="w-full h-full object-cover scale-110 drop-shadow-sm" />
+              <div className="w-12 h-12 rounded-full border border-yellow-700/50 flex items-center justify-center bg-[#f4f1ea] overflow-hidden">
+                <Image src="/wivern_logo_hq.png" alt="Wivern Digital Logo" width={40} height={40} className="w-full h-full object-cover scale-110 drop-shadow-sm" />
               </div>
               <span className="serif-font text-lg tracking-widest text-white uppercase">Wivern Digital</span>
             </div>

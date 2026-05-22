@@ -43,9 +43,9 @@ export default function Nav() {
           <div className="flex items-center justify-between h-20">
 
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-3 flex-shrink-0">
-              <div className="w-12 h-12 rounded-full border border-yellow-600/50 flex items-center justify-center bg-white/95 shadow-[0_0_15px_rgba(202,138,4,0.3)] shrink-0 overflow-hidden">
-                <Image src="/wivern_logo.png" alt="Wivern Digital Logo" width={48} height={48} className="w-full h-full object-cover scale-110 drop-shadow-sm" />
+            <Link href="/" className="flex items-center gap-3 flex-shrink-0 group">
+              <div className="w-12 h-12 rounded-full border border-yellow-600/50 flex items-center justify-center bg-[#f4f1ea] shadow-[0_0_15px_rgba(202,138,4,0.3)] shrink-0 overflow-hidden group-hover:border-yellow-500 transition-colors duration-300">
+                <Image src="/wivern_logo_hq.png" alt="Wivern Digital Logo" width={48} height={48} className="w-full h-full object-cover scale-110 drop-shadow-sm" />
               </div>
               <div className="flex flex-col leading-tight">
                 <span className="serif-font text-base tracking-widest text-white uppercase">Wivern Digital</span>
