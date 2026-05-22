@@ -35,12 +35,11 @@ const tabs = [
   },
 ];
 
-const specimens = [
-  { name: 'Entity: Sylph', class: 'Aethereal', src: '/images/specimen_2_1778958085693.png' },
-  { name: 'Entity: Magus', class: 'Practitioner', src: '/images/specimen_1_1778958073711.png' },
-  { name: 'Entity: Duskweaver', class: 'Shadow Form', src: '/images/specimen_3_1778958099280.png' },
-  { name: 'Entity: Ignis', class: 'Elemental', src: '/images/specimen_4_1778958114762.png' },
-];
+import dynamic from 'next/dynamic';
+
+const ActiveSpecimens = dynamic(() => import('@/components/ActiveSpecimens'), {
+  ssr: true,
+});
 
 
 
@@ -57,15 +56,19 @@ export default function HomePage() {
         <section className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-[#111111]">
           {/* Background image */}
           <div className="absolute inset-0 flex items-center justify-center">
-            {/* Pulsing Aura */}
+            {/* Pulsing Aura (GPU Optimized) */}
             <motion.div
               animate={{
                 scale: [1, 1.2, 1],
                 opacity: [0.3, 0.5, 0.3],
               }}
               transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-              style={{ willChange: "transform, opacity", transform: "translateZ(0)" }}
-              className="absolute w-[60vw] h-[60vw] max-w-[600px] max-h-[600px] rounded-full bg-gradient-to-tr from-yellow-900/40 via-yellow-600/10 to-transparent blur-[120px] pointer-events-none"
+              style={{ 
+                willChange: "transform, opacity", 
+                transform: "translateZ(0)",
+                background: "radial-gradient(circle, rgba(133,77,14,0.4) 0%, rgba(202,138,4,0.1) 40%, transparent 70%)"
+              }}
+              className="absolute w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] rounded-full pointer-events-none"
             />
             {/* The Street Animation Image */}
             <motion.div
@@ -340,47 +343,7 @@ export default function HomePage() {
         </motion.section>
 
         {/* ─── SPECIMENS CAROUSEL ───────────────────────────────── */}
-        <motion.section 
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1 }}
-          id="specimens" 
-          className="py-32 bg-[#0e0e0e] border-t border-yellow-900/20 overflow-hidden"
-        >
-          <div className="max-w-7xl mx-auto px-6 lg:px-8 mb-10">
-            <div className="flex justify-between items-end">
-              <div>
-                <span className="section-label block mb-4">Observation Chamber</span>
-                <h2 className="serif-font text-4xl lg:text-5xl text-white">Active Specimens</h2>
-              </div>
-            </div>
-            <div className="gold-line mt-6" />
-          </div>
-
-          {/* Horizontal scroll */}
-          <div className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none'] pl-6 lg:pl-[calc((100vw-80rem)/2+2rem)]">
-              {specimens.map((s, i) => (
-                <div
-                  key={i}
-                  className="group relative w-72 md:w-80 aspect-[4/5] flex-shrink-0 video-card bg-black rounded-sm overflow-hidden"
-                >
-                  <Image src={s.src} alt={s.name} fill priority={i < 2} sizes="320px" className="object-cover opacity-75 group-hover:opacity-100 filter contrast-125 grayscale-[20%] group-hover:grayscale-0 transition-all duration-700" />
-                  <div className="absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/95 to-transparent">
-                    <h3 className="serif-font text-lg text-white tracking-wider mb-3 group-hover:opacity-0 transition-opacity duration-300">{s.name}</h3>
-                    {/* Hover reveal */}
-                    <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 translate-y-2 group-hover:translate-y-0">
-                      <button className="text-[10px] tracking-[0.2em] uppercase border border-yellow-700 text-yellow-500 px-4 py-2 hover:bg-yellow-700 hover:text-black transition-all">
-                        Quicken Specimen
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              ))}
-              {/* Spacer */}
-              <div className="w-6 flex-shrink-0" />
-            </div>
-        </motion.section>
+        <ActiveSpecimens />
 
 
 
