@@ -64,16 +64,36 @@ export default function CraftPage() {
 
         {/* ─── PAGE HEADER ──────────────────────────────────────── */}
         <section className="relative pt-40 pb-24 bg-[#111111] overflow-hidden border-b border-yellow-900/20">
-          <div className="absolute inset-0">
-            <motion.img
-              initial={{ scale: 1.05, opacity: 0 }}
-              animate={{ scale: 1, opacity: 0.15 }}
-              transition={{ duration: 1.5, ease: "easeOut" }}
-              src="/images/craft_hero_1778953294874.png"
-              alt="Alchemical Apparatus"
-              className="w-full h-full object-cover filter sepia contrast-125"
+          <div className="absolute inset-0 flex items-center justify-center">
+            {/* Pulsing Aura (GPU Optimized) */}
+            <motion.div
+              animate={{
+                scale: [1, 1.2, 1],
+                opacity: [0.3, 0.5, 0.3],
+              }}
+              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+              style={{ 
+                willChange: "transform, opacity", 
+                transform: "translateZ(0)",
+                background: "radial-gradient(circle, rgba(133,77,14,0.4) 0%, rgba(202,138,4,0.1) 40%, transparent 70%)"
+              }}
+              className="absolute w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] rounded-full pointer-events-none"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-[#111111]/60 to-[#111111]" />
+            {/* The Alchemical Background Animation Image */}
+            <motion.div
+              initial={{ scale: 1.05, opacity: 0 }}
+              animate={{ scale: [1.05, 1.15, 1.05], opacity: 0.7 }}
+              transition={{
+                scale: { duration: 25, repeat: Infinity, ease: "easeInOut" },
+                opacity: { duration: 1.5, ease: "easeOut" }
+              }}
+              style={{ willChange: "transform, opacity" }}
+              className="absolute inset-0 w-full h-full pointer-events-none z-0"
+            >
+              <Image src="/images/craft_hero_1778953294874.png" alt="Alchemical Apparatus" fill priority className="object-cover filter sepia contrast-125" />
+            </motion.div>
+            {/* Dark gradient overlay for text readability */}
+            <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/30 to-[#111111]" />
           </div>
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
