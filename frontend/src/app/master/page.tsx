@@ -22,11 +22,11 @@ export default function EcologyFundPage() {
             className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8"
           >
             <span className="section-label block mb-4">Commitment to the Planet</span>
-            <h1 className="serif-font text-6xl lg:text-8xl text-white leading-none tracking-wide mb-4">
+            <h1 className="serif-font text-6xl lg:text-8xl text-white leading-none tracking-wide mb-6">
               Ecology Fund <br /><span className="gradient-gold">&amp; Data</span>
             </h1>
-            <p className="text-yellow-600 text-[11px] tracking-[0.2em] uppercase font-semibold mb-8">Jerome Goerke - Founder</p>
-            <div className="w-px h-16 bg-gradient-to-b from-yellow-600 to-transparent" />
+            <div className="w-px h-16 bg-gradient-to-b from-yellow-600 to-transparent mb-6" />
+            <p className="text-yellow-600 text-[11px] tracking-[0.2em] uppercase font-semibold">Jerome Goerke - Founder</p>
           </motion.div>
         </section>
 
