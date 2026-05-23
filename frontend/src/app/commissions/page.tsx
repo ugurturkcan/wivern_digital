@@ -107,7 +107,7 @@ export default function CommissionsPage() {
           className="py-32 bg-[#0e0e0e]"
         >
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
               {tiers.map((tier, i) => (
                 <motion.div
                   key={tier.title}
@@ -144,7 +144,7 @@ export default function CommissionsPage() {
                   </ul>
                   <Link
                     href={`mailto:commissions@wiverndigital.com?subject=${encodeURIComponent(tier.mailto)}`}
-                    className={`block text-center text-[11px] font-medium tracking-[0.2em] uppercase py-3.5 transition-all duration-300 ${
+                    className={`mt-auto block text-center text-[11px] font-medium tracking-[0.2em] uppercase py-3.5 transition-all duration-300 ${
                       tier.featured
                         ? 'bg-yellow-700 text-black hover:bg-yellow-500'
                         : 'border border-yellow-700 text-yellow-500 hover:bg-yellow-900/20'
