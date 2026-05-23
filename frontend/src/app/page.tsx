@@ -335,7 +335,7 @@ export default function HomePage() {
           <div className="max-w-5xl mx-auto px-6 lg:px-8 text-center">
             <span className="section-label block mb-10">Guild Manifesto</span>
             <blockquote className="serif-font text-3xl lg:text-5xl text-white leading-snug italic mb-10">
-              &ldquo;As the web becomes an AI-shaped dreamscape, our guild remains committed to ethical creation, transparent and fair collaboration, and resource-supportive processes.&rdquo;
+              &ldquo;As the web becomes an AI-shaped dreamscape, our guild remains committed to ethical-, fair-, transparent- and resource-supportive creative processes.&rdquo;
             </blockquote>
             <div className="gold-line mx-auto mb-6" />
             <p className="text-gray-500 text-sm tracking-widest uppercase mb-2">Ecology Fund &amp; Data &mdash; Wivern Digital</p>
