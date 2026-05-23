@@ -23,7 +23,7 @@ export default function EcologyFundPage() {
           >
             <span className="section-label block mb-4">Commitment to the Planet</span>
             <h1 className="serif-font text-6xl lg:text-8xl text-white leading-none tracking-wide mb-6">
-              Ecology Fund <br /><span className="gradient-gold">+ Data</span>
+              Ecology Fund <br /><span className="gradient-gold">&amp; Data</span>
             </h1>
             <div className="w-px h-16 bg-gradient-to-b from-yellow-600 to-transparent" />
           </motion.div>
@@ -49,7 +49,7 @@ export default function EcologyFundPage() {
                 className="glass-panel p-2 mystic-glow lg:sticky lg:top-28"
               >
                 <div className="relative aspect-[4/5] bg-black/40 overflow-hidden border border-gray-800/50">
-                  <Image src="/images/jerome_photo.png" alt="Jerome Goerke - Ecology Fund + Data" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover filter contrast-125 sepia-[.4] grayscale-[20%]" />
+                  <Image src="/images/jerome_photo.png" alt="Jerome Goerke - Ecology Fund & Data" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover filter contrast-125 sepia-[.4] grayscale-[20%]" />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0e0e0e] to-transparent" />
                   <div className="absolute inset-0 border border-yellow-700/10 m-4 pointer-events-none" />
                 </div>
@@ -138,7 +138,8 @@ export default function EcologyFundPage() {
               &ldquo;This structured approach ensures that the 'dreamscape' we create does not come at the expense of our reality, but rather, actively contributes to its regeneration.&rdquo;
             </blockquote>
             <div className="gold-line mx-auto mb-6" />
-            <p className="text-gray-500 text-sm tracking-widest uppercase">Ecology Fund + Data</p>
+            <p className="text-gray-500 text-sm tracking-widest uppercase mb-2">Ecology Fund &amp; Data</p>
+            <p className="text-yellow-600 text-[11px] tracking-[0.2em] uppercase font-semibold">Jerome Goerke - Founder</p>
           </div>
         </motion.section>
 

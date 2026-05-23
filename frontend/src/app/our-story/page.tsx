@@ -205,7 +205,7 @@ export default function OurStoryPage() {
                   href="/master"
                   className="inline-block text-[11px] font-medium tracking-[0.2em] uppercase border border-yellow-700 text-yellow-500 px-10 py-3 hover:bg-yellow-900/20 transition-all duration-300"
                 >
-                  Ecology Fund + Data
+                  Ecology Fund &amp; Data
                 </Link>
               </div>
             </motion.div>

@@ -9,7 +9,7 @@ const navLinks = [
   { href: '/', label: 'The Shop' },
   { href: '/craft', label: 'The Guild' },
   { href: '/commissions', label: 'Commission' },
-  { href: '/master', label: 'Ecology Fund + Data' },
+  { href: '/master', label: 'Ecology Fund & Data' },
 ];
 
 export default function Nav() {
