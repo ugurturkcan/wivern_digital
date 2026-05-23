@@ -108,6 +108,9 @@ export default function ActiveSpecimens() {
                 <h3 className="serif-font text-2xl text-white tracking-wider mb-2">
                   {activeSpecimen!.name}
                 </h3>
+                <p className="text-[9px] tracking-[0.25em] text-gray-500 uppercase">
+                  {activeSpecimen!.tags}
+                </p>
               </motion.div>
 
               {/* Dismiss */}
