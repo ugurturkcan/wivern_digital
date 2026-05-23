@@ -10,8 +10,15 @@ export default function Footer() {
           {/* Brand */}
           <div className="md:col-span-2">
             <div className="flex items-center gap-3 mb-5">
-              <div className="w-12 h-12 rounded-full border border-yellow-700/50 flex items-center justify-center bg-[#f4f1ea] overflow-hidden">
-                <Image src="/wivern_logo_hq.png" alt="Wivern Digital Logo" width={40} height={40} className="w-full h-full object-cover scale-110 drop-shadow-sm" />
+              <div className="w-12 h-12 rounded-full border-[1.5px] border-[#c5a059] flex items-center justify-center bg-[#f4f1ea] shadow-[0_0_15px_rgba(197,160,89,0.3)] shrink-0 overflow-hidden relative">
+                <video 
+                  src="/wivern_animated_logo.mp4" 
+                  autoPlay 
+                  muted 
+                  loop 
+                  playsInline 
+                  className="w-full h-full object-cover scale-[1.15] drop-shadow-sm pointer-events-none" 
+                />
               </div>
               <span className="serif-font text-lg tracking-widest text-white uppercase">Wivern Digital</span>
             </div>

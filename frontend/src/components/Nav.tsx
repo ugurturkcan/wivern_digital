@@ -44,8 +44,15 @@ export default function Nav() {
 
             {/* Logo */}
             <Link href="/" className="flex items-center gap-3 flex-shrink-0 group">
-              <div className="w-12 h-12 rounded-full border border-yellow-600/50 flex items-center justify-center bg-[#f4f1ea] shadow-[0_0_15px_rgba(202,138,4,0.3)] shrink-0 overflow-hidden group-hover:border-yellow-500 transition-colors duration-300">
-                <Image src="/wivern_logo_hq.png" alt="Wivern Digital Logo" width={48} height={48} className="w-full h-full object-cover scale-110 drop-shadow-sm" />
+              <div className="w-12 h-12 rounded-full border-[1.5px] border-[#c5a059] flex items-center justify-center bg-[#f4f1ea] shadow-[0_0_20px_rgba(197,160,89,0.4)] shrink-0 overflow-hidden group-hover:border-yellow-400 group-hover:shadow-[0_0_25px_rgba(197,160,89,0.6)] transition-all duration-300 relative">
+                <video 
+                  src="/wivern_animated_logo.mp4" 
+                  autoPlay 
+                  muted 
+                  loop 
+                  playsInline 
+                  className="w-full h-full object-cover scale-[1.15] drop-shadow-sm pointer-events-none" 
+                />
               </div>
               <div className="flex flex-col leading-tight">
                 <span className="serif-font text-base tracking-widest text-white uppercase">Wivern Digital</span>
