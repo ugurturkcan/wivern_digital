@@ -338,7 +338,8 @@ export default function HomePage() {
               &ldquo;As the web becomes an AI-shaped dreamscape, our guild remains committed to ethical creation, transparent and fair collaboration, and resource-supportive processes.&rdquo;
             </blockquote>
             <div className="gold-line mx-auto mb-6" />
-            <p className="text-gray-500 text-sm tracking-widest uppercase">Jerome Goerke, Ecology Fund + Data &mdash; Wivern Digital</p>
+            <p className="text-gray-500 text-sm tracking-widest uppercase mb-2">Ecology Fund &amp; Data &mdash; Wivern Digital</p>
+            <p className="text-yellow-600 text-[11px] tracking-[0.2em] uppercase font-semibold">Jerome Goerke - Founder</p>
           </div>
         </motion.section>
 
