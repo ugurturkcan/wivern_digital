@@ -135,7 +135,7 @@ export default function EcologyFundPage() {
           className="py-32 bg-[#111111] border-t border-yellow-900/20 text-center"
         >
           <div className="max-w-4xl mx-auto px-6 lg:px-8">
-            <blockquote className="serif-font text-3xl lg:text-4xl text-white italic leading-snug mb-8">
+            <blockquote className="serif-font text-3xl lg:text-5xl text-white italic leading-snug mb-10">
               &ldquo;This structured approach ensures that the 'dreamscape' we create does not come at the expense of our reality, but rather, actively contributes to its regeneration.&rdquo;
             </blockquote>
             <div className="gold-line mx-auto mb-6" />
