@@ -166,7 +166,7 @@ export default function ActiveSpecimens() {
               transition={{ duration: 0.5, delay: 0.1 * i }}
               whileHover={{ scale: 1.03 }}
               onClick={() => setActive(i)}
-              className="group relative w-72 md:w-80 aspect-[4/5] flex-shrink-0 video-card bg-black snap-start overflow-hidden cursor-pointer"
+              className="group relative w-72 md:w-80 aspect-[4/5] flex-shrink-0 video-card bg-black snap-start snap-always overflow-hidden cursor-pointer"
               style={{ willChange: 'transform' }}
             >
               <Image
