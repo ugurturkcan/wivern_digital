@@ -218,8 +218,8 @@ export default function HomePage() {
                   <p className="text-gray-400 font-light leading-relaxed mb-8">{currentTab.body}</p>
                   <ul className="space-y-3">
                     {currentTab.items.map((item) => (
-                      <li key={item} className="flex items-start gap-3 text-sm text-gray-300 font-light">
-                        <span className="text-yellow-600 mt-0.5 flex-shrink-0">◈</span>
+                      <li key={item} className="flex items-center gap-3 text-sm text-gray-300 font-light">
+                        <span className="text-yellow-600 flex-shrink-0">◈</span>
                         {item}
                       </li>
                     ))}
@@ -335,10 +335,9 @@ export default function HomePage() {
           <div className="max-w-5xl mx-auto px-6 lg:px-8 text-center">
             <span className="section-label block mb-10">Guild Manifesto</span>
             <blockquote className="serif-font text-3xl lg:text-5xl text-white leading-snug italic mb-10">
-              &ldquo;As the web becomes an AI-shaped dreamscape, our guild remains committed to ethical-, fair-, transparent- and resource-supportive creative processes.&rdquo;
+              &ldquo;As the web becomes an AI-shaped dreamscape, our guild remains committed to ethical, fair, transparent and resource supportive creative processes.&rdquo;
             </blockquote>
             <div className="gold-line mx-auto mb-6" />
-            <p className="text-gray-500 text-sm tracking-widest uppercase mb-2">Ecology Fund &amp; Data &mdash; Wivern Digital</p>
             <p className="text-yellow-600 text-[11px] tracking-[0.2em] uppercase font-semibold">Jerome Goerke - Founder</p>
           </div>
         </motion.section>

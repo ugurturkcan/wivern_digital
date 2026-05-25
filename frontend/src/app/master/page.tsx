@@ -139,7 +139,6 @@ export default function EcologyFundPage() {
               &ldquo;This structured approach ensures that the 'dreamscape' we create does not come at the expense of our reality, but rather, actively contributes to its regeneration.&rdquo;
             </blockquote>
             <div className="gold-line mx-auto mb-6" />
-            <p className="text-gray-500 text-sm tracking-widest uppercase">Ecology Fund &amp; Data</p>
           </div>
         </motion.section>
 

@@ -142,8 +142,8 @@ export default function CraftPage() {
                   <p className="text-gray-500 text-sm font-light leading-relaxed mb-6">{p.desc}</p>
                   <ul className="space-y-2">
                     {p.items.map((item) => (
-                      <li key={item} className="flex items-start gap-2 text-xs text-gray-400 font-light">
-                        <span className="text-yellow-700 mt-0.5">◈</span>{item}
+                      <li key={item} className="flex items-center gap-2 text-xs text-gray-400 font-light">
+                        <span className="text-yellow-700 flex-shrink-0">◈</span>{item}
                       </li>
                     ))}
                   </ul>
