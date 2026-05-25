@@ -83,8 +83,54 @@ export default function HomePage() {
             >
               <Image src="/wivern_digital.png" alt="Wivern Digital Street" fill priority className="object-cover object-[15%_center] lg:object-center" />
             </motion.div>
+            {/* Fog Layer 1 - Slow drifting mist */}
+            <motion.div
+              animate={{
+                x: ["-5%", "10%", "-10%", "-5%"],
+                y: ["0%", "5%", "-5%", "0%"],
+                scale: [1.2, 1.5, 1.3, 1.2],
+                opacity: [0.15, 0.4, 0.2, 0.15],
+              }}
+              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              style={{ willChange: "transform, opacity" }}
+              className="absolute inset-0 z-0 pointer-events-none bg-[radial-gradient(ellipse_at_center,rgba(200,200,200,0.15)_0%,transparent_60%)] blur-[80px]"
+            />
+            {/* Fog Layer 2 - Counter drifting mist */}
+            <motion.div
+              animate={{
+                x: ["10%", "-15%", "0%", "10%"],
+                y: ["-5%", "0%", "5%", "-5%"],
+                scale: [1.5, 1.2, 1.4, 1.5],
+                opacity: [0.1, 0.3, 0.15, 0.1],
+              }}
+              transition={{ duration: 28, repeat: Infinity, ease: "linear" }}
+              style={{ willChange: "transform, opacity" }}
+              className="absolute inset-0 z-0 pointer-events-none bg-[radial-gradient(ellipse_at_bottom,rgba(200,200,200,0.12)_0%,transparent_70%)] blur-[100px]"
+            />
+
+            {/* Candle Lighting Left (Flickering Warm Amber) */}
+            <motion.div
+              animate={{
+                opacity: [0.5, 0.8, 0.6, 0.9, 0.7, 0.5],
+                scale: [1, 1.05, 0.98, 1.03, 0.96, 1],
+              }}
+              transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut" }}
+              style={{ willChange: "transform, opacity" }}
+              className="absolute -bottom-[10%] -left-[5%] w-[50vw] h-[50vw] max-w-[600px] max-h-[600px] bg-[radial-gradient(circle,rgba(217,119,6,0.35)_0%,rgba(180,83,9,0.15)_40%,transparent_70%)] pointer-events-none mix-blend-screen z-0"
+            />
+            {/* Candle Lighting Right (Flickering Warm Gold) */}
+            <motion.div
+              animate={{
+                opacity: [0.4, 0.7, 0.5, 0.8, 0.6, 0.4],
+                scale: [0.95, 1.02, 0.97, 1.04, 0.98, 0.95],
+              }}
+              transition={{ duration: 2.7, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
+              style={{ willChange: "transform, opacity" }}
+              className="absolute bottom-[5%] -right-[10%] w-[60vw] h-[60vw] max-w-[700px] max-h-[700px] bg-[radial-gradient(circle,rgba(245,158,11,0.25)_0%,rgba(180,83,9,0.1)_40%,transparent_70%)] pointer-events-none mix-blend-screen z-0"
+            />
+
             {/* Dark gradient overlay for text readability without obscuring the street */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-[#111111]" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/30 to-[#111111]/90 z-0 pointer-events-none" />
           </div>
 
           <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full py-20">
