@@ -81,7 +81,7 @@ export default function HomePage() {
               style={{ willChange: "transform, opacity" }}
               className="absolute inset-0 w-full h-full pointer-events-none z-0"
             >
-              <Image src="/wivern_digital.png" alt="Wivern Digital Street" fill priority className="object-cover" />
+              <Image src="/wivern_digital.png" alt="Wivern Digital Street" fill priority className="object-cover object-[15%_center] lg:object-center" />
             </motion.div>
             {/* Dark gradient overlay for text readability without obscuring the street */}
             <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-[#111111]" />
