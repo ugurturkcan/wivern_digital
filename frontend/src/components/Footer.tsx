@@ -12,7 +12,7 @@ export default function Footer() {
             <div className="flex items-center gap-3 mb-5">
               <div className="w-12 h-12 rounded-full border-[1.5px] border-[#c5a059] flex items-center justify-center bg-[#f4f1ea] shadow-[0_0_15px_rgba(197,160,89,0.3)] shrink-0 overflow-hidden relative">
                 <video 
-                  src="/wivern_animated_logo.mp4" 
+                  src="/wivern_animated_logo_v2.mp4" 
                   autoPlay 
                   muted 
                   loop 
