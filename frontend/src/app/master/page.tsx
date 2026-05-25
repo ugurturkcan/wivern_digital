@@ -5,6 +5,10 @@ import Footer from '@/components/Footer';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import dynamic from 'next/dynamic';
+
+// Lazy load the 3D viewer to prevent blocking initial render
+const ModelViewer = dynamic(() => import('@/components/ModelViewer'), { ssr: false });
 
 export default function EcologyFundPage() {
   return (
@@ -41,7 +45,7 @@ export default function EcologyFundPage() {
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
 
-              {/* Sticky Portrait/Image */}
+              {/* Sticky Portrait/3D Model Viewer */}
               <motion.div 
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
@@ -49,10 +53,10 @@ export default function EcologyFundPage() {
                 transition={{ duration: 0.8, delay: 0.3 }}
                 className="glass-panel p-2 mystic-glow lg:sticky lg:top-28"
               >
-                <div className="relative aspect-[4/5] bg-black/40 overflow-hidden border border-gray-800/50">
-                  {/* Empty space reserved for future portrait */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0e0e0e] to-transparent" />
-                  <div className="absolute inset-0 border border-yellow-700/10 m-4 pointer-events-none" />
+                <div className="relative aspect-[4/5] bg-[#0a0a0a] overflow-hidden border border-gray-800/50 flex items-center justify-center">
+                  <ModelViewer />
+                  {/* Subtle vignette overlay */}
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(10,10,10,0.8)_100%)] pointer-events-none" />
                 </div>
               </motion.div>
 

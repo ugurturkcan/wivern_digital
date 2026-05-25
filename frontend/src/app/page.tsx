@@ -295,6 +295,7 @@ export default function HomePage() {
                   >
                     {/* Icon circle */}
                     <div className="w-20 h-20 rounded-full border border-yellow-900/40 bg-[#0e0e0e] flex items-center justify-center mb-6 relative group-hover:border-yellow-700 mystic-glow transition-all duration-300">
+                      {/* @ts-expect-error - LucideIcon typing mismatch */}
                       <s.Icon className="w-6 h-6 text-gray-500 group-hover:text-yellow-500 transition-colors duration-300" />
                       {/* Step badge */}
                       <div className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-yellow-700 text-black flex items-center justify-center text-[10px] font-bold">
