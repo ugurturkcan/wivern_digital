@@ -1,7 +1,7 @@
 'use client';
 
 import { Canvas, useFrame } from '@react-three/fiber';
-import { OrbitControls, Environment, MeshDistortMaterial, Center, Float } from '@react-three/drei';
+import { OrbitControls, Environment, Center } from '@react-three/drei';
 import { Suspense, useRef } from 'react';
 import * as THREE from 'three';
 
@@ -13,25 +13,22 @@ function PlaceholderAvatar() {
     if (meshRef.current) {
       meshRef.current.rotation.y += delta * 0.2;
       meshRef.current.rotation.x += delta * 0.1;
+      // Add a slight hovering effect manually to avoid Float overhead
+      meshRef.current.position.y = Math.sin(state.clock.elapsedTime) * 0.1;
     }
   });
 
   return (
-    <Float speed={2} rotationIntensity={0.5} floatIntensity={1}>
-      <mesh ref={meshRef}>
-        <octahedronGeometry args={[1.5, 0]} />
-        <MeshDistortMaterial
-          color="#c5a059"
-          envMapIntensity={1}
-          clearcoat={0.8}
-          clearcoatRoughness={0}
-          metalness={0.9}
-          roughness={0.2}
-          distort={0.4}
-          speed={2}
-        />
-      </mesh>
-    </Float>
+    <mesh ref={meshRef}>
+      {/* Use low-poly Icosahedron for maximum performance */}
+      <icosahedronGeometry args={[1.2, 0]} />
+      <meshStandardMaterial
+        color="#c5a059"
+        metalness={0.8}
+        roughness={0.2}
+        wireframe={true}
+      />
+    </mesh>
   );
 }
 
