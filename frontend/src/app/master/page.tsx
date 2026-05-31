@@ -6,9 +6,72 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import dynamic from 'next/dynamic';
+import type { Hotspot } from '@/components/InteractiveModelViewer';
 
-// Lazy load the 3D viewer to prevent blocking initial render
-const ModelViewer = dynamic(() => import('@/components/ModelViewer'), { ssr: false });
+// Lazy load the interactive 3D viewer
+const InteractiveModelViewer = dynamic(
+  () => import('@/components/InteractiveModelViewer'),
+  { ssr: false }
+);
+
+// ─── Demo Hotspot Data (replace with real avatar coords once model is ready) ───
+const DEMO_HOTSPOTS: Hotspot[] = [
+  {
+    id: 'helmet_visor',
+    position: [0.0, 0.1, 1.1],
+    label: 'Visor Optics',
+    title: 'Tactical Visor — AR Interface',
+    content: `Primary Generation Prompt
+
+"Extreme macro close-up of a highly detailed armored shoulder pad (pauldron) for a digital avatar. The surface material is a brushed metal alloy exhibiting a semi-gloss finish, with visible micro-scratches, mechanical edge wear, and distinct specular highlights on the elevated structural ridges.
+
+The shading applies the established color palette, emphasizing warm tones across the metal and any underlying costume fabric. The environmental lighting consists of a hazy grey-blue sky providing ambient illumination. All light sources are soft and diffuse, ensuring absolutely no hard shadows are cast across the armor's geometry.
+
+The asset is rendered with 8k texture density and physically based rendering (PBR) materials to demonstrate precise structural integrity and physical wear suitable for close-range inspection."
+
+Control Layers
+— ControlNet: depth map for structural form
+— LoRA: wivern_armour_v3 (weight 0.85)
+— Sampler: DPM++ 2M Karras, 32 steps
+— CFG Scale: 7.5`,
+  },
+  {
+    id: 'helmet_side',
+    position: [0.9, 0.0, 0.3],
+    label: 'Audio Node',
+    title: 'Communication — Audio Node',
+    content: `Primary Generation Prompt
+
+"Detailed render of a medieval fantasy chest plate fused with bioluminescent organic material. Central sternum piece features an etched guild sigil with subtle golden inlay. Surface exhibits layered lacquer over hammered iron substrate with strategic patina application across recessed geometry.
+
+The lighting environment is a golden-hour overcast studio setup — directional key light at 30 degrees, no hard shadow casting. Rim lighting from rear-left at reduced intensity to separate form from negative space.
+
+Material breakdown: outer iron layer (metalness 0.92, roughness 0.24), inner leather lining visible at edge joins (roughness 0.78), gold inlay (metalness 1.0, roughness 0.05)."
+
+Control Layers
+— Reference image: guild_chest_ref_v2.png
+— LoRA: wivern_guild_livery (weight 0.9)
+— Upscaler: 4x-UltraSharp at 0.4 denoise`,
+  },
+  {
+    id: 'helmet_top',
+    position: [0.0, 0.9, 0.2],
+    label: 'Crown',
+    title: 'Structural Crown — Ridge',
+    content: `Primary Generation Prompt
+
+"Close-up portrait of a full-face armored helm for a fantasy guild avatar. The visor is a narrow horizontal slit with polished inner edge catch. Crown features three raised ridge fins for structural reinforcement. The overall silhouette references Milanese sallet design reinterpreted through a digital-occult aesthetic.
+
+Surface texture: aged brushed titanium with selective rust bloom at weld seams. No rust on primary face plate — clean and imposing. Temperature of metal shifts from cool grey-silver at crown to warm amber at jaw-line due to forge heat variation simulation.
+
+Render parameters: camera at eye-level, extremely shallow depth-of-field (f/1.8 equivalent), background fully bokeh at #1a1a1a. HDR environment for accurate reflections of the studio dome."
+
+Control Layers
+— Depth: extracted from concept sketch (helm_concept_03.png)
+— Seed locked: 2847391
+— Sampler: Euler A, 28 steps, CFG 6.0`,
+  },
+];
 
 export default function EcologyFundPage() {
   return (
@@ -45,19 +108,24 @@ export default function EcologyFundPage() {
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
 
-              {/* Sticky Portrait/3D Model Viewer */}
+              {/* Interactive 3D Model Viewer */}
               <motion.div 
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.3 }}
-                className="glass-panel p-2 mystic-glow lg:sticky lg:top-28"
+                className="mystic-glow lg:sticky lg:top-28"
               >
-                <div className="relative aspect-[4/5] bg-[#0a0a0a] overflow-hidden border border-gray-800/50 flex items-center justify-center">
-                  <ModelViewer />
-                  {/* Subtle vignette overlay */}
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(10,10,10,0.8)_100%)] pointer-events-none" />
+                <div className="relative aspect-[4/5] bg-[#080808] overflow-hidden border border-yellow-900/20">
+                  <InteractiveModelViewer
+                    modelUrl="/DamagedHelmet.glb"
+                    hotspots={DEMO_HOTSPOTS}
+                    label="Armour Viewer — Wivern Digital"
+                  />
                 </div>
+                <p className="text-[8px] tracking-[0.2em] uppercase text-gray-600 text-center mt-2">
+                  ◉ Click the glowing markers to explore design layers
+                </p>
               </motion.div>
 
               {/* Main Content */}
