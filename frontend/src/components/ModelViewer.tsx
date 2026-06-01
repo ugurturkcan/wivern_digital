@@ -1,8 +1,8 @@
 'use client';
 
 import { Canvas, useFrame } from '@react-three/fiber';
-import { OrbitControls, Environment, Center } from '@react-three/drei';
-import { Suspense, useRef } from 'react';
+import { OrbitControls, Environment, Center, PerformanceMonitor } from '@react-three/drei';
+import { Suspense, useRef, useState } from 'react';
 import * as THREE from 'three';
 
 function PlaceholderAvatar() {
@@ -33,6 +33,7 @@ function PlaceholderAvatar() {
 }
 
 export default function ModelViewer() {
+  const [dpr, setDpr] = useState(1.5);
   return (
     <div className="w-full h-full min-h-[400px] relative cursor-grab active:cursor-grabbing">
       {/* Decorative Overlays */}
@@ -49,9 +50,10 @@ export default function ModelViewer() {
       {/* 3D Canvas */}
       <Canvas 
         camera={{ position: [0, 0, 5], fov: 45 }} 
-        dpr={1}
-        gl={{ antialias: false, powerPreference: "high-performance", alpha: true }}
+        dpr={dpr}
+        gl={{ antialias: true, powerPreference: "high-performance", alpha: true }}
       >
+        <PerformanceMonitor onIncline={() => setDpr(1.5)} onDecline={() => setDpr(1)} />
         <ambientLight intensity={0.5} />
         <directionalLight position={[10, 10, 5]} intensity={1} color="#e8d5a3" />
         <spotLight position={[-10, 10, -10]} intensity={2} color="#ffffff" />

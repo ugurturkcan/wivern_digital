@@ -1,7 +1,7 @@
 'use client';
 
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { OrbitControls, Environment, Html, useGLTF, Center, Stats } from '@react-three/drei';
+import { OrbitControls, Environment, Html, useGLTF, Center, PerformanceMonitor } from '@react-three/drei';
 import { Suspense, useRef, useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import * as THREE from 'three';
@@ -218,6 +218,7 @@ export default function InteractiveModelViewer({
   label = 'Proto-Avatar Engine',
 }: InteractiveModelViewerProps) {
   const [activeHotspot, setActiveHotspot] = useState<Hotspot | null>(null);
+  const [dpr, setDpr] = useState(1.5);
 
   const handleHotspotClick = useCallback((hotspot: Hotspot) => {
     setActiveHotspot((prev) => (prev?.id === hotspot.id ? null : hotspot));
@@ -254,10 +255,11 @@ export default function InteractiveModelViewer({
       <Canvas
         camera={{ position: [0, 0.5, 5], fov: 42 }}
         style={{ background: 'transparent' }}
-        gl={{ antialias: false, alpha: true, powerPreference: "high-performance" }}
-        dpr={1}
+        gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
+        dpr={dpr}
         className="cursor-grab active:cursor-grabbing"
       >
+        <PerformanceMonitor onIncline={() => setDpr(1.5)} onDecline={() => setDpr(1)} />
         <ambientLight intensity={0.6} />
         <directionalLight position={[8, 12, 5]} intensity={1.2} color="#f0e0c0" />
         <directionalLight position={[-8, 4, -5]} intensity={0.4} color="#8090ff" />
