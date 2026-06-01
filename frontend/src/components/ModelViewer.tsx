@@ -47,7 +47,11 @@ export default function ModelViewer() {
       </div>
       
       {/* 3D Canvas */}
-      <Canvas camera={{ position: [0, 0, 5], fov: 45 }} dpr={[1, 1.5]}>
+      <Canvas 
+        camera={{ position: [0, 0, 5], fov: 45 }} 
+        dpr={1}
+        gl={{ antialias: false, powerPreference: "high-performance", alpha: true }}
+      >
         <ambientLight intensity={0.5} />
         <directionalLight position={[10, 10, 5]} intensity={1} color="#e8d5a3" />
         <spotLight position={[-10, 10, -10]} intensity={2} color="#ffffff" />

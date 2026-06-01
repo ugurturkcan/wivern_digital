@@ -254,8 +254,8 @@ export default function InteractiveModelViewer({
       <Canvas
         camera={{ position: [0, 0.5, 5], fov: 42 }}
         style={{ background: 'transparent' }}
-        gl={{ antialias: true, alpha: true }}
-        dpr={[1, 1.5]}
+        gl={{ antialias: false, alpha: true, powerPreference: "high-performance" }}
+        dpr={1}
         className="cursor-grab active:cursor-grabbing"
       >
         <ambientLight intensity={0.6} />
@@ -263,7 +263,6 @@ export default function InteractiveModelViewer({
         <directionalLight position={[-8, 4, -5]} intensity={0.4} color="#8090ff" />
 
         <Suspense fallback={null}>
-          <Stats className="!absolute !top-2 !right-2 !left-auto" />
           <Center>
             {modelUrl ? (
               <GLTFModel url={modelUrl} shift={isPanelOpen} />
@@ -282,7 +281,7 @@ export default function InteractiveModelViewer({
             />
           ))}
 
-          <Environment preset="studio" />
+          <Environment preset="studio" resolution={256} />
           <OrbitControls
             enablePan={false}
             enableZoom={true}
