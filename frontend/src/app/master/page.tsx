@@ -17,59 +17,56 @@ const InteractiveModelViewer = dynamic(
 // ─── Demo Hotspot Data (replace with real avatar coords once model is ready) ───
 const DEMO_HOTSPOTS: Hotspot[] = [
   {
-    id: 'helmet_visor',
-    position: [0.0, 0.1, 1.1],
-    label: 'Visor Optics',
-    title: 'Tactical Visor — AR Interface',
+    id: 'enchantress_visage',
+    position: [0.0, 0.65, 0.1],
+    label: 'Visage',
+    title: 'Gothic Enchantress Visage',
     content: `Primary Generation Prompt
 
-"Extreme macro close-up of a highly detailed armored shoulder pad (pauldron) for a digital avatar. The surface material is a brushed metal alloy exhibiting a semi-gloss finish, with visible micro-scratches, mechanical edge wear, and distinct specular highlights on the elevated structural ridges.
+"A breathtaking photorealistic portrait of a dark fantasy enchantress. Her facial features are striking and aristocratic, with pale porcelain skin contrasting against deep obsidian makeup around piercing amber eyes. 
 
-The shading applies the established color palette, emphasizing warm tones across the metal and any underlying costume fabric. The environmental lighting consists of a hazy grey-blue sky providing ambient illumination. All light sources are soft and diffuse, ensuring absolutely no hard shadows are cast across the armor's geometry.
+Surface details: The lighting is cinematic chiaroscuro, reminiscent of classical renaissance paintings but with a digital-occult edge. A soft rim light catches the subtle metallic gold flakes embedded in her dark lipstick.
 
-The asset is rendered with 8k texture density and physically based rendering (PBR) materials to demonstrate precise structural integrity and physical wear suitable for close-range inspection."
+The asset utilizes advanced subsurface scattering for hyper-realistic skin rendering, ensuring physically accurate light absorption and diffusion across the cheekbones and jawline."
 
 Control Layers
-— ControlNet: depth map for structural form
-— LoRA: wivern_armour_v3 (weight 0.85)
-— Sampler: DPM++ 2M Karras, 32 steps
-— CFG Scale: 7.5`,
+— Prompt Adherence: 98%
+— Texture resolution: 8K
+— Seed locked: 4891023`,
   },
   {
-    id: 'helmet_side',
-    position: [0.9, 0.0, 0.3],
-    label: 'Audio Node',
-    title: 'Communication — Audio Node',
+    id: 'gilded_corset',
+    position: [0.0, 0.25, 0.15],
+    label: 'Gilded Armor',
+    title: 'Intricate Gilded Corset',
     content: `Primary Generation Prompt
 
-"Detailed render of a medieval fantasy chest plate fused with bioluminescent organic material. Central sternum piece features an etched guild sigil with subtle golden inlay. Surface exhibits layered lacquer over hammered iron substrate with strategic patina application across recessed geometry.
+"Close-up of an ornate medieval bodice armor, crafted from blackened steel and layered with intricate gold filigree. The armor plates curve elegantly to form a protective yet ceremonial corset. 
 
-The lighting environment is a golden-hour overcast studio setup — directional key light at 30 degrees, no hard shadow casting. Rim lighting from rear-left at reduced intensity to separate form from negative space.
+Lighting environment: Soft studio lighting with a warm golden-hour fill. The gold inlays catch the light brilliantly, emphasizing the meticulous craftsmanship of the digital forge. 
 
-Material breakdown: outer iron layer (metalness 0.92, roughness 0.24), inner leather lining visible at edge joins (roughness 0.78), gold inlay (metalness 1.0, roughness 0.05)."
+Material breakdown: The blackened steel uses a highly treated PBR material (metalness 0.9, roughness 0.3) showing micro-abrasions from ancient battles. The gold filigree is polished to a mirror finish (metalness 1.0, roughness 0.05), blending ancient smithing principles with modern computational rendering."
 
 Control Layers
-— Reference image: guild_chest_ref_v2.png
-— LoRA: wivern_guild_livery (weight 0.9)
-— Upscaler: 4x-UltraSharp at 0.4 denoise`,
+— Reference image: wivern_gilded_armor.png
+— Upscaler: 4x-UltraSharp at 0.3 denoise`,
   },
   {
-    id: 'helmet_top',
-    position: [0.0, 0.9, 0.2],
-    label: 'Crown',
-    title: 'Structural Crown — Ridge',
+    id: 'void_robes',
+    position: [0.0, -0.45, 0.2],
+    label: 'Void-Silk Robes',
+    title: 'Woven Void-Silk Lower Robes',
     content: `Primary Generation Prompt
 
-"Close-up portrait of a full-face armored helm for a fantasy guild avatar. The visor is a narrow horizontal slit with polished inner edge catch. Crown features three raised ridge fins for structural reinforcement. The overall silhouette references Milanese sallet design reinterpreted through a digital-occult aesthetic.
+"A detailed shot of flowing, dark fantasy lower robes. The fabric appears to be woven from abyssal thread, displaying a mesmerizing texture that shifts between matte charcoal and deep, shimmering midnight blue as the light moves across its folds.
 
-Surface texture: aged brushed titanium with selective rust bloom at weld seams. No rust on primary face plate — clean and imposing. Temperature of metal shifts from cool grey-silver at crown to warm amber at jaw-line due to forge heat variation simulation.
+Surface texture: The cloth physically simulates heavy velvet but flows with ethereal lightness. The edges are lined with frayed golden thread, suggesting an ancient, noble lineage.
 
-Render parameters: camera at eye-level, extremely shallow depth-of-field (f/1.8 equivalent), background fully bokeh at #1a1a1a. HDR environment for accurate reflections of the studio dome."
+Render parameters: Camera uses an 85mm lens with a shallow depth of field. Cloth physics simulation is baked at 120 ticks per second to capture the exact, dramatic resting drape of the fabric."
 
 Control Layers
-— Depth: extracted from concept sketch (helm_concept_03.png)
-— Seed locked: 2847391
-— Sampler: Euler A, 28 steps, CFG 6.0`,
+— Physics Engine: Marvelous Designer drape data
+— Sampler: DPM++ SDE Karras, 40 steps, CFG 6.5`,
   },
 ];
 
@@ -118,9 +115,9 @@ export default function EcologyFundPage() {
               >
                 <div className="relative aspect-[4/5] bg-[#080808] overflow-hidden border border-yellow-900/20">
                   <InteractiveModelViewer
-                    modelUrl="/DamagedHelmet.glb"
+                    modelUrl="/avatar.glb"
                     hotspots={DEMO_HOTSPOTS}
-                    label="Armour Viewer — Wivern Digital"
+                    label="Avatar Viewer — Wivern Digital"
                   />
                 </div>
                 <p className="text-[8px] tracking-[0.2em] uppercase text-gray-600 text-center mt-2">

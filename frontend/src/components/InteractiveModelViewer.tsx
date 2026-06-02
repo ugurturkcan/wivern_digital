@@ -1,7 +1,7 @@
 'use client';
 
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { OrbitControls, Environment, Html, useGLTF, Center, PerformanceMonitor } from '@react-three/drei';
+import { OrbitControls, Environment, Html, useGLTF, PerformanceMonitor, Sparkles } from '@react-three/drei';
 import { Suspense, useRef, useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import * as THREE from 'three';
@@ -26,16 +26,11 @@ interface InteractiveModelViewerProps {
 
 // ─── Placeholder Mesh (used when no modelUrl is provided) ─────────────────────
 
-function PlaceholderMesh({ shift }: { shift: boolean }) {
+function PlaceholderMesh() {
   const meshRef = useRef<THREE.Mesh>(null);
 
   useFrame((state, delta) => {
     if (!meshRef.current) return;
-    // Slow auto-rotate when no hotspot is active
-    if (!shift) meshRef.current.rotation.y += delta * 0.15;
-    // Smooth horizontal shift when a hotspot is open
-    const targetX = shift ? -1.2 : 0;
-    meshRef.current.position.x = THREE.MathUtils.lerp(meshRef.current.position.x, targetX, 0.06);
     // Gentle hover
     meshRef.current.position.y = Math.sin(state.clock.elapsedTime * 0.8) * 0.12;
   });
@@ -50,19 +45,57 @@ function PlaceholderMesh({ shift }: { shift: boolean }) {
 
 // ─── Real GLTF Model ──────────────────────────────────────────────────────────
 
-function GLTFModel({ url, shift }: { url: string; shift: boolean }) {
+function GLTFModel({ url }: { url: string }) {
   const { scene } = useGLTF(url);
+  
+  // Helper to log precise coordinates for hotspot placement
+  const handlePointerDown = (e: any) => {
+    e.stopPropagation();
+    console.log(
+      `Tıkladığın yerin koordinatları: [${e.point.x.toFixed(2)}, ${e.point.y.toFixed(2)}, ${e.point.z.toFixed(2)}]`
+    );
+  };
+
+  return <primitive object={scene} onPointerDown={handlePointerDown} />;
+}
+
+// ─── Scene Wrapper (Handles Shifting) ─────────────────────────────────────────
+
+function SceneGroup({
+  modelUrl,
+  shift,
+  hotspots,
+  activeHotspot,
+  onHotspotClick,
+}: {
+  modelUrl?: string;
+  shift: boolean;
+  hotspots: Hotspot[];
+  activeHotspot: Hotspot | null;
+  onHotspotClick: (h: Hotspot) => void;
+}) {
   const groupRef = useRef<THREE.Group>(null);
 
   useFrame(() => {
     if (!groupRef.current) return;
+    // Smooth horizontal shift when a hotspot is open
     const targetX = shift ? -1.4 : 0;
-    groupRef.current.position.x = THREE.MathUtils.lerp(groupRef.current.position.x, targetX, 0.06);
+    groupRef.current.position.x = THREE.MathUtils.lerp(groupRef.current.position.x, targetX, 0.08);
   });
 
   return (
     <group ref={groupRef}>
-      <primitive object={scene} />
+      {modelUrl ? <GLTFModel url={modelUrl} /> : <PlaceholderMesh />}
+      
+      {/* Hotspot markers are now children of the shifting group */}
+      {hotspots.map((hs) => (
+        <HotspotMarker
+          key={hs.id}
+          hotspot={hs}
+          isActive={activeHotspot?.id === hs.id}
+          onClick={() => onHotspotClick(hs)}
+        />
+      ))}
     </group>
   );
 }
@@ -265,23 +298,24 @@ export default function InteractiveModelViewer({
         <directionalLight position={[-8, 4, -5]} intensity={0.4} color="#8090ff" />
 
         <Suspense fallback={null}>
-          <Center>
-            {modelUrl ? (
-              <GLTFModel url={modelUrl} shift={isPanelOpen} />
-            ) : (
-              <PlaceholderMesh shift={isPanelOpen} />
-            )}
-          </Center>
+          <SceneGroup
+            modelUrl={modelUrl}
+            shift={isPanelOpen}
+            hotspots={hotspots}
+            activeHotspot={activeHotspot}
+            onHotspotClick={handleHotspotClick}
+          />
 
-          {/* Hotspot markers */}
-          {hotspots.map((hs) => (
-            <HotspotMarker
-              key={hs.id}
-              hotspot={hs}
-              isActive={activeHotspot?.id === hs.id}
-              onClick={() => handleHotspotClick(hs)}
-            />
-          ))}
+          {/* Magical Aura / Gold Sparkles */}
+          <Sparkles 
+            count={150} 
+            scale={4.5} 
+            size={2} 
+            speed={0.3} 
+            opacity={0.8} 
+            color="#c5a059" 
+            noise={0.2}
+          />
 
           <Environment preset="studio" resolution={256} />
           <OrbitControls

@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import EnergyMonitor from './EnergyMonitor';
+import FPSMonitor from './FPSMonitor';
 
 export default function Footer() {
   return (
@@ -23,9 +25,14 @@ export default function Footer() {
               <span className="serif-font text-lg tracking-widest text-white uppercase">Wivern Digital</span>
             </div>
             <p className="text-gray-500 text-xs tracking-wider uppercase font-light mb-4">Guild of Avatarists &bull; Est. 2011</p>
-            <p className="text-gray-600 text-sm font-light leading-relaxed max-w-xs">
+            <p className="text-gray-600 text-sm font-light leading-relaxed max-w-xs mb-8">
               Precision engineering of bespoke AI avatars. Ancient principles. Modern computation.
             </p>
+            {/* Telemetry Widgets */}
+            <div className="flex flex-col sm:flex-row gap-4 mt-6">
+              <FPSMonitor />
+              <EnergyMonitor />
+            </div>
           </div>
 
           {/* Legal */}
