@@ -42,33 +42,46 @@ export default function EcologyFundPage() {
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
 
-              {/* Interactive 3D Model Viewer Placeholder */}
+              {/* Interactive 3D Model Viewer Placeholder / CTA */}
               <div 
                 className="col-span-1 lg:col-span-1 flex flex-col justify-center lg:sticky lg:top-28"
               >
-                <div className="relative aspect-[4/5] bg-[#0a0a0a] border border-yellow-900/20 flex flex-col items-center justify-center p-8 text-center overflow-hidden group">
-                  {/* Decorative background element */}
-                  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-yellow-900/20 via-[#0a0a0a] to-[#0a0a0a] opacity-50 group-hover:opacity-80 transition-opacity duration-700" />
+                <div className="relative aspect-[4/5] bg-black/40 backdrop-blur-md border border-yellow-900/30 flex flex-col items-center justify-center p-8 text-center overflow-hidden group hover:border-yellow-600/50 transition-all duration-700 shadow-2xl">
+                  {/* Aggressive glowing orb background */}
+                  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-yellow-600/20 via-black to-black opacity-40 group-hover:opacity-100 group-hover:from-yellow-500/30 transition-all duration-700 scale-150 group-hover:scale-100" />
                   
-                  <div className="relative z-10 flex flex-col items-center gap-6">
-                    <span className="w-16 h-16 rounded-full bg-yellow-900/10 border border-yellow-700/30 flex items-center justify-center group-hover:scale-110 group-hover:border-yellow-500/50 transition-all duration-500">
-                      <span className="text-yellow-500 text-2xl">👁</span>
-                    </span>
+                  {/* Grid lines overlay */}
+                  <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px] opacity-20 group-hover:opacity-40 transition-opacity" />
+
+                  <div className="relative z-10 flex flex-col items-center gap-8">
+                    {/* Animated Eye Icon */}
+                    <div className="relative">
+                      <div className="absolute inset-0 bg-yellow-500/20 rounded-full blur-xl animate-pulse" />
+                      <span className="relative w-20 h-20 rounded-full bg-black border border-yellow-700/50 flex items-center justify-center group-hover:scale-110 group-hover:border-yellow-400 transition-all duration-500 shadow-[0_0_30px_rgba(202,138,4,0.15)] group-hover:shadow-[0_0_50px_rgba(234,179,8,0.4)]">
+                        <span className="text-yellow-500 text-3xl group-hover:animate-ping absolute opacity-0 group-hover:opacity-30">👁</span>
+                        <span className="text-yellow-500 text-3xl relative z-10">👁</span>
+                      </span>
+                    </div>
                     
                     <div>
-                      <h4 className="serif-font text-xl text-white mb-2">
+                      <span className="text-[10px] tracking-[0.3em] uppercase text-yellow-600 font-bold block mb-3 animate-pulse">
+                        Neural Interface Ready
+                      </span>
+                      <h4 className="serif-font text-3xl text-white mb-3 tracking-wide">
                         Proto-Avatar Engine
                       </h4>
-                      <p className="text-gray-400 text-xs tracking-widest uppercase mb-6 max-w-[250px] leading-relaxed mx-auto">
-                        Experience the fully interactive 3D manifestation in a dedicated environment.
+                      <p className="text-gray-400 text-[11px] tracking-widest uppercase mb-8 max-w-[280px] leading-relaxed mx-auto">
+                        A fully immersive 3D environment for structural analysis.
                       </p>
                     </div>
 
                     <Link 
                       href="/viewer"
-                      className="px-8 py-3 bg-yellow-600/10 hover:bg-yellow-600/20 border border-yellow-600/50 hover:border-yellow-400 text-yellow-500 hover:text-yellow-300 text-xs tracking-[0.2em] uppercase transition-all duration-300"
+                      className="relative overflow-hidden px-10 py-4 bg-yellow-600/10 hover:bg-yellow-500 border border-yellow-600/50 hover:border-yellow-400 text-yellow-500 hover:text-black text-xs font-bold tracking-[0.2em] uppercase transition-all duration-300 group/btn"
                     >
-                      Launch Viewer
+                      <span className="relative z-10">Initiate Sequence</span>
+                      {/* Shine effect */}
+                      <div className="absolute top-0 -left-[100%] w-[120%] h-full bg-white/20 skew-x-[45deg] group-hover/btn:animate-[shine_1s_ease-out_forwards]" />
                     </Link>
                   </div>
                 </div>

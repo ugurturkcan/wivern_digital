@@ -41,6 +41,10 @@ const ActiveSpecimens = dynamic(() => import('@/components/ActiveSpecimens'), {
   ssr: true,
 });
 
+const InteractiveModelViewer = dynamic(() => import('@/components/InteractiveModelViewer'), {
+  ssr: false, // Important: 3D canvas must only render on client
+});
+
 
 
 export default function HomePage() {
@@ -216,6 +220,48 @@ export default function HomePage() {
             </div>
           </div>
         </section>
+
+        {/* ─── LIVE 3D PREVIEW ──────────────────────────────────── */}
+        <motion.section 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+          className="relative py-32 bg-[#0a0a0a] border-t border-yellow-900/20 overflow-hidden"
+        >
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(217,119,6,0.05)_0%,transparent_70%)] pointer-events-none" />
+          <div className="relative max-w-7xl mx-auto px-6 lg:px-8 z-10">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <div data-aos="fade-right">
+                <span className="section-label block mb-4">Interactive Technology</span>
+                <h2 className="serif-font text-4xl lg:text-5xl text-white leading-tight">The Proto-Avatar Engine</h2>
+                <div className="gold-line mt-6 mb-8" />
+                <p className="text-gray-400 font-light leading-relaxed mb-10">
+                  Experience our real-time 3D rendering capabilities directly in your browser. Our custom avatars are built with optimized geometry and high-fidelity textures, ready for the spatial web.
+                </p>
+                <Link
+                  href="/viewer"
+                  className="inline-flex items-center gap-3 text-[11px] font-medium tracking-[0.2em] uppercase border border-yellow-700 text-yellow-500 px-8 py-4 hover:bg-yellow-700 hover:text-black transition-all duration-300"
+                >
+                  ENTER FULLSCREEN EXPERIENCE &rarr;
+                </Link>
+              </div>
+              
+              <div className="relative h-[600px] bg-[#050505] border border-yellow-900/30 group p-2" data-aos="fade-left">
+                <div className="absolute inset-0 z-20 pointer-events-none border border-yellow-500/0 group-hover:border-yellow-500/30 transition-colors duration-500" />
+                {/* We pass an empty hotspots array so it's just a clean rotating model preview */}
+                <InteractiveModelViewer modelUrl="/avatar.glb" hotspots={[]} label="Live 3D Engine Preview" />
+                
+                {/* Subtle overlay hint */}
+                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <span className="bg-black/80 backdrop-blur-sm border border-yellow-900/50 text-yellow-600 text-[9px] tracking-[0.2em] uppercase px-4 py-2">
+                    Fully Interactive · Drag to Rotate
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </motion.section>
 
         {/* ─── GUILD PROCESS TABS ───────────────────────────────── */}
         <motion.section 
