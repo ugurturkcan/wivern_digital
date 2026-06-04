@@ -63,25 +63,16 @@ function GLTFModel({ url }: { url: string }) {
 
 function SceneGroup({
   modelUrl,
-  shift,
   hotspots,
   activeHotspot,
   onHotspotClick,
 }: {
   modelUrl?: string;
-  shift: boolean;
   hotspots: Hotspot[];
   activeHotspot: Hotspot | null;
   onHotspotClick: (h: Hotspot) => void;
 }) {
   const groupRef = useRef<THREE.Group>(null);
-
-  useFrame(() => {
-    if (!groupRef.current) return;
-    // Smooth horizontal shift when a hotspot is open
-    const targetX = shift ? -1.4 : 0;
-    groupRef.current.position.x = THREE.MathUtils.lerp(groupRef.current.position.x, targetX, 0.08);
-  });
 
   return (
     <group ref={groupRef}>
@@ -155,26 +146,26 @@ function InfoPanel({
     <AnimatePresence>
       {hotspot && (
         <>
-          {/* Desktop: slide in from right */}
+          {/* Desktop: full overlay */}
           <motion.div
             key="desktop-panel"
-            initial={{ x: '110%', opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            exit={{ x: '110%', opacity: 0 }}
-            transition={{ type: 'spring', stiffness: 280, damping: 30 }}
-            className="hidden lg:flex absolute top-0 right-0 h-full w-[48%] flex-col bg-[#0a0a0a]/95 backdrop-blur-xl border-l border-yellow-900/30 z-20"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="hidden lg:flex absolute inset-0 flex-col bg-[#0a0a0a]/90 backdrop-blur-md z-20"
           >
             <PanelContent hotspot={hotspot} onClose={onClose} />
           </motion.div>
 
-          {/* Mobile: slide up from bottom */}
+          {/* Mobile: slide up full overlay */}
           <motion.div
             key="mobile-panel"
-            initial={{ y: '110%', opacity: 0 }}
+            initial={{ y: '100%', opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            exit={{ y: '110%', opacity: 0 }}
+            exit={{ y: '100%', opacity: 0 }}
             transition={{ type: 'spring', stiffness: 280, damping: 30 }}
-            className="lg:hidden absolute bottom-0 left-0 right-0 max-h-[60%] flex flex-col bg-[#0a0a0a]/97 backdrop-blur-xl border-t border-yellow-900/30 z-20 rounded-t-2xl"
+            className="lg:hidden absolute inset-0 flex flex-col bg-[#0a0a0a]/95 backdrop-blur-md z-20"
           >
             <PanelContent hotspot={hotspot} onClose={onClose} />
           </motion.div>
@@ -300,7 +291,6 @@ export default function InteractiveModelViewer({
         <Suspense fallback={null}>
           <SceneGroup
             modelUrl={modelUrl}
-            shift={isPanelOpen}
             hotspots={hotspots}
             activeHotspot={activeHotspot}
             onHotspotClick={handleHotspotClick}
