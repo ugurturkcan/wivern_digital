@@ -6,69 +6,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import dynamic from 'next/dynamic';
-import type { Hotspot } from '@/components/InteractiveModelViewer';
-
-// Lazy load the interactive 3D viewer
-const InteractiveModelViewer = dynamic(
-  () => import('@/components/InteractiveModelViewer'),
-  { ssr: false }
-);
-
-// ─── Demo Hotspot Data (replace with real avatar coords once model is ready) ───
-const DEMO_HOTSPOTS: Hotspot[] = [
-  {
-    id: 'enchantress_visage',
-    position: [0.0, 0.65, 0.1],
-    label: 'Visage',
-    title: 'Gothic Enchantress Visage',
-    content: `Primary Generation Prompt
-
-"A breathtaking photorealistic portrait of a dark fantasy enchantress. Her facial features are striking and aristocratic, with pale porcelain skin contrasting against deep obsidian makeup around piercing amber eyes. 
-
-Surface details: The lighting is cinematic chiaroscuro, reminiscent of classical renaissance paintings but with a digital-occult edge. A soft rim light catches the subtle metallic gold flakes embedded in her dark lipstick.
-
-The asset utilizes advanced subsurface scattering for hyper-realistic skin rendering, ensuring physically accurate light absorption and diffusion across the cheekbones and jawline."
-
-Control Layers
-— Prompt Adherence: 98%
-— Texture resolution: 8K
-— Seed locked: 4891023`,
-  },
-  {
-    id: 'gilded_corset',
-    position: [0.0, 0.25, 0.15],
-    label: 'Gilded Armor',
-    title: 'Intricate Gilded Corset',
-    content: `Primary Generation Prompt
-
-"Close-up of an ornate medieval bodice armor, crafted from blackened steel and layered with intricate gold filigree. The armor plates curve elegantly to form a protective yet ceremonial corset. 
-
-Lighting environment: Soft studio lighting with a warm golden-hour fill. The gold inlays catch the light brilliantly, emphasizing the meticulous craftsmanship of the digital forge. 
-
-Material breakdown: The blackened steel uses a highly treated PBR material (metalness 0.9, roughness 0.3) showing micro-abrasions from ancient battles. The gold filigree is polished to a mirror finish (metalness 1.0, roughness 0.05), blending ancient smithing principles with modern computational rendering."
-
-Control Layers
-— Reference image: wivern_gilded_armor.png
-— Upscaler: 4x-UltraSharp at 0.3 denoise`,
-  },
-  {
-    id: 'void_robes',
-    position: [0.0, -0.45, 0.2],
-    label: 'Void-Silk Robes',
-    title: 'Woven Void-Silk Lower Robes',
-    content: `Primary Generation Prompt
-
-"A detailed shot of flowing, dark fantasy lower robes. The fabric appears to be woven from abyssal thread, displaying a mesmerizing texture that shifts between matte charcoal and deep, shimmering midnight blue as the light moves across its folds.
-
-Surface texture: The cloth physically simulates heavy velvet but flows with ethereal lightness. The edges are lined with frayed golden thread, suggesting an ancient, noble lineage.
-
-Render parameters: Camera uses an 85mm lens with a shallow depth of field. Cloth physics simulation is baked at 120 ticks per second to capture the exact, dramatic resting drape of the fabric."
-
-Control Layers
-— Physics Engine: Marvelous Designer drape data
-— Sampler: DPM++ SDE Karras, 40 steps, CFG 6.5`,
-  },
-];
 
 export default function EcologyFundPage() {
   return (
@@ -105,25 +42,37 @@ export default function EcologyFundPage() {
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
 
-              {/* Interactive 3D Model Viewer */}
-              <motion.div 
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-                className="mystic-glow lg:sticky lg:top-28"
+              {/* Interactive 3D Model Viewer Placeholder */}
+              <div 
+                className="col-span-1 lg:col-span-1 flex flex-col justify-center lg:sticky lg:top-28"
               >
-                <div className="relative aspect-[4/5] bg-[#080808] overflow-hidden border border-yellow-900/20">
-                  <InteractiveModelViewer
-                    modelUrl="/avatar.glb"
-                    hotspots={DEMO_HOTSPOTS}
-                    label="Avatar Viewer — Wivern Digital"
-                  />
+                <div className="relative aspect-[4/5] bg-[#0a0a0a] border border-yellow-900/20 flex flex-col items-center justify-center p-8 text-center overflow-hidden group">
+                  {/* Decorative background element */}
+                  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-yellow-900/20 via-[#0a0a0a] to-[#0a0a0a] opacity-50 group-hover:opacity-80 transition-opacity duration-700" />
+                  
+                  <div className="relative z-10 flex flex-col items-center gap-6">
+                    <span className="w-16 h-16 rounded-full bg-yellow-900/10 border border-yellow-700/30 flex items-center justify-center group-hover:scale-110 group-hover:border-yellow-500/50 transition-all duration-500">
+                      <span className="text-yellow-500 text-2xl">👁</span>
+                    </span>
+                    
+                    <div>
+                      <h4 className="serif-font text-xl text-white mb-2">
+                        Proto-Avatar Engine
+                      </h4>
+                      <p className="text-gray-400 text-xs tracking-widest uppercase mb-6 max-w-[250px] leading-relaxed mx-auto">
+                        Experience the fully interactive 3D manifestation in a dedicated environment.
+                      </p>
+                    </div>
+
+                    <Link 
+                      href="/viewer"
+                      className="px-8 py-3 bg-yellow-600/10 hover:bg-yellow-600/20 border border-yellow-600/50 hover:border-yellow-400 text-yellow-500 hover:text-yellow-300 text-xs tracking-[0.2em] uppercase transition-all duration-300"
+                    >
+                      Launch Viewer
+                    </Link>
+                  </div>
                 </div>
-                <p className="text-[8px] tracking-[0.2em] uppercase text-gray-600 text-center mt-2">
-                  ◉ Click the glowing markers to explore design layers
-                </p>
-              </motion.div>
+              </div>
 
               {/* Main Content */}
               <motion.div

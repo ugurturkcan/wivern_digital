@@ -1,8 +1,8 @@
 'use client';
 
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { OrbitControls, Environment, Html, useGLTF, PerformanceMonitor, Sparkles } from '@react-three/drei';
-import { Suspense, useRef, useState, useCallback } from 'react';
+import { CameraControls, Environment, Html, useGLTF, PerformanceMonitor, Sparkles } from '@react-three/drei';
+import { Suspense, useRef, useState, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import * as THREE from 'three';
 
@@ -146,14 +146,14 @@ function InfoPanel({
     <AnimatePresence>
       {hotspot && (
         <>
-          {/* Desktop: full overlay */}
+          {/* Desktop: slide in from right */}
           <motion.div
             key="desktop-panel"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="hidden lg:flex absolute inset-0 flex-col bg-[#0a0a0a]/90 backdrop-blur-md z-20"
+            initial={{ x: '110%', opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: '110%', opacity: 0 }}
+            transition={{ type: 'spring', stiffness: 280, damping: 30 }}
+            className="hidden lg:flex absolute top-0 right-0 h-full w-[48%] flex-col bg-[#0a0a0a]/95 backdrop-blur-xl border-l border-yellow-900/30 z-20"
           >
             <PanelContent hotspot={hotspot} onClose={onClose} />
           </motion.div>
@@ -234,6 +234,65 @@ function PanelContent({ hotspot, onClose }: { hotspot: Hotspot; onClose: () => v
   );
 }
 
+// ─── Camera Controller ────────────────────────────────────────────────────────
+
+function CameraController({ activeHotspot }: { activeHotspot: Hotspot | null }) {
+  const controlsRef = useRef<any>(null);
+
+  useEffect(() => {
+    if (!controlsRef.current) return;
+    if (activeHotspot) {
+      const [hx, hy, hz] = activeHotspot.position;
+      
+      // Determine if we are on mobile (panel comes from bottom) or desktop (panel comes from right)
+      const isMobile = typeof window !== 'undefined' && window.innerWidth < 1024;
+      
+      // On desktop, target is shifted to the right (+0.4) so the model appears on the left
+      // On mobile, target is shifted down (-0.3) so the model appears on the top
+      const targetOffsetX = isMobile ? 0 : 0.4;
+      const targetOffsetY = isMobile ? -0.3 : 0;
+
+      // Fly to look at hotspot with the offsets
+      controlsRef.current.setLookAt(
+        hx + targetOffsetX, hy + targetOffsetY + 0.1, hz + 1.6, // camera position
+        hx + targetOffsetX, hy + targetOffsetY, hz, // target position
+        true // animate
+      );
+    } else {
+      // Reset to default overview
+      controlsRef.current.setLookAt(
+        0, 0.5, 5, // camera position
+        0, 0, 0, // target position
+        true // animate
+      );
+    }
+  }, [activeHotspot]);
+
+  useFrame((state, delta) => {
+    if (controlsRef.current && !activeHotspot) {
+      // Auto-rotate when no hotspot is active
+      controlsRef.current.azimuthAngle += 0.6 * delta * (Math.PI / 180);
+    }
+  });
+
+  return (
+    <CameraControls 
+      ref={controlsRef} 
+      makeDefault 
+      minDistance={2.5} 
+      maxDistance={9}
+      dollySpeed={1.5}
+      smoothTime={0.4}
+      onChange={(e) => {
+        // Triggered when camera moves
+        if (activeHotspot && controlsRef.current) {
+          // If we manually move the camera while a hotspot is active, we could break out, but for now we let CameraControls handle it smoothly
+        }
+      }}
+    />
+  );
+}
+
 // ─── Main Export ──────────────────────────────────────────────────────────────
 
 export default function InteractiveModelViewer({
@@ -308,16 +367,7 @@ export default function InteractiveModelViewer({
           />
 
           <Environment preset="studio" resolution={256} />
-          <OrbitControls
-            enablePan={false}
-            enableZoom={true}
-            minDistance={2.5}
-            maxDistance={9}
-            autoRotate={!isPanelOpen}
-            autoRotateSpeed={0.6}
-            enableDamping
-            dampingFactor={0.08}
-          />
+          <CameraController activeHotspot={activeHotspot} />
         </Suspense>
       </Canvas>
 
