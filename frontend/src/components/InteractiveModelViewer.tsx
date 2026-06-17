@@ -1,7 +1,7 @@
 'use client';
 
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { CameraControls, Environment, Html, useGLTF, PerformanceMonitor, Sparkles } from '@react-three/drei';
+import { CameraControls, Environment, Html, useGLTF, Sparkles, ContactShadows } from '@react-three/drei';
 import { Suspense, useRef, useState, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import * as THREE from 'three';
@@ -47,16 +47,7 @@ function PlaceholderMesh() {
 
 function GLTFModel({ url }: { url: string }) {
   const { scene } = useGLTF(url);
-  
-  // Helper to log precise coordinates for hotspot placement
-  const handlePointerDown = (e: any) => {
-    e.stopPropagation();
-    console.log(
-      `Tıkladığın yerin koordinatları: [${e.point.x.toFixed(2)}, ${e.point.y.toFixed(2)}, ${e.point.z.toFixed(2)}]`
-    );
-  };
-
-  return <primitive object={scene} onPointerDown={handlePointerDown} />;
+  return <primitive object={scene} />;
 }
 
 // ─── Scene Wrapper (Handles Shifting) ─────────────────────────────────────────
@@ -103,11 +94,13 @@ function HotspotMarker({
   onClick: () => void;
 }) {
   return (
-    <Html position={hotspot.position} center distanceFactor={4} zIndexRange={[10, 20]}>
+    <Html position={hotspot.position} center distanceFactor={4} zIndexRange={[10, 20]} wrapperClass="pointer-events-none">
       <button
-        onClick={onClick}
-        className={`group relative flex items-center justify-center transition-all duration-300 ${isActive ? 'scale-125' : 'scale-100 hover:scale-110'}`}
-        style={{ pointerEvents: 'all' }}
+        onPointerDown={(e) => {
+          e.stopPropagation();
+          onClick();
+        }}
+        className={`group relative flex items-center justify-center transition-all duration-300 pointer-events-auto ${isActive ? 'scale-125' : 'scale-100 hover:scale-110'}`}
         title={hotspot.label}
       >
         {/* Pulse ring */}
@@ -281,8 +274,11 @@ function CameraController({ activeHotspot }: { activeHotspot: Hotspot | null }) 
       makeDefault 
       minDistance={2.5} 
       maxDistance={9}
-      dollySpeed={1.5}
-      smoothTime={0.4}
+      dollySpeed={2}
+      azimuthRotateSpeed={2}
+      polarRotateSpeed={2}
+      smoothTime={0.1}
+      draggingSmoothTime={0.05}
       onChange={(e) => {
         // Triggered when camera moves
         if (activeHotspot && controlsRef.current) {
@@ -301,7 +297,6 @@ export default function InteractiveModelViewer({
   label = 'Proto-Avatar Engine',
 }: InteractiveModelViewerProps) {
   const [activeHotspot, setActiveHotspot] = useState<Hotspot | null>(null);
-  const [dpr, setDpr] = useState(1.5);
 
   const handleHotspotClick = useCallback((hotspot: Hotspot) => {
     setActiveHotspot((prev) => (prev?.id === hotspot.id ? null : hotspot));
@@ -338,16 +333,35 @@ export default function InteractiveModelViewer({
       <Canvas
         camera={{ position: [0, 0.5, 5], fov: 42 }}
         style={{ background: 'transparent' }}
-        gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
-        dpr={dpr}
+        gl={{ 
+          antialias: true, 
+          alpha: true, 
+          powerPreference: "high-performance",
+          toneMapping: THREE.ACESFilmicToneMapping,
+          toneMappingExposure: 1.2
+        }}
+        dpr={[1, 1.5]}
         className="cursor-grab active:cursor-grabbing"
       >
-        <PerformanceMonitor onIncline={() => setDpr(1.5)} onDecline={() => setDpr(1)} />
-        <ambientLight intensity={0.6} />
-        <directionalLight position={[8, 12, 5]} intensity={1.2} color="#f0e0c0" />
-        <directionalLight position={[-8, 4, -5]} intensity={0.4} color="#8090ff" />
+        <ambientLight intensity={0.4} />
+        <directionalLight position={[8, 12, 5]} intensity={1.5} color="#f0e0c0" />
+        <directionalLight position={[-8, 4, -5]} intensity={0.6} color="#8090ff" />
 
-        <Suspense fallback={null}>
+        <Suspense fallback={
+          <Html center zIndexRange={[100, 100]}>
+            <div className="flex flex-col items-center justify-center gap-4 bg-black/80 p-8 rounded-lg backdrop-blur-md border border-yellow-900/30 shadow-2xl">
+              <div className="w-10 h-10 border-2 border-yellow-900/40 border-t-yellow-500 rounded-full animate-spin" />
+              <div className="flex flex-col items-center gap-1">
+                <span className="text-[10px] tracking-[0.3em] uppercase text-yellow-500 font-bold">
+                  Initializing Engine
+                </span>
+                <span className="text-[8px] tracking-widest uppercase text-gray-500">
+                  Loading neural assets...
+                </span>
+              </div>
+            </div>
+          </Html>
+        }>
           <SceneGroup
             modelUrl={modelUrl}
             hotspots={hotspots}
@@ -355,18 +369,30 @@ export default function InteractiveModelViewer({
             onHotspotClick={handleHotspotClick}
           />
 
-          {/* Magical Aura / Gold Sparkles */}
+          {/* Magical Aura / Gold Sparkles (Optimized count) */}
           <Sparkles 
-            count={150} 
+            count={20} 
             scale={4.5} 
             size={2} 
             speed={0.3} 
-            opacity={0.8} 
+            opacity={0.6} 
             color="#c5a059" 
             noise={0.2}
           />
 
-          <Environment preset="studio" resolution={256} />
+          {/* Realistic Grounding Shadow */}
+          <ContactShadows 
+            position={[0, -1.0, 0]} 
+            opacity={0.8} 
+            scale={5} 
+            blur={2.5} 
+            far={4} 
+            resolution={256}
+            color="#000000"
+          />
+
+          {/* Photorealistic Lighting Environment */}
+          <Environment preset="city" resolution={256} />
           <CameraController activeHotspot={activeHotspot} />
         </Suspense>
       </Canvas>
@@ -376,3 +402,6 @@ export default function InteractiveModelViewer({
     </div>
   );
 }
+
+// Preload the specific model we use in the demo
+useGLTF.preload('/avatar.glb');

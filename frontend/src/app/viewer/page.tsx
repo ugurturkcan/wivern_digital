@@ -1,5 +1,7 @@
 import InteractiveModelViewer, { Hotspot } from '@/components/InteractiveModelViewer';
 import Link from 'next/link';
+import EnergyMonitor from '@/components/EnergyMonitor';
+import FPSMonitor from '@/components/FPSMonitor';
 
 // ─── Demo Hotspot Data ───
 const DEMO_HOTSPOTS: Hotspot[] = [
@@ -71,12 +73,22 @@ export default function ViewerPage() {
         </span>
       </Link>
 
-      <div className="w-full h-full relative">
+      <div className="w-full h-full relative z-0">
         <InteractiveModelViewer
           modelUrl="/avatar.glb"
           hotspots={DEMO_HOTSPOTS}
           label="Full-Scale Interactive Avatar"
         />
+      </div>
+
+      {/* Telemetry Widgets (Contextualized for the engine) */}
+      <div className="absolute bottom-6 left-6 z-30 flex flex-col sm:flex-row gap-4 pointer-events-none">
+        <div className="pointer-events-auto">
+          <FPSMonitor />
+        </div>
+        <div className="pointer-events-auto">
+          <EnergyMonitor />
+        </div>
       </div>
     </main>
   );

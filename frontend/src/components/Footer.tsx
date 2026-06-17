@@ -1,7 +1,5 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import EnergyMonitor from './EnergyMonitor';
-import FPSMonitor from './FPSMonitor';
 
 export default function Footer() {
   return (
@@ -28,11 +26,6 @@ export default function Footer() {
             <p className="text-gray-600 text-sm font-light leading-relaxed max-w-xs mb-8">
               Precision engineering of bespoke AI avatars. Ancient principles. Modern computation.
             </p>
-            {/* Telemetry Widgets */}
-            <div className="flex flex-col sm:flex-row gap-4 mt-6">
-              <FPSMonitor />
-              <EnergyMonitor />
-            </div>
           </div>
 
           {/* Legal */}
