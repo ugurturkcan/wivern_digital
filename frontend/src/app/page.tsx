@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
+import LazyMount from '@/components/LazyMount';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -250,7 +251,9 @@ export default function HomePage() {
               <div className="relative h-[600px] bg-[#050505] border border-yellow-900/30 group p-2" data-aos="fade-left">
                 <div className="absolute inset-0 z-20 pointer-events-none border border-yellow-500/0 group-hover:border-yellow-500/30 transition-colors duration-500" />
                 {/* We pass an empty hotspots array so it's just a clean rotating model preview */}
-                <InteractiveModelViewer modelUrl="/avatar.glb" hotspots={[]} label="Live 3D Engine Preview" />
+                <LazyMount margin="400px">
+                  <InteractiveModelViewer modelUrl="/avatar.glb" hotspots={[]} label="Live 3D Engine Preview" />
+                </LazyMount>
                 
                 {/* Subtle overlay hint */}
                 <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300">

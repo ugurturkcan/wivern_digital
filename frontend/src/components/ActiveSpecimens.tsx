@@ -173,7 +173,6 @@ export default function ActiveSpecimens() {
                 src={s.src}
                 alt={s.name}
                 fill
-                priority={i < 2}
                 sizes="320px"
                 className="object-cover opacity-75 group-hover:opacity-100 filter contrast-125 grayscale-[20%] group-hover:grayscale-0 transition-all duration-700"
               />
