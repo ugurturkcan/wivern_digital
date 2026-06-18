@@ -246,9 +246,9 @@ function CameraController({ activeHotspot }: { activeHotspot: Hotspot | null }) 
       const targetOffsetX = isMobile ? 0 : 0.4;
       const targetOffsetY = isMobile ? -0.3 : 0;
 
-      // Fly to look at hotspot with the offsets
+      // Fly to look at hotspot with the offsets (closer look, respecting minDistance)
       controlsRef.current.setLookAt(
-        hx + targetOffsetX, hy + targetOffsetY + 0.1, hz + 1.6, // camera position
+        hx + targetOffsetX, hy + targetOffsetY + 0.1, hz + 1.8, // camera position
         hx + targetOffsetX, hy + targetOffsetY, hz, // target position
         true // animate
       );
@@ -273,8 +273,8 @@ function CameraController({ activeHotspot }: { activeHotspot: Hotspot | null }) 
     <CameraControls 
       ref={controlsRef} 
       makeDefault 
-      minDistance={2.5} 
-      maxDistance={9}
+      minDistance={1.2} 
+      maxDistance={5.5}
       dollySpeed={2}
       azimuthRotateSpeed={2}
       polarRotateSpeed={2}
