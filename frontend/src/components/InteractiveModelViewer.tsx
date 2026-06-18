@@ -94,31 +94,32 @@ function HotspotMarker({
   onClick: () => void;
 }) {
   return (
-    <Html position={hotspot.position} center distanceFactor={4} zIndexRange={[10, 20]} wrapperClass="pointer-events-none">
+    <Html position={hotspot.position} center zIndexRange={[10, 20]} wrapperClass="pointer-events-none">
       <button
         onPointerDown={(e) => {
           e.stopPropagation();
           onClick();
         }}
-        className={`group relative flex items-center justify-center transition-all duration-300 pointer-events-auto ${isActive ? 'scale-125' : 'scale-100 hover:scale-110'}`}
+        className={`group relative flex items-center justify-center transition-all duration-500 pointer-events-auto ${isActive ? 'scale-110' : 'scale-100'}`}
         title={hotspot.label}
       >
-        {/* Pulse ring */}
+        {/* Elegant Pulse ring */}
         {!isActive && (
-          <span className="absolute inline-flex h-8 w-8 rounded-full bg-yellow-500/40 animate-ping" />
+          <span className="absolute inline-flex h-10 w-10 rounded-full border border-yellow-500/40 animate-[ping_2.5s_cubic-bezier(0,0,0.2,1)_infinite]" />
         )}
-        {/* Core dot */}
+        {/* Core aesthetic dot */}
         <span
-          className={`relative inline-flex items-center justify-center w-7 h-7 rounded-full border-2 text-[9px] font-bold tracking-widest transition-all duration-300 ${
+          className={`relative inline-flex items-center justify-center w-6 h-6 rounded-full border-[1.5px] backdrop-blur-md transition-all duration-500 ${
             isActive
-              ? 'bg-yellow-500 border-yellow-300 text-black shadow-[0_0_20px_rgba(234,179,8,0.8)]'
-              : 'bg-black/70 border-yellow-600 text-yellow-400 shadow-[0_0_12px_rgba(197,160,89,0.5)] hover:bg-yellow-900/60'
+              ? 'bg-yellow-500/90 border-yellow-300 shadow-[0_0_25px_rgba(234,179,8,0.9)]'
+              : 'bg-black/40 border-yellow-500/70 shadow-[0_0_10px_rgba(234,179,8,0.3)] group-hover:bg-yellow-900/60 group-hover:border-yellow-400 group-hover:shadow-[0_0_15px_rgba(234,179,8,0.6)]'
           }`}
         >
-          ◉
+          <span className={`w-1.5 h-1.5 rounded-full transition-all duration-500 ${isActive ? 'bg-black scale-150' : 'bg-yellow-500 group-hover:bg-yellow-300 group-hover:scale-125'}`} />
         </span>
-        {/* Label tooltip */}
-        <span className="absolute -bottom-7 left-1/2 -translate-x-1/2 whitespace-nowrap text-[8px] tracking-[0.2em] uppercase text-yellow-500/80 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-black/80 px-2 py-0.5 backdrop-blur-sm border border-yellow-900/40">
+        
+        {/* Minimalist Label tooltip (shows on the right) */}
+        <span className="absolute left-full ml-3 top-1/2 -translate-y-1/2 whitespace-nowrap text-[9px] tracking-[0.25em] uppercase text-yellow-100/90 opacity-0 group-hover:opacity-100 transition-all duration-300 -translate-x-2 group-hover:translate-x-0 bg-black/60 px-3 py-1.5 backdrop-blur-md border-l border-yellow-500/50">
           {hotspot.label}
         </span>
       </button>
